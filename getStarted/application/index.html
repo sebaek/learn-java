@@ -89,7 +89,7 @@ class HelloWorldApp {
             </h2>
 
             <p>
-                아래 굵은 텍스트는 "Hello World!"프로그램에 사용된 클래스 정의 블럭의 시작이다.
+                아래 굵은 텍스트는 "Hello World!"프로그램에 사용된 클래스 정의 블럭이다.
             </p>
             <pre>
 /**
@@ -115,10 +115,76 @@ class <i>name</i> {
 }</pre>
 
 
+            <p>
+                <code>class</code>키워드는 이름이
+                <code>name</code>인 클래스를 정의 하기위한 시작 부분이다. 그리고 클래스의 코드는 중괄호 사이에 작성된다. 다른 튜토리얼에서 클래스의 일반적인 내용과 상세한 내용을 알아보도록 하겠다. 지금은 모든 프로그램은
+                클래스 정의와 함께 시작된다는 것을 안 것으로 충분하다.
+            </p>
+
+
+            <h3>
+                <code>main</code> 메소드
+            </h3>
+            <p>
+                아래 굵은 글씨는
+                <code>main</code> 메소드를 정의 하는 부분이다.
+            </p>
+
+            <pre>
+/**
+ * The HelloWorldApp class implements an application that
+ * simply displays "Hello World!" to the standard output.
+ */
+class HelloWorldApp {
+    <b>public static void main(String[] args) {</b>
+        System.out.println("Hello World!"); //Display the string.
+    <b>}</b>
+}
+</pre>
+
+            <p>
+                자바 언어에서 모든 프로그램은 다음 시그니쳐를 가진 <code>main</code> 메소드를 가지고 있어야 한다.
+            </p>
+
+<pre>public static void main(String[] args)</pre>
+
 <p>
-    <code>class</code>키워드는 이름이 <code>name</code>인 클래스를 정의 하기위한 시작 부분이다. 
-    그리고 클래스의 코드는 중괄호 사이에 작성된다. 다른 튜토리얼에서 클래스의 일반적인 내용과 상세한 내용을 알아보도록 하겠다.
-    지금은 모든 프로그램은 클래스 정의와 함께 시작된다는 것을 안 것으로 충분하다.
+    <code>public</code>과 <code>static</code> 지정자는 순서를 바꿔도 된다(<code>public static</code> 또는 <code>static public</code>). 그러나 <code>public static</code>으로 쓰는 것이 일반적인 방법이다.
+    매개변수의 이름은 원하는 대로 지을 수 있다. 하지만 많은 프로그래머들이 "args"나 "argv"를 사용한다.
+
+</p>
+<p>
+    <code>main</code>메소드는 하나의 매개변수를 갖는다. <code>String</code> 배열 타입이다.
+
+</p>
+<pre>public static void main(<b>String[] args</b>)</pre>
+<p>
+    이 배열은 프로그램을 실행할 때 시스템에서 전달하는 정보를 갖는다. 예를 들어:
+
+</p>
+
+<pre>java <i>MyApp arg1 arg2</i> </pre>
+
+<p>
+    배열에 있는 각 문자열을 <i>command-line argument</i>(명령문 인자)라고 한다.
+    명령문 인자는 컴파일을 다시 하지 않고 사용자가 프로그램 실행에 영향을 주기 위해 사용한다.
+    예를 들어 정렬 프로그램에서 사용자는 데이터의 정렬 방식을 명령문 인자를 통해 전달 할 수 있다. 
+
+
+</p>
+
+<pre>-descending</pre>
+<p>
+    "Hello World!" 프로그램은 이 명령문 인자를 무시하지만 이런 인자가 있다는 것을 알고 있어야 한다.
+
+</p>
+<p>
+    마지막으로 설명할 줄 :
+</p>
+<pre>System.out.println("Hello World!");</pre>
+<p>
+    이 줄은 핵심 라이브러리의 <code>System</code> 클래스를 사용하여 "Hello World!"를 표준 출력장치에 출력한다.
+    이 라이브러리에 관한 내용은 ("Application Programming Interface", 또는 "API" 라고 불림) 나중에 자세히 다룰 것이다.
 </p>
         </div>
 
