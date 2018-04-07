@@ -19,13 +19,13 @@
 <body>
 
 
-    <div class="container margin-top-container">
+    <div class="container">
         <div class="col-sm-4">
             <div class="side-menu-container">
 
                 <ul>
                     <li>
-                        자바
+                        <a href="index.html">자바</a>
                     </li>
                     <ul>
                         <li>
@@ -42,23 +42,104 @@
             </div>
         </div>
         <div class="col-sm-8">
-            <h1>자바</h1>
+            <h1>자바란</h1>
             <p>
-                어디에나 있는 자바가 정확히 무엇인지 알아보자. 다음 섹션들에서 자바가 어떻게 프로그래밍 언어이며 플랫폼인지 설명한다. 그리고 이 것으로 무엇을 할 수 있는지 알아본다.
+                자바는 프로그래밍 언어이며 플랫폼이다.
             </p>
-            <p>
 
-                <ul>
-                    <li>
-                        <a href="definition.html">자바란?</a>
-                    </li>
-                    <li>
-                        <a href="cando.html">자바로 할 수 있는 것은?</a>
-                    </li>
-                    <li>
-                        <a href="changemylife.html">자바는 내 삶을 어떻게 바꾸나?</a>
-                    </li>
-                </ul>
+            <h2>
+
+                자바 프로그래밍 언어
+            </h2>
+
+            <p>
+                자바 프로그래밍 언어는 다음에 나열된 특징을 가진 고수준 언어이다.
+            </p>
+            <ul>
+                <li>간단함</li>
+                <li>객체지향</li>
+                <li>분산</li>
+                <li>멀티쓰레드</li>
+                <li>동적인</li>
+                <li>구조 중심</li>
+                <li>이식성</li>
+                <li>높은 성능</li>
+                <li>강력함</li>
+                <li>보안성</li>
+            </ul>
+
+            <p>
+                위 서술된 특징들은
+                <a href="http://www.oracle.com/technetwork/java/langenv-140151.html">The Java Language Environment</a>에 설명되어 있다. James Gosling과 Henry McGilton이 작성했다.
+            </p>
+
+            <p>
+                자바 프로그래밍 언어에서 모든 소스 코드는
+                <code>.java</code>로 끝나는 텍스트 파일로 작성된다. 이 소스 파일들은
+                <code>javac</code> 컴파일러에 의해
+                <code>.class</code> 파일로 컴파일 된다.
+                <code>.class</code> 파일의 내용은 우리의 프로세서로 처리 할 수 있는 코드가 들어 있지 않고
+                <em>바이트코드</em>(Java 가상 머신[Java VM]의 기계어)로 되어 있다.
+                <code>java</code> 실행 도구는 우리의 프로그램을 Java 가상 머신을 통해서 실행 시킨다.
+
+            </p>
+            <div class="thumbnail">
+                <img src="../img/getStarted-compiler.gif" alt="">
+                <div class="caption">소프트웨어 개발 프로세서</div>
+            </div>
+
+            <p>
+                Java VM은 많은 다른 운영체제 시스템에 적용 가능하기 때문에 같은
+                <code>.class</code>파일이 MS 윈도우나 솔라리스OS, 리눅스, Mac OS 등에서 실행될 수 있다.
+                <a href="http://www.oracle.com/technetwork/java/javase/tech/index-jsp-136373.html">Java SE HotSpot at a Glance</a>같은 어떤 다른 가상 머신은 퍼포먼스를 강화하기 위한 실행 중에 부가 작업을 한다. 이 작업은 병목현상을 찾거나 자주 사용되는 코드를
+                다시 컴파일 하는 것 등이다.
+            </p>
+            <div class="thumbnail">
+                <img src="../img/helloWorld.gif" alt="">
+                <div class="caption">Java VM을 통해서 같은 프로그램이 여러 플랫폼에서 동작한다.</div>
+            </div>
+
+            <h2>
+                자바 플랫폼
+            </h2>
+
+            <p>
+                <em>플랫폼</em>은 프로그램이 실행되는 하드웨어나 소프트웨어 환경이다. 위에서 MS 윈도우나 리눅스, 솔라리스OS, Mac OS 같은 유명한 플랫폼을 언급했다. 대부분의 플랫폼은 운영체제와
+                하드웨어의 조합이라고 얘기할 수 있다. 자바 플랫폼은 대부분의 다른 플랫폼과 다르게 소프트웨어로만 존재하는 플랫폼이다. 이 플랫폼은 하드웨어 기반의 플랫폼 위에서 실행된다.
+
+            </p>
+
+            <p>자바 플랫폼은 두 컴포넌트로 이루어져 있다.</p>
+
+            <ul>
+                <li>
+                    <em>Java Virtual Machine</em> - 자바 가상 머신</li>
+                <li>
+                    <em>Java Application Programming Interface (API)</em>
+                </li>
+            </ul>
+
+
+            <p>
+                우리는 자바 가상 머신에 대해 위에서 언급했다. 이 것은 다른 하드웨어 기반 플랫폼에 이식된 자바 플랫폼에 기반이다.
+
+            </p>
+
+            <p>
+                API는 유용한 기능을 제공해주는 소프트웨어 컴포넌트의 큰 집합체 이다. 이 것은 관련된 클래스와 인터페이스들의 라이브러리로 묶여있다. 이 라이브러리들은
+                <em>패키지</em>라고도 부른다. 다은 섹션에서 API가 제공하는 기능들을 살펴본다.
+            </p>
+            <div class="thumbnail">
+                <img src="../img/getStarted-jvm.gif" alt="">
+                <div class="caption">하드웨어 위에서 API와 자바 가상 머신이 프로그램을 실행한다.</div>
+            </div>
+            <p>
+                플랫폼 독립 환경에서 자바 플랫폼은 하드웨어 기본 플랫폼에 종속된 코드보다 조금 느릴 수 있다.
+                그러나 컴파일러와 가상 머신 기술은 이식성을 해치지 않으면ㅅ 퍼포먼스를 플랫폼 종속 코드 만큼 향상 시키고 있다.
+            </p>
+
+            <p>
+                "자바 가상 머신"과 "JVM"은 자바 플랫폼의 가상 머신을 의미한다.
             </p>
         </div>
 
