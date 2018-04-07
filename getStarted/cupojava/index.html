@@ -31,7 +31,7 @@
                         <li>
                             <a href="index.html">"Hello World!" 프로그램</a>
                         </li>
-                
+
                     </ul>
                 </ul>
             </div>
@@ -39,12 +39,119 @@
         <div class="col-sm-8">
             <h1>"Hello World!" 프로그램</h1>
             <p>
-                첫 번재 프로그램을 작성해보자. 
+                첫 번째 프로그램을 작성해보자.
             </p>
 
-            <hr>
+            <h2>첫 번째 프로그램 만들기</h2>
+            <p>
+                첫 번째 프로그램은
+                <code>HelloWorldApp</code>이다. 간단히 "Hello World!"라고 출력하는 프로그램이다. 이 프로그램을 만들기 위해서 :
+            </p>
+            <ul>
+                <li>
+                    <b>소스 파일을 만든다.</b>
+                    <p>
+                        소스 파일은 자바 프로그래밍 언어로 작성된 코드를 담고 있다. 작성자와 다른 프로그래머가 이해할 수 있는 코드 이다. 소스 파일은 텍스트 에디터로 작성하고 편집할 수 있다.
+                    </p>
+                </li>
+                <li>
+                    <b>소스 파일은 .class 파일로 컴파일 한다.</b>
+                    <p>
+                        자바 프로그래밍 언어
+                        <i>컴파일러</i>(
+                        <code>javac</code>)는 소스 파일의 텍스트를 번역해서 자바 가상 머신이 이해 할 수 있는 명령문으로 바꿔준다. 이 파일에 담겨 있는 명령문들은
+                        <i>바이트코드</i>라고 한다.
+                    </p>
+                </li>
+                <li>
+                    <b>프로그램을 실행 시킨다.</b>
+                    <p>
+                        자바 프로그램
+                        <i>실행도구</i>(
+                        <code>java</code>)는 자바 가상 머신이 작성된 프로그램을 실행 시킬 수 있게 한다.
+                    </p>
+                </li>
+            </ul>
 
-            <h2>체크리스트</h2>
+            <h3>
+                소스 파일 만들기
+            </h3>
+            <p>
+                먼저, 편집기를 실행 시킨다. 메모장을 실행 시키도록 한다. 새 문서에서 아래와 같은 코드를 작성한다.
+
+            </p>
+            <pre>
+/**
+ * HelloWorldApp 클래스는
+ * 간단히 표준 출력에 "Hello World!"라고 출력하는
+ * 프로그램을 구현했다.
+ */
+class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println("Hello World!"); // 문자열 출력.
+    }
+}</pre>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>
+                        <strong>주의 : </strong> 모든 코드와 명령문, 파일이름을 보이는 대로 정확하게 작성하여야 한다. 컴파일러(
+                        <code>javac</code>)와 실행프로그램(
+                        <code>java</code>)는 모두
+                        <em>대소문자를 명확히 구분</em>하기 때문에 코드 작성시 주의하여야 한다.
+                    </p>
+                </div>
+            </div>
+            <p>
+                작성된 파일을
+                <code>HelloWorldApp.java</code>로 저장한다.
+            </p>
+
+            <h3>
+
+                소스 파일을 .class 파일로 컴파일 하기
+            </h3>
+
+            <p>
+                <kbd>win + r</kbd>키를 눌러 실행 창을 띄운 뒤,
+                <code>cmd</code>를 입력하고 엔터 키를 누르면 아래와 같은 쉘 윈도우가 나타날 것이다.
+            </p>
+            <div class="thumbnail">
+                <img src="../img/dos.png" alt="">
+                <div class="caption">쉘 윈도우</div>
+            </div>
+
+            <p>
+                프롬프트는
+                <em>현재 디렉토리</em>를 보여준다. 소스 파일이 있는 위치로 이동한다.
+            </p>
+            <p>
+                디렉토리를 이동하여 컴파일할 준비가 되었으면 아래 명령어를 작성하고
+                <b>엔터키</b>를 누른다.
+            </p>
+            <pre>
+javac HelloWorldApp.java</pre>
+
+
+            <p>
+                컴파일러는
+                <code>HelloWorldApp.class</code> 바이트코드 파일을 생성했다. 프롬프트에서
+                <code>dir</code>명령어를 입력하여 파일이 생성된 것을 볼 수 있다. 이 파일을 실행 할 수 있다.
+            </p>
+
+            <h3>
+                프로그램 실행하기
+            </h3>
+
+            <p>
+                같은 디렉토리에서 아래 명령어를 실행시킨다.
+            </p>
+            <pre>
+java -cp . HelloWorldApp</pre>
+
+            <p>스크린에
+                <samp>Hello World!</samp>라고 출력될 것이다.</p>
+
+            <p>첫 번째 프로그램을 완성한 것을 축하한다!</p>
         </div>
 
     </div>
