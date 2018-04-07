@@ -27,16 +27,99 @@
                     <li>
                         <a href="index.html">"Hello World!" 프로그램 살펴보기</a>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
         <div class="col-sm-8">
             <h1>"Hello World!" 프로그램 살펴보기</h1>
             <p>
-                
+                "Hello World!"프로그램을 작성하고 컴파일 해보았다. 이 것이 어떻게 작동하는지 알아보자.
             </p>
 
+            <pre>
+class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println("Hello World!"); // Display the string.
+    }
+}</pre>
+            <p>
+                "Hello World!" 프로그램은 세 개의 주요 구성요소로 이루어져 있다 : 소스 코드 주석,
+                <code>HelloWorldApp</code> 클래스 정의와
+                <code>main</code>메소드. 아래 설명은 코드를 이해하는 데 기본적인 내용이 될 것이다. 더 많은 내용은 나머지 튜토리얼을 읽은 후에 알게 될 것이다.
+
+            </p>
+
+            <h2>소스코드 주석</h2>
+            <p>
+                아래 굵은 글씨는
+                <i>주석</i>을 의미 한다.
+            </p>
+
+            <pre>
+<b>/**
+ * The HelloWorldApp class implements an application that
+ * simply prints "Hello World!" to standard output.
+ */</b>
+class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println("Hello World!"); // Display the string.
+    }
+}</pre>
+
+            <p>
+                주석은 컴파일러에 의해 무시되지만 프로그래머들에게 유용하다. 자바 프로그래밍 언어는 세 종류의 주석을 제공한다.
+
+            </p>
+            <dl>
+                <dt>/* text */</dt>
+                <dd>컴파일러는 /* 과 */ 사이의 모든 것을 무시한다.</dd>
+                <dt>/** documentation */</dt>
+                <dd>이 것은 문서화 주석을 의미한다. 컴파일러는 /** 과 */ 사이의 모든 것을 무시한다.
+                    <code>javadoc</code> 도구는 문서화 주석을 사용하여 문서를 생성한다. 더 많은 정보는
+                    <a href="">Javadoc&trade; tool documentaion</a>을 참조.</dd>
+                <dt>// text</dt>
+                <dd>
+                    컴파일러는 //부터 줄의 끝까지 무시한다.
+                </dd>
+            </dl>
+
+            <h2>
+                <code>HelloWorldApp</code> 클래스 정의
+            </h2>
+
+            <p>
+                아래 굵은 텍스트는 "Hello World!"프로그램에 사용된 클래스 정의 블럭의 시작이다.
+            </p>
+            <pre>
+/**
+ * The HelloWorldApp class implements an application that
+ * simply prints "Hello World!" to standard output.
+ */
+<b>class HelloWorldApp {</b>
+    public static void main(String[] args) {
+        System.out.println("Hello World!"); // Display the string.
+    }
+<b>}</b></pre>
+
+
+            <p>
+
+                위에서 보여주듯이 클래스를 정의 하는 기본 형식은 아래와 같다.
+
+            </p>
+
+            <pre>
+class <i>name</i> {
+    . . .
+}</pre>
+
+
+<p>
+    <code>class</code>키워드는 이름이 <code>name</code>인 클래스를 정의 하기위한 시작 부분이다. 
+    그리고 클래스의 코드는 중괄호 사이에 작성된다. 다른 튜토리얼에서 클래스의 일반적인 내용과 상세한 내용을 알아보도록 하겠다.
+    지금은 모든 프로그램은 클래스 정의와 함께 시작된다는 것을 안 것으로 충분하다.
+</p>
         </div>
 
     </div>
