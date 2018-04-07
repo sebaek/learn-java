@@ -6,3 +6,9 @@ body {
 .margin-top-container {
     margin-top: 70px;
 }
+
+.side-menu-container ul{
+    list-style-type: none;
+    padding-left: 10px;
+
+}
