@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">객체지향 프로그래밍 개념</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="object.html">객체란?</a>
+                        </li>
+                        <li>
+                            <a href="class.html">클래스란?</a>
+                        </li>
+                        <li>
+                            <a href="inheritance.html">상속이란?</a>
+                        </li>
+                        <li>
+                            <a href="interface.html">인터페이스란?</a>
+                        </li>
+                        <li>
+                            <a href="package.html">패키지란?</a>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <h1>
+                인터페이스란?
+            </h1>
+            <p>
+                앞서 배운 것처럼, 객체들은 메소드를 통해서 외부 세계와 상호 작용할 수 있다. 메소드는 외부세계와 객체의
+                <em>인터페이스</em>통해 상호 작용한다. 예를 들어 텔레비젼에 있는 버튼은 당신과 플라스틱으로 감싸진 전기회로를 연결하는 인터페이스이다. 당신이 "전원"버튼을 누르면 텔레비젼은 켜지거나 꺼진다.
+            </p>
+
+            <p>
+                가장 일반적인 형식으로, 인터페이스는 내용이 없는 메소드들의 묶음이다. 자전거의 기능을 인터페이스로 구현하면 아래와 같이 작성할 수 있다.
+            </p>
+
+            <pre>
+interface Bicycle {
+
+    //  wheel revolutions per minute
+    void changeCadence(int newValue);
+
+    void changeGear(int newValue);
+
+    void speedUp(int increment);
+
+    void applyBrakes(int decrement);
+}</pre>
+
+            <p>
+                이 인터페이스를 구현하기 위해서 당신의 클래스 이름을 변경할 것이다(예를 들어
+                <code>ACMEBicyle</code>같은 특정한 브랜드로). 그리고
+                <code>implements</code> 키워드와 함께 클래스를 정의한다.
+            </p>
+
+            <pre>
+class ACMEBicycle implements Bicycle {
+
+    int cadence = 0;
+    int speed = 0;
+    int gear = 1;
+
+    // The compiler will now require that methods
+    // changeCadence, changeGear, speedUp, and applyBrakes
+    // all be implemented. Compilation will fail if those
+    // methods are missing from this class.
+
+    void changeCadence(int newValue) {
+            cadence = newValue;
+    }
+
+    void changeGear(int newValue) {
+            gear = newValue;
+    }
+
+    void speedUp(int increment) {
+            speed = speed + increment;   
+    }
+
+    void applyBrakes(int decrement) {
+            speed = speed - decrement;
+    }
+
+    void printStates() {
+            System.out.println("cadence:" +
+                cadence + " speed:" + 
+                speed + " gear:" + gear);
+    }
+}</pre>
+
+            <p>
+                어떤 클래스가 인터페이스를 구현하는 것은 인터페이스가 정의한
+                기능을 제공하겠다는 약속인 것이다.
+                인터페이스는 그 클래스와 외부 세계와의 계약을 정의한 것이다.
+                그리고 그 계약을 컴파일러가 컴파일할 때 강제할 수 있게 한다.
+                만약 당신의 클래스가 인터페이스를 구현하고자 하면,
+                인터페이스에 정의된 모든 메소드가 그 클래스의
+                소스코드에 존재해야 컴파일할 수 있다.
+            </p>
+
+            <p>
+                <b>Note : </b> 사실은 <code>ACMEBicycle</code>클래스를 컴파일하기 위해서
+                <code>public</code>키워드를 인터페이스의 메소드 시작 부분에 모두 작성해야 한다.
+                그 이유를 다른 강의 에서 배우게 될 것이다.
+            </p>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
