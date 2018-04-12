@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">언어의 기초</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="variables.html">변수</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="datatypes.html">원시 데이터 타입</a>
+                            </li>
+                            <li>
+                                <a href="arrays.html">배열</a>
+                            </li>
+                            <li>
+                                <a href="variablesummary.html">변수 요약</a>
+                            </li>
+
+                        </ul>
+
+                        <li>
+                            <a href="operators.html">연산자</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="op1.html">할당, 산술, 단항 연산자</a>
+                            </li>
+                            <li>
+                                <a href="op2.html">비교, 관계, 조건 연산자</a>
+                            </li>
+                            <li>
+                                <a href="op3.html">비트, 쉬프트 연산자</a>
+                            </li>
+                            <li>
+                                <a href="opsummary.html">연산자 요약</a>
+                            </li>
+                        </ul>
+
+                        <li>
+                            <a href="expressions.html">표현식, 명령문, 블럭</a>
+                        </li>
+
+                        <li>
+                            <a href="flow.html">흐름 제어문</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="if.html">if-then, if-then-else 문</a>
+                            </li>
+                            <li>
+                                <a href="switch.html">switch 문</a>
+                            </li>
+                            <li>
+                                <a href="while.html">while, do-while 문</a>
+                            </li>
+                            <li>
+                                <a href="for.html">for 문</a>
+                            </li>
+                            <li>
+                                <a href="branch.html">브랜치 문</a>
+                            </li>
+                            <li>
+                                <a href="flowsummary.html">흐름 제어문 요약</a>
+                            </li>
+                        </ul>
+
+
+
+
+
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <h1>
+                할당, 산술, 단항 연산자
+
+            </h1>
+            <h2>
+                간단한 할당 연산자
+
+            </h2>
+
+            <p>
+                가장 많이 마주하게 되는 연산자 중에 하나는 간단한 할당연산자 "="일 것이다. 이 연산자를 Bicycle 클래스에서 보았다. 오른쪽에 있는 값을 왼쪽에 있는 피연산자에 할당한다.
+
+
+            </p>
+
+            <pre>
+int cadence = 0;
+int speed = 0;
+int gear = 1;</pre>
+
+
+            <p>
+                이 연산자는 객체의 참조를 할당 할 때도 사용한다. 다른 섹션에서 배우도록 하겠다.
+            </p>
+
+            <h2>
+                산술 연산자
+            </h2>
+
+            <p>
+                자바는 덧셈, 뺄셈, 곱셈, 나눗셈을 위한 연산자를 제공한다. 기초수학에서 배운 연산자와 같고, "
+                <code>%</code>"는 처음 볼 것이다. 이 연산자는 어떤 값을 다른 값으로 나눈 나머지를 결과로 갖는다.
+            </p>
+
+            <table class="table">
+                <tr>
+                    <th>Operator</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>
+                        <code>+</code>
+                    </td>
+                    <td>덧셈 (문자열에선 연결)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>-</code>
+                    </td>
+                    <td>뺄셈</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>*</code>
+                    </td>
+                    <td>곱셈</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>/</code>
+                    </td>
+                    <td>나눗셈</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>%</code>
+                    </td>
+                    <td>나머지</td>
+                </tr>
+            </table>
+
+
+            <p>아래
+                <code>ArithmeticDemo</code>프로그램에서 산술연산자를 사용한다.</p>
+
+            <pre>
+class ArithmeticDemo {
+
+    public static void main (String[] args) {
+
+        int result = 1 + 2;
+        // result is now 3
+        System.out.println("1 + 2 = " + result);
+        int original_result = result;
+
+        result = result - 1;
+        // result is now 2
+        System.out.println(original_result + " - 1 = " + result);
+        original_result = result;
+
+        result = result * 2;
+        // result is now 4
+        System.out.println(original_result + " * 2 = " + result);
+        original_result = result;
+
+        result = result / 2;
+        // result is now 2
+        System.out.println(original_result + " / 2 = " + result);
+        original_result = result;
+
+        result = result + 8;
+        // result is now 10
+        System.out.println(original_result + " + 8 = " + result);
+        original_result = result;
+
+        result = result % 7;
+        // result is now 3
+        System.out.println(original_result + " % 7 = " + result);
+    }
+}</pre>
+
+            <p>결과는 : </p>
+            <pre>
+1 + 2 = 3
+3 - 1 = 2
+2 * 2 = 4
+4 / 2 = 2
+2 + 8 = 10
+10 % 7 = 3</pre>
+
+            <p>
+                산술연산자를 간단한 할당연산자와 결합하여 사용할 수 있다. 예를 들어
+                <code>x+=1;</code>과
+                <code>x=x+1;</code>은
+                <code>x</code>를 1 증가 시킨다.
+
+            </p>
+
+            <p>
+                <code>+</code>연산자는 두 문자열을 연결 시키는 기능도 있다. 아래 프로그램
+                <code>ConcatDemo</code>에서 보여준다.
+            </p>
+
+            <pre>
+class ConcatDemo {
+    public static void main(String[] args){
+        String firstString = "This is";
+        String secondString = " a concatenated string.";
+        String thirdString = firstString+secondString;
+        System.out.println(thirdString);
+    }
+}</pre>
+
+
+            <p>
+                프로그램 마지막 부분에 변수
+                <code>thirdString</code>은 "This is a concatenated string."을 가지고 있고, 그 값이 출력된다.
+            </p>
+
+            <h2>
+                단항 연산자
+            </h2>
+
+            <p>
+                단항 연산자는 피연산자가 하나만 존재한다. 1씩 증가 시키거나 감소시키는 연산자, 결과의 부호를 바꾸는 연산자, 불린값을 반전시키는 연산자 등이 있다.
+            </p>
+
+            <table class="table">
+                <tr>
+                    <th>Operator</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>
+                        <code>+</code>
+                    </td>
+                    <td>Unary plus operator; indicates positive value (numbers are positive without this, however)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>-</code>
+                    </td>
+                    <td>Unary minus operator; negates an expression</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>++</code>
+                    </td>
+                    <td>Increment operator; increments a value by 1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>--</code>
+                    </td>
+                    <td>Decrement operator; decrements a value by 1</td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>!</code>
+                    </td>
+                    <td>Logical complement operator; inverts the value of a boolean</td>
+                </tr>
+            </table>
+
+            <p>
+                아래
+                <code>UnaryDemo</code> 프로그램에서 단항 연산자를 보여준다.
+            </p>
+            <pre>
+class UnaryDemo {
+
+    public static void main(String[] args) {
+
+        int result = +1;
+        // result is now 1
+        System.out.println(result);
+
+        result--;
+        // result is now 0
+        System.out.println(result);
+
+        result++;
+        // result is now 1
+        System.out.println(result);
+
+        result = -result;
+        // result is now -1
+        System.out.println(result);
+
+        boolean success = false;
+        // false
+        System.out.println(success);
+        // true
+        System.out.println(!success);
+    }
+}</pre>
+
+            <p>
+                증감 연산자는 피연산자의 앞에나 뒤에 붙을 수 있다.
+                <code>result++;</code>와 <code>++result;</code>는 모두 <code>result</code>를
+                1 증가 시킨다. 차이점은 <code>++result</code>는 증가된 값으로 계산하고,
+                <code>result++</code>는 원래 값으로 계산한다는 것만 있다.
+                단순히 증감만 하기 위해 사용한다면 어느 것을 사용해도 무방하다.
+                하지만 이 연산자를 좀 더 복잡한 식에 사용하면 조금 다른 결과가 나온다.
+            </p>
+            <p>
+                아래 <code>PrePostDemo</code>프로그램은 prefix/postfix 단항 연산자를 사용하는 것을 보여준다.
+            </p>
+
+            <pre>
+class PrePostDemo {
+    public static void main(String[] args){
+        int i = 3;
+        i++;
+        // prints 4
+        System.out.println(i);
+        ++i;			   
+        // prints 5
+        System.out.println(i);
+        // prints 6
+        System.out.println(++i);
+        // prints 6
+        System.out.println(i++);
+        // prints 7
+        System.out.println(i);
+    }
+}</pre>
+        </div>
+        <!-- 2열 끝 -->
+
+    </div>
+    <!-- container 끝 -->
+
+</body>
+
+</html>

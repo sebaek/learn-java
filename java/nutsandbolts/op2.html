@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">언어의 기초</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="variables.html">변수</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="datatypes.html">원시 데이터 타입</a>
+                            </li>
+                            <li>
+                                <a href="arrays.html">배열</a>
+                            </li>
+                            <li>
+                                <a href="variablesummary.html">변수 요약</a>
+                            </li>
+
+                        </ul>
+
+                        <li>
+                            <a href="operators.html">연산자</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="op1.html">할당, 산술, 단항 연산자</a>
+                            </li>
+                            <li>
+                                <a href="op2.html">비교, 관계, 조건 연산자</a>
+                            </li>
+                            <li>
+                                <a href="op3.html">비트, 쉬프트 연산자</a>
+                            </li>
+                            <li>
+                                <a href="opsummary.html">연산자 요약</a>
+                            </li>
+                        </ul>
+
+                        <li>
+                            <a href="expressions.html">표현식, 명령문, 블럭</a>
+                        </li>
+
+                        <li>
+                            <a href="flow.html">흐름 제어문</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="if.html">if-then, if-then-else 문</a>
+                            </li>
+                            <li>
+                                <a href="switch.html">switch 문</a>
+                            </li>
+                            <li>
+                                <a href="while.html">while, do-while 문</a>
+                            </li>
+                            <li>
+                                <a href="for.html">for 문</a>
+                            </li>
+                            <li>
+                                <a href="branch.html">브랜치 문</a>
+                            </li>
+                            <li>
+                                <a href="flowsummary.html">흐름 제어문 요약</a>
+                            </li>
+                        </ul>
+
+
+
+
+
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <h1>
+                비교, 관계, 조건 연산자
+            </h1>
+
+            <h2>
+                비교, 관계 연산자
+            </h2>
+
+            <p>
+                비교, 관계 연산자는 어떤 피연산자가 다른 피연산자보다 값이 큰 지 , 작은 지, 같은 지, 같지 않은 지의 결과를 낸다. 이 연산자들은 익숙한 기호들일 것이다. 두 원시 자료형의 값이 같은 지 연산하는 기호는 "="이
+                아니고 "=="임을 기억해야 한다.
+            </p>
+            <pre>==      equal to
+!=      not equal to
+&gt;       greater than
+&gt;=      greater than or equal to
+&lt;       less than
+&lt;=      less than or equal to</pre>
+
+            <p>
+                아래
+                <code>ComparisonDemo</code> 프로그램은 비교연산자를 테스트 한다.
+            </p>
+
+            <pre>
+class ComparisonDemo {
+
+    public static void main(String[] args){
+        int value1 = 1;
+        int value2 = 2;
+        if(value1 == value2)
+            System.out.println("value1 == value2");
+        if(value1 != value2)
+            System.out.println("value1 != value2");
+        if(value1 > value2)
+            System.out.println("value1 > value2");
+        if(value1 < value2)
+            System.out.println("value1 < value2");
+        if(value1 <= value2)
+            System.out.println("value1 <= value2");
+    }
+}</pre>
+
+
+
+            <p>
+                결과는 :
+            </p>
+
+            <pre>
+value1 != value2
+value1 <  value2
+value1 <= value2</pre>
+
+
+            <h2>
+                조건 연산자
+            </h2>
+            <p>
+                <code>&&</code>와
+                <code>||</code>은 두 불린 값의
+                <em>Conditional-AND</em>와
+                <em>Conditional-OR</em> 연산을 한다. 이 연산자는 "short-circuiting" 연산을 한다. 즉 두번째 피연산자는 필요할 때에만 계산 하게 된다.
+            </p>
+            <pre>&& Conditional-AND
+|| Conditional-OR</pre>
+
+            <p>
+                아래
+                <code>ConditionalDemo1</code> 프로그램은 이 연산자들을 테스트 한다.
+            </p>
+
+
+            <pre>
+class ConditionalDemo1 {
+
+    public static void main(String[] args){
+        int value1 = 1;
+        int value2 = 2;
+        if((value1 == 1) && (value2 == 2))
+            System.out.println("value1 is 1 AND value2 is 2");
+        if((value1 == 1) || (value2 == 1))
+            System.out.println("value1 is 1 OR value2 is 1");
+    }
+}</pre>
+
+            <p>
+                조건 연산자
+                <code>?:</code>는
+                <code>if-then-else</code>를 간단하게 표현한 연산자로 생각할 수 있다. 이 연산자는 피연산자가 3개이기 때문에
+                <em>삼항 연산자</em>로 불리기도 한다. 아래 예제는 "만약
+                <code>someCondition</code>이
+                <code>true</code>이면
+                <code>result</code>에
+                <code>value1</code>의 값을 할당하고, 그렇지 않으면
+                <code>result</code>에
+                <code>value2</code>의 값을 할당해라."로 읽을 수 있다.
+            </p>
+
+            <p>
+                <code>ConditionalDemo2</code> 프로그램은
+                <code>?:</code>를 시연한다.
+            </p>
+
+
+            <pre>
+class ConditionalDemo2 {
+
+    public static void main(String[] args){
+        int value1 = 1;
+        int value2 = 2;
+        int result;
+        boolean someCondition = true;
+        result = someCondition ? value1 : value2;
+
+        System.out.println(result);
+    }
+}</pre>
+
+            <p>
+                만약
+                <code>someCondition</code>이 true이면 "1"을 출력한다. 만약 식이 간단하고 다른 영향이 없다면(할당 같은 연산)
+                <code>if-then-else</code>보다
+                <code>?:</code>를 사용하는 것이 읽기 쉽다.
+
+            </p>
+
+            <h2>
+                타입(자료형) 비교 연산 instanceof
+            </h2>
+
+            <p>
+                <code>instanceof</code> 연산자는 어떤 객체가 특정 타입인지 검사하는 연산자이다. 이 연산자는 어떤 객체가 어떤 클래스의 인스턴스인지, 또는 어떤 서브 클래스의 인스턴스인지, 또는 어떤 인터페이스를 구현한 클래스의
+                인스턴스인지 확인해 볼 수 있다.
+            </p>
+
+            <p>
+                <code>InstanceofDemo</code> 프로그램은 부모 클래스 (
+                <code>Parent</code>)와 간단한 인터페이스 (
+                <code>MyInterface</code>), 인터페이스를 구현하고 부모 클래스를 상속받은 자식 클래스 (
+                <code>Child</code>) 를 정의한다.
+            </p>
+
+            <pre>
+class InstanceofDemo {
+    public static void main(String[] args) {
+
+        Parent obj1 = new Parent();
+        Parent obj2 = new Child();
+
+        System.out.println("obj1 instanceof Parent: "
+            + (obj1 instanceof Parent));
+        System.out.println("obj1 instanceof Child: "
+            + (obj1 instanceof Child));
+        System.out.println("obj1 instanceof MyInterface: "
+            + (obj1 instanceof MyInterface));
+        System.out.println("obj2 instanceof Parent: "
+            + (obj2 instanceof Parent));
+        System.out.println("obj2 instanceof Child: "
+            + (obj2 instanceof Child));
+        System.out.println("obj2 instanceof MyInterface: "
+            + (obj2 instanceof MyInterface));
+    }
+}
+
+class Parent {}
+class Child extends Parent implements MyInterface {}
+interface MyInterface {}</pre>
+
+
+            <p>
+                결과는 :
+            </p>
+
+            <pre>
+obj1 instanceof Parent: true
+obj1 instanceof Child: false
+obj1 instanceof MyInterface: false
+obj2 instanceof Parent: true
+obj2 instanceof Child: true
+obj2 instanceof MyInterface: true</pre>
+
+            <p>
+                <code>instanceof</code>연산자를 사용할 때
+                <code>null</code>은 어떤 타입의 인스턴스도 아님을 주의해야 한다.
+
+            </p>
+
+            
+        </div>
+        <!-- 2열 끝 -->
+
+    </div>
+    <!-- container 끝 -->
+
+</body>
+
+</html>

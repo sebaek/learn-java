@@ -100,27 +100,50 @@
         </div>
         <div class="col-sm-8">
             <h1>
-                변수 요약
+                비트, 쉬프트 연산자
             </h1>
             <p>
-
-                자바 언어에서는 "필드"와 "변수"를 모두 사용한다. 인스턴스 변수(non-static 필드)는
-                클래스의 각 인스턴스마다 갖는 변수이다.
-                클래스 변수 (static 필드)는 <code>static</code>지정자와 함께 선언되며,
-                하나의 클래스에 하나의 변수만 존재한다.
-                지역변수는 메소드 안의 임시 상태를 저장한다. 매개변수는 메소드에게 제공되는
-                부가 정보이다. 지역변수와 매개변수는 항상 ("필드"가 아닌)"변수"로 분류된다. 
-                필드와 변수를 이름 지을 때 따라야 하는 규칙과 관습이 있다.
+                자바 언어에서도 정수형 타입의 비트 연산자와 쉬프트 연산자를 제공한다. 이 섹션에서 다루는 연산자는 자주 사용되지 않는다. 그래서 간략하게 다룰 것이며, 이런 종류의 연산자가 존재한다는 것을 알려주는 섹션이다.
             </p>
 
             <p>
-                8개의 원시 자료형은 : byte, short, int, long, float, double, boolean, char 가 있다.
-                <code>java.lang.String</code>클래스는 문자열을 나타낸다.
-                컴파일러는 위의 타입에 기본값을 필드에 할당 할 수 있다.
-                지역변수에는 기본 값을 할당하지 않는다.
-                리터럴은 소스코드에 표현된 고정된 값이다. 배열은 같은 자료형의 고정된 갯수의 여러 원소를
-                담을 수 있는 객체이다. 배열의 길이는 배열이 생성될 때 정해지며 변하지 않는다.
+                단항 비트 연산자 "~"는 비트의 패턴을 반전 시킨다. 모든 정수형 타입의 0비트를 1로 1비트를 0으로 바꾼다. 예를 들어 8비트의
+                <code>byte</code> 값을 보면, "00000000"에 이 연산자를 적용하면 "11111111"이 된다.
             </p>
+
+            <p>
+                signed left shift 연산자 "&lt;&lt;"는 비트의 패턴을 왼쪽으로 이동시키고 signed left shift 연산자 "&gt;&gt;"는 비트의 패턴을 오른쪽으로 이동시킨다. 이동할 비트 패턴은 왼쪽
+                피연산자로 두고, 이동할 포지션은 오른쪽 피연산자로 둔다. unsigned right shift 연산자 "&gt;&gt;&gt;"는 왼쪽 끝을 0으로 채우지만 "&gt;&gt;"는 부호 비트로
+                채운다.
+
+            </p>
+
+            <p>
+                <code>&</code> 연산자는 bitwise AND 연산자이다.
+            </p>
+
+            <p>
+                <code>^</code> 연산자는 bitwise exclusive OR 연산자이다.
+            </p>
+
+            <p>
+                <code>|</code> 연산자는 bitwise inclusive OR 연산자이다.
+            </p>
+
+            <p>
+                <code>BitDemo</code> 프로그램은 bitwise AND 연산하여 수 "2"를 출력하는 예제이다.
+            </p>
+
+
+            <pre>
+class BitDemo {
+    public static void main(String[] args) {
+        int bitmask = 0x000F;
+        int val = 0x2222;
+        // prints "2"
+        System.out.println(val & bitmask);
+    }
+}</pre>
 
 
         </div>

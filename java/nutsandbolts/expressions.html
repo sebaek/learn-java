@@ -99,29 +99,60 @@
             </div>
         </div>
         <div class="col-sm-8">
+
             <h1>
-                변수 요약
+                연산자 요약
             </h1>
             <p>
-
-                자바 언어에서는 "필드"와 "변수"를 모두 사용한다. 인스턴스 변수(non-static 필드)는
-                클래스의 각 인스턴스마다 갖는 변수이다.
-                클래스 변수 (static 필드)는 <code>static</code>지정자와 함께 선언되며,
-                하나의 클래스에 하나의 변수만 존재한다.
-                지역변수는 메소드 안의 임시 상태를 저장한다. 매개변수는 메소드에게 제공되는
-                부가 정보이다. 지역변수와 매개변수는 항상 ("필드"가 아닌)"변수"로 분류된다. 
-                필드와 변수를 이름 지을 때 따라야 하는 규칙과 관습이 있다.
+                아래 표는 자바 에서 제공하는 연산자를 요약한 것이다.
             </p>
 
-            <p>
-                8개의 원시 자료형은 : byte, short, int, long, float, double, boolean, char 가 있다.
-                <code>java.lang.String</code>클래스는 문자열을 나타낸다.
-                컴파일러는 위의 타입에 기본값을 필드에 할당 할 수 있다.
-                지역변수에는 기본 값을 할당하지 않는다.
-                리터럴은 소스코드에 표현된 고정된 값이다. 배열은 같은 자료형의 고정된 갯수의 여러 원소를
-                담을 수 있는 객체이다. 배열의 길이는 배열이 생성될 때 정해지며 변하지 않는다.
-            </p>
-
+            <h2>
+                간단한 할당 연산자
+            </h2>
+            <pre>=       Simple assignment operator</pre>
+            <h2>산술 연산자</h2>
+            <pre>+       Additive operator (also used
+        for String concatenation)
+-       Subtraction operator
+*       Multiplication operator
+/       Division operator
+%       Remainder operator</pre>
+            <h2>단항 연산자</h2>
+            <pre>+       Unary plus operator; indicates
+        positive value (numbers are 
+        positive without this, however)
+-       Unary minus operator; negates
+        an expression
+++      Increment operator; increments
+        a value by 1
+--      Decrement operator; decrements
+        a value by 1
+!       Logical complement operator;
+        inverts the value of a boolean</pre>
+            <h2>비교 관계 연산자</h2>
+            <pre>==      Equal to
+!=      Not equal to
+>       Greater than
+>=      Greater than or equal to
+<       Less than
+<=      Less than or equal to</pre>
+            <h2>조건 연산자</h2>
+            <pre>&&      Conditional-AND
+||      Conditional-OR
+?:      Ternary (shorthand for 
+        if-then-else statement)</pre>
+            <h2>타입 비교 연산자</h2>
+            <pre>instanceof      Compares an object to 
+                a specified type </pre>
+            <h2>비트, 쉬프트 연산자</h2>
+            <pre>~       Unary bitwise complement
+<<      Signed left shift
+>>      Signed right shift
+>>>     Unsigned right shift
+&       Bitwise AND
+^       Bitwise exclusive OR
+|       Bitwise inclusive OR</pre>
 
         </div>
         <!-- 2열 끝 -->
