@@ -101,58 +101,142 @@
         <div class="col-sm-8">
 
             <h1>
-                연산자 요약
+                표현식, 명령문, 블럭
             </h1>
             <p>
-                아래 표는 자바 에서 제공하는 연산자를 요약한 것이다.
+                지금까지 변수와 연산자에 대해 배웠다. 이제
+                <em>표현식(expressions), 명령문(statements), 블럭(blocks)</em>을 배울 차례이다. 연산자는 값을 계산하는 표현식을 구성하고, 표현식은 명령문의 핵심 요소이다. 명령문은
+                블럭으로 묶이게 될 것이다.
+            </p>
+
+            <h2>표현식</h2>
+            <p>
+                <em>expression</em>은 변수와 연산자 메소드 호출 등으로 구성되어 있다. 언어에 문법에 따라 작성되며, 하나의 값을 도출한다. 이미 식의 예제에 대해 본 적이 있다. 아래 굵은 글씨로
+                작성된 것들이다.
+            </p>
+
+            <pre>
+int <b>cadence = 0</b>;
+<b>anArray[0] = 100</b>;
+System.out.println(<b>"Element 1 at index 0: " + anArray[0]</b>);
+
+int <b>result = 1 + 2</b>; // result is now 3
+if (<b>value1 == value2</b>) 
+    System.out.println(<b>"value1 == value2"</b>);</pre>
+
+
+
+
+            <p>
+                식의 계산 결과의 자료형은 식을 이루는 요소들에 의해서 결정된다. 할당연산자는 왼쪽 피연산자의 자료형과 같은 값을 리턴하기 때문에
+                <code>cadence = 0</code>의 식은
+                <code>int</code>타입을 반환한다. 이 경우
+                <code>cadence</code>는
+                <code>int</code> 타입이다. 다른 식에서 볼 수 있듯이, 식의 결과가
+                <code>boolean</code>이나
+                <code>String</code>같이 다른 값이 타입이 될 수 있다.
+            </p>
+
+            <p>
+                자바에서 여러 식을 조합해서 복합식을 만들어 낼 수 있다. 이 때 식의 결과값의 타입이 식의 일부인 다른 부분의 자료형과 일치해야 한다. 아래 복합식의 예제가 있다.
+            </p>
+
+            <pre>1 * 2 * 3</pre>
+
+            <p>
+                위의 예제에서의 곱셈은 순서와 상관없기 때문에 계산의 순서는 중요하지 않다. 어떤 곱셈을 먼저해도 결과는 같다. 그러나 모든 계산식에 해당하는 내용은 아니다. 예를 들어 아래 예제는 덧셈이나 나눗셈 중 어느 것을 먼저
+                계산하는 지에 따라 다른 결과가 나온다.
+            </p>
+            <pre>x + y / 100    // ambiguous</pre>
+
+
+            <p>
+                이 경우 () 괄호를 사용해서 순서를 명확히 할 수 있다. 위의 예제는 다시 아래와 같이 쓸 수 있다.
+            </p>
+            <pre>(x + y) / 100  // unambiguous, recommended</pre>
+
+            <p>
+                만약 계산의 순서를 명확히 작성해 주지 않으면, 계산식의 사용된 연산자의 우선순위에 따라 순서가 결정된다. 높은 우선순위를 가진 연산자가 먼저 계산된다. 예를 들면, 나누기 연산자는 더하기 연산자보다 우선순위가 높기
+                때문에, 아래 두 식은 결과가 같다.
+            </p>
+            <pre>x + y / 100 
+
+
+x + (y / 100) // unambiguous, recommended</pre>
+
+            <p>
+                복합식을 작성할 때 ()괄호를 사용해서 어떤 연산이 먼저 계산되어야 하는지 명확히 작성해 주어야 한다. 이 습관은 코드를 읽기 쉽게하고 유지보수를 용이하게 만들어준다.
             </p>
 
             <h2>
-                간단한 할당 연산자
+                명령문
             </h2>
-            <pre>=       Simple assignment operator</pre>
-            <h2>산술 연산자</h2>
-            <pre>+       Additive operator (also used
-        for String concatenation)
--       Subtraction operator
-*       Multiplication operator
-/       Division operator
-%       Remainder operator</pre>
-            <h2>단항 연산자</h2>
-            <pre>+       Unary plus operator; indicates
-        positive value (numbers are 
-        positive without this, however)
--       Unary minus operator; negates
-        an expression
-++      Increment operator; increments
-        a value by 1
---      Decrement operator; decrements
-        a value by 1
-!       Logical complement operator;
-        inverts the value of a boolean</pre>
-            <h2>비교 관계 연산자</h2>
-            <pre>==      Equal to
-!=      Not equal to
->       Greater than
->=      Greater than or equal to
-<       Less than
-<=      Less than or equal to</pre>
-            <h2>조건 연산자</h2>
-            <pre>&&      Conditional-AND
-||      Conditional-OR
-?:      Ternary (shorthand for 
-        if-then-else statement)</pre>
-            <h2>타입 비교 연산자</h2>
-            <pre>instanceof      Compares an object to 
-                a specified type </pre>
-            <h2>비트, 쉬프트 연산자</h2>
-            <pre>~       Unary bitwise complement
-<<      Signed left shift
->>      Signed right shift
->>>     Unsigned right shift
-&       Bitwise AND
-^       Bitwise exclusive OR
-|       Bitwise inclusive OR</pre>
+
+            <p>
+                명령문은 일반적인 언어의 한 문장과 거의 같다.
+                <em>statement</em>은 실행의 완전한 한 단위이다. 아래 식들이 세미콜론(;)으로 끝나면 하나의 명령문을 만들어 낸다.
+            </p>
+
+            <ul>
+                <li>할당 식</li>
+                <li>++나 --의 사용</li>
+                <li>메소드 호출</li>
+                <li>객체 생성 식</li>
+            </ul>
+
+            <p>
+                이런 명령문을
+                <em>expression statements</em>라고 한다. 여기 expression statements의 예제들이 있다.
+            </p>
+
+            <pre>
+// assignment statement
+aValue = 8933.234;
+// increment statement
+aValue++;
+// method invocation statement
+System.out.println("Hello World!");
+// object creation statement
+Bicycle myBike = new Bicycle();</pre>
+
+            <p>
+                expressoin statements외에 두 종류의 명령문이 있다. 하나는
+                <em>선언문</em>이며 다른 하나는
+                <em>흐름 제어 문</em>이다. 선언문은 변수를 선언하는 문장이다. 이미 많은 예제를 본 적이 있다.
+            </p>
+
+            <pre>
+// declaration statement
+double aValue = 8933.234;</pre>
+
+            <p>
+                마지막으로 흐름 제어 문은 어느 실행문을 실행해야 하는 지 결정해주는 명령문이다. 다른 섹션에서 자세하게 배우게 될 것이다.
+            </p>
+
+            <h2>
+                블럭
+            </h2>
+            <p>
+                <em>블럭</em>은 0개 이상의 명령문을 {} 괄호로 묶은 것이며 명령문이 위치할 수 있는 모든 곳에서
+                사용할 수 있다. 아래 예제, <code>BlockDemo</code>는 블럭의 사용을 보여준다.
+            </p>
+
+            <pre>
+class BlockDemo {
+    public static void main(String[] args) {
+            boolean condition = true;
+            if (condition) { // begin block 1
+                System.out.println("Condition is true.");
+            } // end block one
+            else { // begin block 2
+                System.out.println("Condition is false.");
+            } // end block 2
+    }
+}</pre>
+
+
+
+
 
         </div>
         <!-- 2열 끝 -->
