@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">언어의 기초</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="variables.html">변수</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="datatypes.html">원시 데이터 타입</a>
+                            </li>
+                            <li>
+                                <a href="arrays.html">배열</a>
+                            </li>
+                            <li>
+                                <a href="variablesummary.html">변수 요약</a>
+                            </li>
+
+                        </ul>
+
+                        <li>
+                            <a href="operators.html">연산자</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="op1.html">할당, 산술, 단한 연산자</a>
+                            </li>
+                            <li>
+                                <a href="op2.html">비교, 관계, 조건 연산자</a>
+                            </li>
+                            <li>
+                                <a href="op3.html">비트, 쉬프트 연산자</a>
+                            </li>
+                            <li>
+                                <a href="opsummary.html">연산자 요약</a>
+                            </li>
+                        </ul>
+
+                        <li>
+                            <a href="expressions.html">표현식, 명령문, 블럭</a>
+                        </li>
+
+                        <li>
+                            <a href="flow.html">흐름 제어문</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="if.html">if-then, if-then-else 문</a>
+                            </li>
+                            <li>
+                                <a href="switch.html">switch 문</a>
+                            </li>
+                            <li>
+                                <a href="while.html">while, do-while 문</a>
+                            </li>
+                            <li>
+                                <a href="for.html">for 문</a>
+                            </li>
+                            <li>
+                                <a href="branch.html">브랜치 문</a>
+                            </li>
+                            <li>
+                                <a href="flowsummary.html">흐름 제어문 요약</a>
+                            </li>
+                        </ul>
+
+
+
+
+
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+
+            <h1>
+                배열
+
+            </h1>
+
+
+            <p>
+                <em>배열</em>은 하나의 자료형의 여러 개(고정된)의 값을 갖는 객체이다. 배열의 길이는 배열이 만들어질 때 결정된다. 만든 후에 그 길이는 고정된다. 배열의 사용을 "Hello World!"
+                프로그램의
+                <code>main</code> 메소드에서 본 적이 있을 것이다. 이 섹션에서 배열을 자세히 알아보자.
+
+            </p>
+
+            <div class="thumbnail">
+                <img src="../img/objects-tenElementArray.gif" alt="">
+                <div class="caption">10개의 원소가 있는 배열</div>
+            </div>
+
+
+            <p>
+                배열의 각 아이템을
+                <em>원소(element)</em>라고 부른다. 각 원소는
+                <em>인덱스(index)</em>를 사용해서 접근할 수 있다. 위 그림에서 볼 수 있듯이 인덱스는 0으로 시작한다. 9번째 원소는 8번 인덱스로 접근해야 한다.
+            </p>
+
+            <p>
+                아래 프로그램
+                <code>ArrayDemo</code>에서 정수 배열을 만들고 배열에 값을 넣고 출력하는 예를 보여준다.
+            </p>
+
+            <pre>
+class ArrayDemo {
+    public static void main(String[] args) {
+        // declares an array of integers
+        int[] anArray;
+
+        // allocates memory for 10 integers
+        anArray = new int[10];
+            
+        // initialize first element
+        anArray[0] = 100;
+        // initialize second element
+        anArray[1] = 200;
+        // and so forth
+        anArray[2] = 300;
+        anArray[3] = 400;
+        anArray[4] = 500;
+        anArray[5] = 600;
+        anArray[6] = 700;
+        anArray[7] = 800;
+        anArray[8] = 900;
+        anArray[9] = 1000;
+
+        System.out.println("Element at index 0: "
+                            + anArray[0]);
+        System.out.println("Element at index 1: "
+                            + anArray[1]);
+        System.out.println("Element at index 2: "
+                            + anArray[2]);
+        System.out.println("Element at index 3: "
+                            + anArray[3]);
+        System.out.println("Element at index 4: "
+                            + anArray[4]);
+        System.out.println("Element at index 5: "
+                            + anArray[5]);
+        System.out.println("Element at index 6: "
+                            + anArray[6]);
+        System.out.println("Element at index 7: "
+                            + anArray[7]);
+        System.out.println("Element at index 8: "
+                            + anArray[8]);
+        System.out.println("Element at index 9: "
+                            + anArray[9]);
+    }
+} </pre>
+
+
+
+            <p>
+                이 프로그램의 결과는 아래와 같다.
+
+
+            </p>
+
+
+            <pre>
+Element at index 0: 100
+Element at index 1: 200
+Element at index 2: 300
+Element at index 3: 400
+Element at index 4: 500
+Element at index 5: 600
+Element at index 6: 700
+Element at index 7: 800
+Element at index 8: 900
+Element at index 9: 1000</pre>
+
+
+            <p>
+                위의 예제는 배열의 문법을 알려주기 위해서 각 원소를 접근하는 모든 라인을 작성하였지만, 실제 프로그래밍에서는
+                <em>반복문을</em> 사용하게 될 것이다. 다양한 반복문(
+                <code>for</code>,
+                <code>while</code>,
+                <code>do-while</code>)을 다른 섹션에서 배우게 될 것이다.
+
+
+            </p>
+
+            <h2>
+                배열을 참조하는 변수 선언하기
+
+            </h2>
+
+            <p>
+                위의 프로그램은 아래 코드와 같이
+                <code>anArray</code>라는 이름의 배열을 선언했다.
+            </p>
+
+            <pre>
+// declares an array of integers
+int[] anArray;</pre>
+
+
+            <p>
+
+                다른 자료형의 변수를 선언한 것처럼 배열의 선언은 배열의 타입과 배열의 이름으로 구성된다. 배열의 타입은
+                <code><em>type</em>[]</code> 같이 작성하며
+                <code><em>type</em></code>은 원소의 자료형이다. [] 괄호는 변수가 배열이라고 알려주는 기호이다. 배열의 사이즈는 자료형을 구성하는 부분이 아니다. [] 괄호안이 비어 있는 이유이다. 배열의 이름은 네이밍 관습만
+                따른다면 어떤 것이든 될 수 있다. 다른 타입의 변수 처럼, 배열의 선언이 배열을 만드는 것이 아니다. 단순히 컴파일러에게 이 변수가 특정 자료형의 배열이라고 알려주는 것이다.
+            </p>
+
+            <p>
+                다른 타입의 배열을 선언할 수 있다.
+            </p>
+
+            <pre>
+byte[] anArrayOfBytes;
+short[] anArrayOfShorts;
+long[] anArrayOfLongs;
+float[] anArrayOfFloats;
+double[] anArrayOfDoubles;
+boolean[] anArrayOfBooleans;
+char[] anArrayOfChars;
+String[] anArrayOfStrings;</pre>
+
+            <p>
+                [] 괄호를 배열 이름 끝에 붙일 수도 있다.
+            </p>
+
+            <pre>
+// this form is discouraged
+float anArrayOfFloats[];</pre>
+
+            <p>
+                하지만 이 형식은 권장되지 않는다. [] 괄호는 배열 타입이라는 것을 알려주며 자료형과 나타나야하기 때문이다.
+            </p>
+
+
+            <h2>
+
+                배열 생성, 초기화, 접근
+            </h2>
+
+            <p>
+                배열을 생성하는 방법 중 하나는
+                <code>new</code>연산자를 사용하는 것이다.
+                <code>ArrayDemo</code>의 다음 명령문은 10개의 정수 원소를 위한 메모리 공간을 확보하고
+                <code>anArray</code> 변수에 할당하는 코드이다.
+            </p>
+
+            <p>
+                만약 이 명령문이 없다면, 컴파일러는 컴파일이 실패했다는 아래와 같은 메시지를 출력할 것이다.
+            </p>
+
+            <pre>ArrayDemo.java:4: Variable anArray may not have been initialized.</pre>
+
+
+            <p>
+                다음 몇 줄은 배열의 각 원소에 값을 할당하는 코드이다.
+            </p>
+
+            <pre>
+anArray[0] = 100; // initialize first element
+anArray[1] = 200; // initialize second element
+anArray[2] = 300; // and so forth</pre>
+
+
+            <p>
+                배열에 각 원소는 인덱스를 통해서 접근한다.
+            </p>
+
+            <pre>
+System.out.println("Element 1 at index 0: " + anArray[0]);
+System.out.println("Element 2 at index 1: " + anArray[1]);
+System.out.println("Element 3 at index 2: " + anArray[2]);</pre>
+
+
+            <p>
+                배열을 초기화 하는 단축된 문법을 사용할 수 있다.
+            </p>
+
+            <pre>
+int[] anArray = { 
+    100, 200, 300,
+    400, 500, 600, 
+    700, 800, 900, 1000
+};</pre>
+
+
+            <p>
+                여기서 배열의 길이는 {}괄호안에서 콤마로 구분되어 제공된 값의 갯수로 결정된다.
+
+            </p>
+
+            <p>
+                또한
+                <code>String[][] names</code>처럼 []괄호를 여러개 사용하여 배열의 배열(
+                <em>다차원 배열</em>)을 선언할 수도 있다. 그러면 각 원소는 적절한 인덱스로 접근할 수 있다.
+            </p>
+
+            <p>
+                자바 언어에서 다차원 배열은 배열을 원소로 하는 배열이다. C나 Fortran의 배열과는 다르다. 이 결과 아래
+                <code>MultiDimArrayDemo</code>프로그램에서 보여주는 것과 같이 배열의 각 줄(row)는 다른 길이를 가질 수 있다.
+            </p>
+
+            <pre>
+class MultiDimArrayDemo {
+    public static void main(String[] args) {
+        String[][] names = {
+            {"Mr. ", "Mrs. ", "Ms. "},
+            {"Smith", "Jones"}
+        };
+        // Mr. Smith
+        System.out.println(names[0][0] + names[1][0]);
+        // Ms. Jones
+        System.out.println(names[0][2] + names[1][1]);
+    }
+}</pre>
+
+
+            <p>
+                실행 결과 :
+
+            </p>
+
+            <pre>
+Mr. Smith
+Ms. Jones</pre>
+
+
+            <p>
+                마지막으로, 모든 배열의 크기는
+                <code>length</code> 속성으로 알 수 있다. 아래 코드는 배열의 크기를 출력하는 예제이다.
+            </p>
+
+            <pre>System.out.println(anArray.length);</pre>
+
+
+
+            <h2>
+                배열 복사
+            </h2>
+
+            <p>
+                배열을 다른 배열로 복사할 때 사용할 수 있는
+                <code>System</code> 클래스의
+                <code>arraycopy</code> 메소드가 있다.
+            </p>
+
+
+            <pre>
+public static void arraycopy(Object src, int srcPos,
+                             Object dest, int destPos, int length)</pre>
+
+            <p>
+                두 개의 <code>Object</code> 매개변수는 복사할 원본과 대상이 되는 배열이다.
+                세 개의 <code>int</code> 매개변수는 원본 배열의 시작위치와 대상이되는 배열의
+                시작위치, 복사할 원소의 개수를 나타낸다.
+
+            </p>
+            <p>
+                아래 <code>ArrayCopyDemo</code> 프로그램은 <code>char</code> 원소를 갖는
+                배열을 선언하고 단어 "decaffeinated"의 각 문자를 가지고 있다.
+                <code>System.arraycopy</code> 메소드로 배열의 일부 원소를 두 번째
+                배열에 복사하는 예제이다.
+            </p>
+
+            <pre>
+class ArrayCopyDemo {
+    public static void main(String[] args) {
+        char[] copyFrom = { 'd', 'e', 'c', 'a', 'f', 'f', 'e',
+                'i', 'n', 'a', 't', 'e', 'd' };
+        char[] copyTo = new char[7];
+
+        System.arraycopy(copyFrom, 2, copyTo, 0, 7);
+        System.out.println(new String(copyTo));
+    }
+}</pre>
+            <p>
+                결과는 :
+            </p>
+
+            <pre>caffein</pre>
+
+
+            <h2>
+                배열 조작
+            </h2>
+
+            <p>
+                배열은 프로그래밍에서 강력하고 유용한 개념이다.
+                배열과 함께 많이 쓰이는 몇 가지 기능을 자바에서 제공한다.
+                예를 들어 위의 <code>ArrayCopyDemo</code>에서는 
+                배열을 복사하는데 원본 배열의 원소를 각각 탐색하는 방법을 사용하지 않고
+                <code>System</code>의 <code>arraycopy</code> 메소드를
+                사용하는 예제를 보여주었다.
+                메소드를 호출하는 코드 한줄로 이런 일을 수행하게 한 것이다.
+            </p>
+
+            <p>
+                개발의 편의성을 위해 자바 SE는 배열을 조작(복사, 정렬, 검색 등)하는 몇 가지 메소드를
+                <code>java.util.Arrays</code> 클래스에서 제공해준다.
+                예를 들어 이전 예제를 <code>java.util.Arrays</code> 클래스의
+                <code>copyOfRange</code> 메소드를 사용하여 수정할 수 있다(<code>ArrayCopyOfDemo</code>
+                예제에서 보여줌).
+                차이점은 <code>copyOfRange</code>메소드를 사용할 땐 대상이 되는
+                배열을 메소드를 호출하기 전에 생성할 필요가 없다는 점이다.
+                대상이 되는 배열을 리턴하기 때문이다.
+                
+
+            </p>
+
+            <pre>
+class ArrayCopyOfDemo {
+    public static void main(String[] args) {
+        
+        char[] copyFrom = {'d', 'e', 'c', 'a', 'f', 'f', 'e',
+            'i', 'n', 'a', 't', 'e', 'd'};
+            
+        char[] copyTo = java.util.Arrays.copyOfRange(copyFrom, 2, 9);
+        
+        System.out.println(new String(copyTo));
+    }
+}</pre>
+
+            <p>
+                위 예제가 더 적은 라인의 코드를 사용했지만 결과는 같다(<code>caffein</code>).
+                <code>copyOfRange</code>의 두번째 매개변수는 원본 배열의 시작 위치(포함)이며,
+                세번째 매개변수는 원본 배열의 끝 위치(제외)이다. 이 예제에서
+                복사되는 영역은 9번 인덱스(a가 위치한)를 포함하지 않는다. 
+            </p>
+
+            <p>
+                <code>java.util.Arrays</code>의 다른 몇가지 유용한 기능은 아래와 같다.
+            </p>
+            <ul>
+                <li>배열에서 특정한 값의 인덱스 얻을 수 있는 <code>binarySearch</code> 메소드 </li>
+                <li>두 개의 배열을 비교하여 같은지 알 수 있는 <code>equals</code> 메소드</li>
+                <li>모든 인덱스의 값을 어떤 값으로 채울 수 있는 <code>fill</code> 메소드</li>
+                <li>오름 차순으로 정렬할 수 있는 <code>sort</code> 메소드</li>
+            </ul>
+
+
+
+
+
+        </div>
+        <!-- 2열 끝 -->
+
+    </div>
+    <!-- container 끝 -->
+
+</body>
+
+</html>
