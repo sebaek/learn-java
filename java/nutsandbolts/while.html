@@ -99,48 +99,86 @@
             </div>
         </div>
         <div class="col-sm-8">
-            <h1>언어의 기초</h1>
+            <!-- 2열 시작 -->
 
-            <h2>
-                변수
-            </h2>
+            <h1>
+
+                <code>while</code>과
+                <code>do-while</code>문
+            </h1>
+
             <p>
-                객체가 상태를 필드로 저장하고 있다는 사실을 배웠을 것이다.
-                그러나 자바 언어에서 "변수"라는 용어를 사용한다.
-                이 섹션에서는 이 관계와 변수의 이름을 짓는 규칙과 관습에 대해 알아보고
-                기본 데이터 타입(원시 타입, 문자열과 배열), 기본 값과 리터럴에 대해서도 배운다.
+                <code>while</code>문은 특정 조건이
+                <code>true</code>인 동안 명령문의 블럭이 게속 실행된다. 문법은 다음과 같다.
             </p>
 
-            <h2>
-                연산자
-            </h2>
+            <pre>
+while (expression) {
+    statement(s)
+}</pre>
+
             <p>
-                이 섹션은 자바 언어의 연산자에 대해 설명한다. 가장 많이 사용하는 연산자부터
-                잘 사용하지 않는 연산자까지 설명해줄 것이다. 컴파일과 실행해 볼 수 있는
-                예제가 포함되어 있다.
+                <code>while</code>은
+                <code>boolean</code> 값을 리턴하는 식을 사용한다. 계산식이
+                <code>true</code>이면
+                <code>while</code>문은 명령문 블럭을 실행한다. 계산식이
+                <code>false</code>가 될 때까지 계산식과 명령문 블럭을 계속 실행한다. 아래
+                <code>WhileDemo</code> 프로그램은
+                <code>while</code> 문을 사용해서 1부터 10까지 출력하는 예제이다.
             </p>
 
+            <pre>
+class WhileDemo {
+    public static void main(String[] args){
+        int count = 1;
+        while (count < 11) {
+            System.out.println("Count is: " + count);
+            count++;
+        }
+    }
+}</pre>
 
-            <h2>
-                표현식, 명령문, 블럭
-            </h2>
             <p>
-                연산자는 값을 계산하는 하나의 표현식을 완성하는 데 사용될 것이다. 표현식은
-                명령문에서 핵심적인 역할을 한다. 블럭은 명령문들을 그룹화 한다. 이 섹션은
-                앞서 살펴본 예제를 통해 표현식과 명령문, 블럭을 배워본다.
+                아래
+                <code>while</code> 문은 무한루프를 구현한 것이다.
             </p>
 
+            <pre>
+while (true){
+    // your code goes here
+}</pre>
 
-            <h2>
-                흐름 제어문 
-            </h2>
             <p>
-                이 섹션은 자바 언어에서 흐름을 제어하는 명령문들에 대해 배운다.
-                코드의 어떤 블럭에 조건에 따라 실행되어야 하는 
-                decisioin-making, 반복, 브랜치 명령문들에 대해 설명한다.
+                자바 언어는 아래 코드처럼 작성할 수 있는
+                <code>do-while</code>문도 있다.
             </p>
+
+            <pre>
+do {
+    statement(s)
+} while (expression);</pre>
+
+            <p>
+                <code>while</code>문과의 차이점은 계산식이 반복문의 아래 쪽에 있다는 것이다. 그래서
+                <code>do</code>블럭은 적어도 한 번 실행된다. 아래
+                <code>DoWhileDemo</code> 프로그램에서 보여준다.
+
+            </p>
+
+            <pre>
+class DoWhileDemo {
+    public static void main(String[] args){
+        int count = 1;
+        do {
+            System.out.println("Count is: " + count);
+            count++;
+        } while (count < 11);
+    }
+}</pre>
+            <!-- 2열 끝 -->
         </div>
 
+        <!-- container 끝 -->
     </div>
 
 </body>
