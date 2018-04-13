@@ -100,12 +100,226 @@
         </div>
         <div class="col-sm-8">
             <!-- 2열 시작 -->
-<h1>
-    분기 문
-</h1>
+            <h1>
+                분기 문
+            </h1>
+
+            <h2>
+                <code>break</code> 문
+            </h2>
+
+            <p>
+                <code>break</code> 문은 lebeled와 unlabeled 두 가지 형식이 있다. unlabeled 형식은
+                <code>switch</code> 문에서 다뤄 보았다. unlabeled
+                <code>break</code>는
+                <code>for</code>,
+                <code>while</code>,
+                <code>do-while</code> 반복문을 종료 시킬 수 있다. 아래
+                <code>BreakDemo</code>에서 시연한다.
+            </p>
+
+            <pre>
+class BreakDemo {
+    public static void main(String[] args) {
+
+        int[] arrayOfInts = 
+            { 32, 87, 3, 589,
+                12, 1076, 2000,
+                8, 622, 127 };
+        int searchfor = 12;
+
+        int i;
+        boolean foundIt = false;
+
+        for (i = 0; i &lt; arrayOfInts.length; i++) {
+            if (arrayOfInts[i] == searchfor) {
+                foundIt = true;
+                <b>break;</b>
+            }
+        }
+
+        if (foundIt) {
+            System.out.println("Found " + searchfor + " at index " + i);
+        } else {
+            System.out.println(searchfor + " not in the array");
+        }
+    }
+}</pre>
+
+            <p>
+                이 프로그램은 배열에서 12를 찾는 프로그램이다. 굵게 표시된
+                <code>break</code> 무능ㄴ 그 값을 찾으면
+                <code>for</code>문을 종료 시킨다. 그러면 실행 흐름은
+                <code>for</code>문 다음으로 넘어간다. 이 프로그램의 출력은 아래와 같다.
+            </p>
+
+            <pre>
+Found 12 at index 4</pre>
+
+            <p>
+                unlabeled
+                <code>break</code>문은 가장 가까운
+                <code>while</code>,
+                <code>for</code>,
+                <code>switch</code>,
+                <code>do-while</code>을 종료 시킨다. labeled
+                <code>break</code> 바깥의 명령문을 종료 시킨다. 아래 프로그램,
+                <code>BreakWithLabelDemo</code>는 직전 프로그램과 유사하다. 하지만 2차원 배열의 값을 검색하기 위해 이중
+                <code>for</code>문을 사용한다. 값을 찾으면 labeled
+                <code>break</code>문은 ("search"로 라벨된) 바깥
+                <code>for</code> 문을 종료 시킨다.
+            </p>
+
+            <pre>
+class BreakWithLabelDemo {
+    public static void main(String[] args) {
+
+        int[][] arrayOfInts = { 
+            { 32, 87, 3, 589 },
+            { 12, 1076, 2000, 8 },
+            { 622, 127, 77, 955 }
+        };
+        int searchfor = 12;
+
+        int i;
+        int j = 0;
+        boolean foundIt = false;
+
+    search:
+        for (i = 0; i < arrayOfInts.length; i++) {
+            for (j = 0; j < arrayOfInts[i].length;
+                    j++) {
+                if (arrayOfInts[i][j] == searchfor) {
+                    foundIt = true;
+                    break search;
+                }
+            }
+        }
+
+        if (foundIt) {
+            System.out.println("Found " + searchfor + " at " + i + ", " + j);
+        } else {
+            System.out.println(searchfor + " not in the array");
+        }
+    }
+}</pre>
+
+            <p>
+                이 프로그램의 결과는 :
+            </p>
+
+            <pre>Found 12 at 1, 0</pre>
+            <p>
+                <code>break</code>는 라벨된 명령문을 종료시키는 것이다. 라벨된 곳으로 실행 흐름이 이동하는 것이 아니다. 실행 흐름은 라벨된 명령문(즉 종료된 명령문) 다음으로 이동한다.
+            </p>
 
 
+            <h2>
+                <code>continue</code> 문
+            </h2>
 
+            <p>
+                <code>continue</code> 문은
+                <code>for</code>,
+                <code>while</code>,
+                <code>do-while</code>의 현재 진행을 넘어가는 명령문이다. unlabeled 형식은 가장 가까이 있는 반복문의 본문을 넘어가고 반복문의 제어문으로 넘어간다. 아래
+                <code>ContinueDemo</code>는
+                <code>String</code>의 각 문자를 탐색하면서 'p'문자가 몇 번 나오는지 센다. 현재 문자가 'p'가 아니면
+                <code>continue</code>문을 실행시켜서 반복문 몸체의 나머지 코드를 실행하지 않고 다음 문자로 진행한다. 만약 문자가 'p'이면 프로그램은 카운터를 증가 시킨다.
+            </p>
+
+            <pre>
+class ContinueDemo {
+    public static void main(String[] args) {
+
+        String searchMe = "peter piper picked a " + "peck of pickled peppers";
+        int max = searchMe.length();
+        int numPs = 0;
+
+        for (int i = 0; i < max; i++) {
+            // interested only in p's
+            if (searchMe.charAt(i) != 'p')
+                continue;
+
+            // process p's
+            numPs++;
+        }
+        System.out.println("Found " + numPs + " p's in the string.");
+    }
+}</pre>
+
+            <p>
+                프로그램의 결과는 :
+            </p>
+
+            <pre>
+Found 9 p's in the string.</pre>
+
+            <p>
+                <code>continue</code>문을 삭제하고 실행하면 좀 더 확실히 알 수 있을 것이다. 삭제하고 실행하면 9 대신 35가 출력될 것이다.
+            </p>
+
+            <p>
+                labeled
+                <code>continue</code>문은 라벨된 바깥의 반복문의 현재 실행 넘어가게 된다. 아래
+                <code>ContinueWithLabelDemo</code> 프로그램을 보면, 어떤 문자열중 다른 문자열이 있는 지 검색하기 위해 이중 반복문을 사용하고 있다. 두 개의 중첩된 반복문이 필요하다. 하나는 부분문자열을 탐색하고 하나는 전체 문자열을
+                탐색한다. 아래 프로그램
+                <code>ContinueWithLabelDemo</code>는 바깥 반복문의 본체 실행을 건너뛰기 위해 labeled 형식의 continue문을 사용한다.
+            </p>
+
+            <pre>
+class ContinueWithLabelDemo {
+    public static void main(String[] args) {
+
+        String searchMe = "Look for a substring in me";
+        String substring = "sub";
+        boolean foundIt = false;
+
+        int max = searchMe.length() - 
+                    substring.length();
+
+    test:
+        for (int i = 0; i <= max; i++) {
+            int n = substring.length();
+            int j = i;
+            int k = 0;
+            while (n-- != 0) {
+                if (searchMe.charAt(j++) != substring.charAt(k++)) {
+                    continue test;
+                }
+            }
+            foundIt = true;
+                break test;
+        }
+        System.out.println(foundIt ? "Found it" : "Didn't find it");
+    }
+}</pre>
+
+            <p>결과는 :</p>
+            <pre>Found it</pre>
+
+            <h2>
+                <code>return</code> 문
+            </h2>
+            <p>
+                마지막 분기문은
+                <code>return</code>이다.
+                <code>return</code>은 현재 메소드를 종료하고 실행 흐름을 메소드를 호출했던 곳으로 넘긴다.
+                <code>return</code>은 두 가지 형식이 있다. 하나는 값을 반환(return)하고, 다른 하나는 반환하지 않는다. 값을 반환하기 위해서
+                <code>return</code>키워드 다음에 값(또는 값을 계산하는 식)을 작성하면 된다.
+            </p>
+            <pre>
+return ++count;</pre>
+            <p>
+                반환(return)된 값의 자료형은 메소드의 선언부의 반환 값의 자료형과 일치해야 한다. 메소드가
+                <code>void</code>로 선언되면 , 반환하는 값이 없는 형태로
+                <code>return</code>을 사용해야 한다.
+            </p>
+            <pre>
+return;</pre>
+            <p>
+                클래스와 객체 섹션은 메소드를 작성하는 데 필요한 내용을 모두 알려줄 것이다.
+            </p>
 
 
 
