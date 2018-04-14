@@ -116,148 +116,104 @@
         </div>
         <div class="col-sm-8">
             <!-- 2열 시작 -->
-            <h1>
-                멤버 변수 선언
-            </h1>
-            <p>
-                여러 종류의 변수가 있다.
-            </p>
-            <ul>
-                <li>클래스의 멤버 변수 -
-                    <em>필드</em>라고 부른다.</li>
-                <li>코드 블럭이나 메소드의 변수 -
-                    <em>지역변수</em>라고 한다.</li>
-                <li>메소드 선언부의 변수 -
-                    <em>매개변수</em>라고 한다.</li>
-            </ul>
-            <p>
-                <code>Bicycle</code>클래스에서 필드를 선언하기 위해 아래 코드를 사용했다.
-            </p>
-            <pre>
-public int cadence;
-public int gear;
-public int speed;</pre>
-            <p>
-                필드는 순서대로 세가지 요소로 이루어져있다.
-            </p>
-            <ol>
-                <li>
-                    <code>public</code>이나
-                    <code>private</code>같은 0개 이상의 지정자</li>
-                <li>필드의 자료형</li>
-                <li>필드의 이름</li>
-            </ol>
-            <p>
-                <code>Bicycle</code>클래스의 필드는
-                <code>cadence</code>,
-                <code>gear</code>,
-                <code>speed</code>이고 모두
-                <code>int</code>타입이다.
-                <code>public</code>키워드는 다른 모든 객체가 이 멤버에 접근 가능한 퍼블릭 멤버라고 지정한다.
-            </p>
+<h1> 메소드나 생성자에 정보 전달</h1>
+<p>
+메소드와 생성자 선언부는 매개변수의 타입과 갯수를 지정한다.
+예를 들어 아래 코드는 가계 대출에 대해 대출액과, 이자율, 대출 기간, 미래값에 따른
+월 상환액을 계산하는 메소드이다. 
+</p>
+<pre>
+public double computePayment(
+                  double loanAmt,
+                  double rate,
+                  double futureValue,
+                  int numPeriods) {
+    double interest = rate / 100.0;
+    double partial1 = Math.pow((1 + interest), - numPeriods);
+    double denominator = (1 - partial1) / interest;
+    double answer = (-loanAmt / denominator) - ((futureValue * partial1) / denominator);
+    return answer;
+}</pre>
+<p>
+    이 메소드는 4개의 매개변수를 가지고 있다. 대출액, 이자율, 미래값, 대출기간이다.
+    앞의 3개는 <code>double</code>타입이고 4번째는 정수형이다.
+    매개변수는 메소드 몸체에서 사용되며 실행타임(runtime)에 값을 전달 받게 된다.
+</p>
+<p><b>Note : </b>매개변수(parameters)는 메소드 선언부에 있는 변수를 가리킨다.
+이자(arguments)는 메소드를 호출할 때 실제 전달되는 값을 가리킨다. 메소드를 호출할 때
+인자는 선언된 매개변수의 타입과 순서가 일치해야 한다.</p>
+<h2>매개변수 타입</h2>
+<p>
+메소드와 생성자의 매개변수에 자료형을 사용할 수 있다. 매개변수의 자료형은
+double, float, integer 같은 원시 자료형이나, 객체나 배열 같은 참조 자료형이 될 수 있다.
 
-            <h2>
-                접근 지정자
-            </h2>
-            <p>
-                가장 왼쪽에 작성된 지정자는 멤버 필드에 접근 가능한 클래스가 무엇인지 지정해준다. 지금은
-                <code>public</code>과
-                <code>private</code>만 얘기해보자. 다른 접근지정자는 나중에 강의하겠다.
-            </p>
+</p>
+<p>
+아래 예제는 인자로 배열을 받는 메소드를 보여준다. 이 ㅁ소드는 <code>Polygon</code>객체를
+만들고 <code>Point</code>객체의 배열로부터 초기화한다. <code>Point</code> 는 
+x, y 좌표를 가진 클래스라고 가정하자.
+</p>
+<pre>
+public Polygon polygonFrom(Point[] corners) {
+    // method body goes here
+}</pre>
+<p>
+    <b>Note : </b>
+    만약 메소로 메소드를 전달하기 위해서는 람다 표현식이나 메소드 참조를 사용해야 한다.
+</p>
 
-            <ul>
-                <li>
-                    <code>public</code> 지정자 - 모든 클래스가 접근 가능한 필드이다.
-                </li>
-                <li>
-                    <code>private</code> - 자기 자신만 접근 가능한 필드이다.
-                </li>
-            </ul>
-            <p>
-                객체지향 프로그래밍의 캡슐화 개념에 의해 필드를
-                <code>private</code>으로 지정해주어야 한다. 즉 필드는
-                <code>Bicycle</code>클래스만
-                <em>직접</em> 접근이 가능하다는 것을 의미한다. 이 필드에 대한 접근이 필요하기 때문에, public 메소드를 활용해서
-                <em>간접적으로</em> 접근할 수 있도록 한다.
-            </p>
-            <pre>
-public class Bicycle {
+<h2>임의 갯수의 인자</h2>
+<p>
+    메소드에 <em>가변인자(varargs)</em>라고 불리는 임의의 갯수의 인자를 전달할 수 있다.
+    가변인자는 메소드에 특정 자료형의 값이 몇 개 전달될지 알 수 없을 때 사용한다. 이 것은
+    배열을 만들게 된다. (이 전 예제에서 배열대신 가변인자를 사용할 수 있었다.)
+    
+</p>
+<p>
+    가변인자를 사용하는 방법은 마지막 매개변수의 타입에 점 3개(...)를 붙이고 빈 칸과
+    매개변수명을 작성하는 것이다. 그 메소드는 그 매개변수의 갯수를 0개 이상 받을 수 있다.
+</p>
 
-    private int cadence;
-    private int gear;
-    private int speed;
-        
-    public Bicycle(int startCadence, int startSpeed, int startGear) {
-        gear = startGear;
-        cadence = startCadence;
-        speed = startSpeed;
-    }
-        
-    public int getCadence() {
-        return cadence;
-    }
-        
-    public void setCadence(int newValue) {
-        cadence = newValue;
-    }
-        
-    public int getGear() {
-        return gear;
-    }
-        
-    public void setGear(int newValue) {
-        gear = newValue;
-    }
-        
-    public int getSpeed() {
-        return speed;
-    }
-        
-    public void applyBrake(int decrement) {
-        speed -= decrement;
-    }
-        
-    public void speedUp(int increment) {
-        speed += increment;
-    }
+<pre>
+public Polygon polygonFrom(Point... corners) {
+    int numberOfSides = corners.length;
+    double squareOfSide1, lengthOfSide1;
+    squareOfSide1 = (corners[1].x - corners[0].x)
+                     * (corners[1].x - corners[0].x) 
+                     + (corners[1].y - corners[0].y)
+                     * (corners[1].y - corners[0].y);
+    lengthOfSide1 = Math.sqrt(squareOfSide1);
+
+    // more method body code follows that creates and returns a 
+    // polygon connecting the Points
 }</pre>
 
-            <h2>
-                자료형
-            </h2>
-            <p>
-                모든 변수는 자료형을 갖는다.
-                <code>int</code>,
-                <code>float</code>,
-                <code>boolean</code>등의 원시 자료형이나
-                <code>String</code>이나 배열, 객체 같은 참조 자료형을 사용할 수 있다.
-            </p>
-            <h2>
-                변수 명
-            </h2>
-            <p>
-                필드, 지역변수, 매개변수등 모든 변수는 아래 네이밍 규칙과 관습을 따른다.
-            </p>
-            <p>
-                이 강의에서는 메소드와 클래스 이름도 같은 규칙과 관습을 갖는다. 하지만 아래 예외가 있다.
-            </p>
-            <ul>
-                <li>
-                    클래스의 이름의 첫 글자는 대문자이어야 한다.
-                </li>
-                <li>
-                    메소드의 첫 단어는 동사(verb)이어야 한다.
-                </li>
-            </ul>
+<p>
+    위에서 보듯이 <code>corners</code>는 배열처럼 다룰 수 있다. 
+    메소드를 호출 할 때도 배열을 전달하거나 여러 인자를 전달할 수도 있다.
+    두 방법 모두 매개변수를 배열처럼 다루게 된다. 
+</p>
+
+<p>
+    가변인자를 많이 볼 수 있는 예제가 <code>printf</code>같은 출력 메소드이다. 
+</p>
+
+<pre>public PrintStream printf(String format, Object... args)</pre>
+<p>
+    임의의 갯수의 객체를 출력할 수 있게 한다. 호출은 아래 코드 처럼 한다.
+</p>
+
+<pre>System.out.printf("%s: %d, %s%n", name, idnum, address);</pre>
+<pre>System.out.printf("%s: %d, %s, %s, %s%n", name, idnum, address, phone, email);</pre>
 
 
+<h2>매개변수 명</h2>
 
-
-
-
-
-
-
+<p>
+    매개변수명은 
+</p>
+<h2>원시 자료형 인자 전달하기</h2>
+<h2>참조 자료형 인자 전달하기</h2>
 
 
 

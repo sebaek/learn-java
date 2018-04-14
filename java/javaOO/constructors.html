@@ -116,139 +116,74 @@
         </div>
         <div class="col-sm-8">
             <!-- 2열 시작 -->
-            <h1>
-                멤버 변수 선언
-            </h1>
-            <p>
-                여러 종류의 변수가 있다.
-            </p>
-            <ul>
-                <li>클래스의 멤버 변수 -
-                    <em>필드</em>라고 부른다.</li>
-                <li>코드 블럭이나 메소드의 변수 -
-                    <em>지역변수</em>라고 한다.</li>
-                <li>메소드 선언부의 변수 -
-                    <em>매개변수</em>라고 한다.</li>
-            </ul>
-            <p>
-                <code>Bicycle</code>클래스에서 필드를 선언하기 위해 아래 코드를 사용했다.
-            </p>
-            <pre>
-public int cadence;
-public int gear;
-public int speed;</pre>
-            <p>
-                필드는 순서대로 세가지 요소로 이루어져있다.
-            </p>
-            <ol>
-                <li>
-                    <code>public</code>이나
-                    <code>private</code>같은 0개 이상의 지정자</li>
-                <li>필드의 자료형</li>
-                <li>필드의 이름</li>
-            </ol>
-            <p>
-                <code>Bicycle</code>클래스의 필드는
-                <code>cadence</code>,
-                <code>gear</code>,
-                <code>speed</code>이고 모두
-                <code>int</code>타입이다.
-                <code>public</code>키워드는 다른 모든 객체가 이 멤버에 접근 가능한 퍼블릭 멤버라고 지정한다.
-            </p>
+<h1>
+생성자
+</h1>
+<p>
+    클래스는 객체를 생성할 때 호출되는 생성자를 갖는다.
+    생성자의 선언은 메소드의 선언과 유사하다. 생성자의 이름은
+    클래스의 이름과 같고 리턴타입이 없다.
+    예를 들어 <code>Bicycle</code>클래스는 하나의 생성자를 가지고 있다.
+</p>
 
-            <h2>
-                접근 지정자
-            </h2>
-            <p>
-                가장 왼쪽에 작성된 지정자는 멤버 필드에 접근 가능한 클래스가 무엇인지 지정해준다. 지금은
-                <code>public</code>과
-                <code>private</code>만 얘기해보자. 다른 접근지정자는 나중에 강의하겠다.
-            </p>
-
-            <ul>
-                <li>
-                    <code>public</code> 지정자 - 모든 클래스가 접근 가능한 필드이다.
-                </li>
-                <li>
-                    <code>private</code> - 자기 자신만 접근 가능한 필드이다.
-                </li>
-            </ul>
-            <p>
-                객체지향 프로그래밍의 캡슐화 개념에 의해 필드를
-                <code>private</code>으로 지정해주어야 한다. 즉 필드는
-                <code>Bicycle</code>클래스만
-                <em>직접</em> 접근이 가능하다는 것을 의미한다. 이 필드에 대한 접근이 필요하기 때문에, public 메소드를 활용해서
-                <em>간접적으로</em> 접근할 수 있도록 한다.
-            </p>
-            <pre>
-public class Bicycle {
-
-    private int cadence;
-    private int gear;
-    private int speed;
-        
-    public Bicycle(int startCadence, int startSpeed, int startGear) {
-        gear = startGear;
-        cadence = startCadence;
-        speed = startSpeed;
-    }
-        
-    public int getCadence() {
-        return cadence;
-    }
-        
-    public void setCadence(int newValue) {
-        cadence = newValue;
-    }
-        
-    public int getGear() {
-        return gear;
-    }
-        
-    public void setGear(int newValue) {
-        gear = newValue;
-    }
-        
-    public int getSpeed() {
-        return speed;
-    }
-        
-    public void applyBrake(int decrement) {
-        speed -= decrement;
-    }
-        
-    public void speedUp(int increment) {
-        speed += increment;
-    }
+<pre>
+public Bicycle(int startCadence, int startSpeed, int startGear) {
+    gear = startGear;
+    cadence = startCadence;
+    speed = startSpeed;
 }</pre>
 
-            <h2>
-                자료형
-            </h2>
-            <p>
-                모든 변수는 자료형을 갖는다.
-                <code>int</code>,
-                <code>float</code>,
-                <code>boolean</code>등의 원시 자료형이나
-                <code>String</code>이나 배열, 객체 같은 참조 자료형을 사용할 수 있다.
-            </p>
-            <h2>
-                변수 명
-            </h2>
-            <p>
-                필드, 지역변수, 매개변수등 모든 변수는 아래 네이밍 규칙과 관습을 따른다.
-            </p>
-            <p>
-                이 강의에서는 메소드와 클래스 이름도 같은 규칙과 관습을 갖는다. 하지만 아래 예외가 있다.
-            </p>
-            <ul>
-                <li>
-                    클래스의 이름의 첫 글자는 대문자이어야 한다.
-                </li>
-                <li>
-                    메소드의 첫 단어는 동사(verb)이어야 한다.
-                </li>
-            </ul>
+<p>
+    새로운 <code>Bicycle</code> 객체 <code>myBike</code>를 만들기 위해 <code>new</code>
+    연산자를 사용해 생성자를 호출한다.
+</p>
+
+<pre>
+Bicycle myBike = new Bicycle(30, 0, 8);</pre>
+
+<p>
+    <code>new Bicycle(30, 0, 8)</code>은 객체를 위한 메모리 공간을 마련하고 그 필드를 초기화 시킨다.
+</p>
+
+<p>
+    <code>Bicycle</code>은 생성자를 하나만 갖고 있지만, 다른 생성자를 갖는 것도 가능하다.
+    매개변수가 없는 생성자를 가질 수도 있다.
+</p>
+
+<pre>
+public Bicycle() {
+    gear = 1;
+    cadence = 10;
+    speed = 0;
+}</pre>
+
+<p>
+    <code>Bicycle yourBike = new Bicycle();</code>는 새 <code>Bicycle</code>클래스 객체
+    <code>yourBike</code>를 만들기 위해 매개변수 없는 생성자를 호출한다.
+</p>
+
+<p>
+    두 생성자는 매개변수 리스트가 다르기 때문에 하나의 <code>Bicycle</code>클래스에 작성될 수 있다.
+    메소드 처럼 자바는 매개변수의 갯수와 자료형으로 생성자를 구분한다.
+    하나의 클래스에 매개변수의 갯수가 같고 자료형도 같은 생성자를 만들 수 없다.
+</p>
+<p>
+    꼭 생성자를 작성할 필요는 없다. 하지만 생성자를 작성할 때 주의해야 할 점들이 있다.
+    컴파일러는 자동으로 매개변수가 없는 생성자를 하나 만든다. 생성자가 없는 모든 클래스의
+    기본 생성자이다. 이 기본 생성자를 슈퍼클래스의 no-argument 생성자(매개변수 없는 생성자)라고 한다.
+    이 때 슈퍼클래스가 매개변수 없는 생성자가 없다면 컴파일러는 에러를 낸다. 그래서 프로그래머는
+    이 것을 확실하게 해야 한다. 만약 클래스의 슈퍼클래스가 지정되지 않으면 암묵적으로 <code>Object</code>클래스가
+    슈퍼클래스가 된다. <code>Object</code>클래스는 매개변수 없는 생성자를 가지고 있다.
+</p>
+<p>
+    슈퍼클래스의 생성자를 직접 사용할 수 있다. <code>MoutainBike</code>에서 그 것을 사용했다.
+    나중에 좀 더 알아보도록 하겠다. 
+</p>
+<p>
+    접근지정자를 생성자를 선언할 때 사용할 수 있다. 어떤 클래스가 그 생성자를 사용할 수 있는 지 결정한다.
+</p>
+<p><b>Note : </b> 다른 클래스가 <code>MyClass</code>의 생성자를 사용할 수 없다면,
+<code>MyClass</code>클래스의 객체를 직접 만들 수 없다.</p>
 
 
 
@@ -260,8 +195,7 @@ public class Bicycle {
 
 
 
-
-            <!-- 2열 끝 -->
+                <!-- 2열 끝 -->
         </div>
 
         <!-- container 끝 -->
