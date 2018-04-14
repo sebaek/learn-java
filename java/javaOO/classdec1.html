@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">클래스와 객체</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="classes.html">클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="classdec1.html">클래스 선언</a>
+                            </li>
+                            <li>
+                                <a href="variables.html">멤버 변수 선언</a>
+                            </li>
+                            <li>
+                                <a href="methods.html">메소드 정의</a>
+                            </li>
+                            <li>
+                                <a href="constructors.html">생성자</a>
+                            </li>
+                            <li>
+                                <a href="arguments.html">메소드나 생성자에 정보 전달</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="objects.html">객체</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="objectcreation.html">객체 생성</a>
+                            </li>
+                            <li>
+                                <a href="usingobject.html">객체 사용</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="more.html">More on Classes</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="returnvalue.html">메소드에서 값 반환하기</a>
+                            </li>
+                            <li>
+                                <a href="thiskey.html">this 키워드 사용</a>
+                            </li>
+                            <li>
+                                <a href="accesscontrol.html">클래스의 멤버 접근 제어</a>
+                            </li>
+                            <li>
+                                <a href="classvars.html">클래스 멤버 이해하기</a>
+                            </li>
+                            <li>
+                                <a href="initial.html">필드 초기화</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="nested.html">중첩 클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="innerclasses.html">내부 클래스 예제</a>
+                            </li>
+                            <li>
+                                <a href="localclasses.html">지역 클래스</a>
+                            </li>
+                            <li>
+                                <a href="anonymousclasses.html">무명 클래스</a>
+                            </li>
+                            <li>
+                                <a href="lambdaexpressions.html">람다 표현식</a>
+                            </li>
+                            <ul>
+
+                                <li>
+                                    <a href="methodreferences.html">메소드 참조</a>
+                                </li>
+                            </ul>
+                            <li>
+                                <a href="whentouse.html">중첩 클래스, 지역 클래스, 무명 클래스, 람다 표현식을 사용할 때</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="enum.html">Enum Types</a>
+                        </li>
+
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <!-- 2열 시작 -->
+            <h1>
+                클래스 선언
+            </h1>
+            <p>
+                아래의 방법으로 클래스를 선언하는 것을 보았다.
+            </p>
+
+            <pre>
+class <i>MyClass</i> {
+    // field, constructor, and 
+    // method declarations
+}</pre>
+
+            <p>
+                이 것이 클래스 선언이다. 클래스의 몸체({}괄호 사이)는 이 클래스로 만들어진 객체의 life cycle에 대한 모든 코드가 담겨있다. 즉 새로운 객체를 초기화하기 위한 생성자, 클래스와 객체를 위한 상태를 저장한
+                필드, 클래스와 객체의 기능을 구현한 메소드들이 있다.
+
+            </p>
+
+            <p>
+                위의 클래스 선언은 단순한 형태이다. 필수 요소로만 이루어져 있다. 클래스를 선언할 때 선언부에 슈퍼클래스의 이름, 어떤 인터페이스를 구현하는지 등의 더 많은 정보를 작성할 수 있다. 예를 들어 다음과 같다.
+            </p>
+
+            <pre>
+class MyClass extends MySuperClass implements YourInterface {
+    // field, constructor, and
+    // method declarations
+}</pre>
+
+            <p>
+                <code>MyClass</code>는
+                <code>MySuperClass</code>의 서브클래스이고,
+                <code>YourInterface</code> 인터페이스를 구현한 것이다.
+            </p>
+
+            <p>
+                또한
+                <em>public</em>이나
+                <em>private</em> 같은 지정자를 추가할 수도 있다.
+                <em>public</em>이나
+                <em>private</em>같은 지정자는
+                <code>MyClass</code>를 접근할 수 있는 클래스가 어떤 클래스인지 지정해준다. 나중에 좀 더 다루도록 하겠다. 인터페이스와 상속 강의에서
+                <em>extends</em>와
+                <em>implements</em>를 어떻게 사용하고 왜 사용하는 지 설명한다. 지금은 잠시 이 부분은 넘어가도 좋다.
+            </p>
+
+            <p>
+                일반적으로 클래스 선언은 아래 요소를 순서대로 가지고 있다.
+            </p>
+
+            <ol>
+                <li>
+                    <em>public</em>,
+                    <em>private</em>같은 지정자.</li>
+                <li>클래스 이름, 관습에 의해 첫 글자는 대문자</li>
+                <li>
+                    <em>extends</em>키워드와 부모 클래스의 이름. 하나의 클래스는 하나의 부모 클래스만 상속받을 수 있다.</li>
+                <li>
+                    <em>implements</em>키워드와 콤마로 구분한 인터페이스 리스트. 하나의 클래스는 여러 인터페이스를 구현할 수 있다.</li>
+                <li>{}괄호 안의 클래스 몸체</li>
+            </ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- 2열 끝 -->
+        </div>
+
+        <!-- container 끝 -->
+    </div>
+
+</body>
+
+</html>
