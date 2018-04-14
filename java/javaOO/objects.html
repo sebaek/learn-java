@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">클래스와 객체</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="classes.html">클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="classdec1.html">클래스 선언</a>
+                            </li>
+                            <li>
+                                <a href="variables.html">멤버 변수 선언</a>
+                            </li>
+                            <li>
+                                <a href="methods.html">메소드 정의</a>
+                            </li>
+                            <li>
+                                <a href="constructors.html">생성자</a>
+                            </li>
+                            <li>
+                                <a href="arguments.html">메소드나 생성자에 정보 전달</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="objects.html">객체</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="objectcreation.html">객체 생성</a>
+                            </li>
+                            <li>
+                                <a href="usingobject.html">객체 사용</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="more.html">More on Classes</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="returnvalue.html">메소드에서 값 반환하기</a>
+                            </li>
+                            <li>
+                                <a href="thiskey.html">this 키워드 사용</a>
+                            </li>
+                            <li>
+                                <a href="accesscontrol.html">클래스의 멤버 접근 제어</a>
+                            </li>
+                            <li>
+                                <a href="classvars.html">클래스 멤버 이해하기</a>
+                            </li>
+                            <li>
+                                <a href="initial.html">필드 초기화</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="nested.html">중첩 클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="innerclasses.html">내부 클래스 예제</a>
+                            </li>
+                            <li>
+                                <a href="localclasses.html">지역 클래스</a>
+                            </li>
+                            <li>
+                                <a href="anonymousclasses.html">무명 클래스</a>
+                            </li>
+                            <li>
+                                <a href="lambdaexpressions.html">람다 표현식</a>
+                            </li>
+                            <ul>
+
+                                <li>
+                                    <a href="methodreferences.html">메소드 참조</a>
+                                </li>
+                            </ul>
+                            <li>
+                                <a href="whentouse.html">중첩 클래스, 지역 클래스, 무명 클래스, 람다 표현식을 사용할 때</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="enum.html">Enum Types</a>
+                        </li>
+
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <!-- 2열 시작 -->
+<h1>
+    객체
+</h1>
+<p>
+    자바 프로그램에서는 많은 객체가 만들어지고 메소드를 통해서 상호 작용하게 된다.
+    이런 객체 상호작용을 통해 프로그램은 GUI구현이나 애니메이션 실행, 네트워크를 통한
+    정보전달 등의 다양한 일을 할 수 있다. 객체가 생성되고 작업을 마치면
+    그 자원은 새로운 객체의 사용을 위해서 재활용된다.
+</p>
+<p>
+아래 <code><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/examples/CreateObjectDemo.java">CreateObjectDemo</a></code>라는 작은 프로그램이 있다. 이 프로그램은
+하나의 <code><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/examples/Point.java">Point</a></code>객체와 두 개의 <code><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/examples/Rectangle.java">Rectangle</a></code>
+객체를 만든다. 이 프로그램을 컴파일하고 실행하기 위해서는 3개의 소스 파일이 필요하다. 
+</p>
+<pre>
+public class CreateObjectDemo {
+
+    public static void main(String[] args) {
+        
+        // Declare and create a point object and two rectangle objects.
+        Point originOne = new Point(23, 94);
+        Rectangle rectOne = new Rectangle(originOne, 100, 200);
+        Rectangle rectTwo = new Rectangle(50, 100);
+        
+        // display rectOne's width, height, and area
+        System.out.println("Width of rectOne: " + rectOne.width);
+        System.out.println("Height of rectOne: " + rectOne.height);
+        System.out.println("Area of rectOne: " + rectOne.getArea());
+        
+        // set rectTwo's position
+        rectTwo.origin = originOne;
+        
+        // display rectTwo's position
+        System.out.println("X Position of rectTwo: " + rectTwo.origin.x);
+        System.out.println("Y Position of rectTwo: " + rectTwo.origin.y);
+        
+        // move rectTwo and display its new position
+        rectTwo.move(40, 72);
+        System.out.println("X Position of rectTwo: " + rectTwo.origin.x);
+        System.out.println("Y Position of rectTwo: " + rectTwo.origin.y);
+    }
+}</pre>
+
+<p>
+    이 프로그램은 여러 객체를 생성하고 조작하고 출력한다. 출력은 아래와 같다.
+</p>
+
+<pre>
+Width of rectOne: 100
+Height of rectOne: 200
+Area of rectOne: 20000
+X Position of rectTwo: 23
+Y Position of rectTwo: 94
+X Position of rectTwo: 40
+Y Position of rectTwo: 72</pre>
+
+<p>
+    다음 섹션에서 위의 예제를 활요해서 객체의 생애주기(life cycle)에 대해 다룬다. 
+    다음 강의를 통해서 당신의 프로그램에서 객체를 생성하고 사용하는 코드를 어떻게 
+    작성하는 지 배우게 될 것이다. 그리고 객체의 생애가 종료되면 시스템에서
+    어떻게 처리하는 지 배울 것이다.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- 2열 끝 -->
+        </div>
+
+        <!-- container 끝 -->
+    </div>
+
+</body>
+
+</html>

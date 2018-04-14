@@ -116,13 +116,11 @@
         </div>
         <div class="col-sm-8">
             <!-- 2열 시작 -->
-<h1> 메소드나 생성자에 정보 전달</h1>
-<p>
-메소드와 생성자 선언부는 매개변수의 타입과 갯수를 지정한다.
-예를 들어 아래 코드는 가계 대출에 대해 대출액과, 이자율, 대출 기간, 미래값에 따른
-월 상환액을 계산하는 메소드이다. 
-</p>
-<pre>
+            <h1> 메소드나 생성자에 정보 전달</h1>
+            <p>
+                메소드와 생성자 선언부는 매개변수의 타입과 갯수를 지정한다. 예를 들어 아래 코드는 가계 대출에 대해 대출액과, 이자율, 대출 기간, 미래값에 따른 월 상환액을 계산하는 메소드이다.
+            </p>
+            <pre>
 public double computePayment(
                   double loanAmt,
                   double rate,
@@ -134,47 +132,45 @@ public double computePayment(
     double answer = (-loanAmt / denominator) - ((futureValue * partial1) / denominator);
     return answer;
 }</pre>
-<p>
-    이 메소드는 4개의 매개변수를 가지고 있다. 대출액, 이자율, 미래값, 대출기간이다.
-    앞의 3개는 <code>double</code>타입이고 4번째는 정수형이다.
-    매개변수는 메소드 몸체에서 사용되며 실행타임(runtime)에 값을 전달 받게 된다.
-</p>
-<p><b>Note : </b>매개변수(parameters)는 메소드 선언부에 있는 변수를 가리킨다.
-이자(arguments)는 메소드를 호출할 때 실제 전달되는 값을 가리킨다. 메소드를 호출할 때
-인자는 선언된 매개변수의 타입과 순서가 일치해야 한다.</p>
-<h2>매개변수 타입</h2>
-<p>
-메소드와 생성자의 매개변수에 자료형을 사용할 수 있다. 매개변수의 자료형은
-double, float, integer 같은 원시 자료형이나, 객체나 배열 같은 참조 자료형이 될 수 있다.
+            <p>
+                이 메소드는 4개의 매개변수를 가지고 있다. 대출액, 이자율, 미래값, 대출기간이다. 앞의 3개는
+                <code>double</code>타입이고 4번째는 정수형이다. 매개변수는 메소드 몸체에서 사용되며 실행타임(runtime)에 값을 전달 받게 된다.
+            </p>
+            <p>
+                <b>Note : </b>매개변수(parameters)는 메소드 선언부에 있는 변수를 가리킨다. 이자(arguments)는 메소드를 호출할 때 실제 전달되는 값을 가리킨다. 메소드를 호출할 때
+                인자는 선언된 매개변수의 타입과 순서가 일치해야 한다.</p>
+            <h2>매개변수 타입</h2>
+            <p>
+                메소드와 생성자의 매개변수에 자료형을 사용할 수 있다. 매개변수의 자료형은 double, float, integer 같은 원시 자료형이나, 객체나 배열 같은 참조 자료형이 될 수 있다.
 
-</p>
-<p>
-아래 예제는 인자로 배열을 받는 메소드를 보여준다. 이 ㅁ소드는 <code>Polygon</code>객체를
-만들고 <code>Point</code>객체의 배열로부터 초기화한다. <code>Point</code> 는 
-x, y 좌표를 가진 클래스라고 가정하자.
-</p>
-<pre>
+            </p>
+            <p>
+                아래 예제는 인자로 배열을 받는 메소드를 보여준다. 이 ㅁ소드는
+                <code>Polygon</code>객체를 만들고
+                <code>Point</code>객체의 배열로부터 초기화한다.
+                <code>Point</code> 는 x, y 좌표를 가진 클래스라고 가정하자.
+            </p>
+            <pre>
 public Polygon polygonFrom(Point[] corners) {
     // method body goes here
 }</pre>
-<p>
-    <b>Note : </b>
-    만약 메소로 메소드를 전달하기 위해서는 람다 표현식이나 메소드 참조를 사용해야 한다.
-</p>
+            <p>
+                <b>Note : </b>
+                만약 메소로 메소드를 전달하기 위해서는 람다 표현식이나 메소드 참조를 사용해야 한다.
+            </p>
 
-<h2>임의 갯수의 인자</h2>
-<p>
-    메소드에 <em>가변인자(varargs)</em>라고 불리는 임의의 갯수의 인자를 전달할 수 있다.
-    가변인자는 메소드에 특정 자료형의 값이 몇 개 전달될지 알 수 없을 때 사용한다. 이 것은
-    배열을 만들게 된다. (이 전 예제에서 배열대신 가변인자를 사용할 수 있었다.)
-    
-</p>
-<p>
-    가변인자를 사용하는 방법은 마지막 매개변수의 타입에 점 3개(...)를 붙이고 빈 칸과
-    매개변수명을 작성하는 것이다. 그 메소드는 그 매개변수의 갯수를 0개 이상 받을 수 있다.
-</p>
+            <h2>임의 갯수의 인자</h2>
+            <p>
+                메소드에
+                <em>가변인자(varargs)</em>라고 불리는 임의의 갯수의 인자를 전달할 수 있다. 가변인자는 메소드에 특정 자료형의 값이 몇 개 전달될지 알 수 없을 때 사용한다. 이 것은 배열을 만들게
+                된다. (이 전 예제에서 배열대신 가변인자를 사용할 수 있었다.)
 
-<pre>
+            </p>
+            <p>
+                가변인자를 사용하는 방법은 마지막 매개변수의 타입에 점 3개(...)를 붙이고 빈 칸과 매개변수명을 작성하는 것이다. 그 메소드는 그 매개변수의 갯수를 0개 이상 받을 수 있다.
+            </p>
+
+            <pre>
 public Polygon polygonFrom(Point... corners) {
     int numberOfSides = corners.length;
     double squareOfSide1, lengthOfSide1;
@@ -188,33 +184,134 @@ public Polygon polygonFrom(Point... corners) {
     // polygon connecting the Points
 }</pre>
 
-<p>
-    위에서 보듯이 <code>corners</code>는 배열처럼 다룰 수 있다. 
-    메소드를 호출 할 때도 배열을 전달하거나 여러 인자를 전달할 수도 있다.
-    두 방법 모두 매개변수를 배열처럼 다루게 된다. 
-</p>
+            <p>
+                위에서 보듯이
+                <code>corners</code>는 배열처럼 다룰 수 있다. 메소드를 호출 할 때도 배열을 전달하거나 여러 인자를 전달할 수도 있다. 두 방법 모두 매개변수를 배열처럼 다루게 된다.
+            </p>
 
-<p>
-    가변인자를 많이 볼 수 있는 예제가 <code>printf</code>같은 출력 메소드이다. 
-</p>
+            <p>
+                가변인자를 많이 볼 수 있는 예제가
+                <code>printf</code>같은 출력 메소드이다.
+            </p>
 
-<pre>public PrintStream printf(String format, Object... args)</pre>
-<p>
-    임의의 갯수의 객체를 출력할 수 있게 한다. 호출은 아래 코드 처럼 한다.
-</p>
+            <pre>public PrintStream printf(String format, Object... args)</pre>
+            <p>
+                임의의 갯수의 객체를 출력할 수 있게 한다. 호출은 아래 코드 처럼 한다.
+            </p>
 
-<pre>System.out.printf("%s: %d, %s%n", name, idnum, address);</pre>
-<pre>System.out.printf("%s: %d, %s, %s, %s%n", name, idnum, address, phone, email);</pre>
+            <pre>System.out.printf("%s: %d, %s%n", name, idnum, address);</pre>
+            <pre>System.out.printf("%s: %d, %s, %s, %s%n", name, idnum, address, phone, email);</pre>
 
 
-<h2>매개변수 명</h2>
+            <h2>매개변수 명</h2>
 
-<p>
-    매개변수명은 
-</p>
-<h2>원시 자료형 인자 전달하기</h2>
-<h2>참조 자료형 인자 전달하기</h2>
+            <p>
+                메소드와 생성자의 매개변수를 정의할 때 매개변수의 이름을 작성해야 한다. 이 이름은 전달 받은 인수를 가리키며 메소드 몸체 안에서 사용된다.
+            </p>
 
+            <p>
+                매개변수 명은 영역(scope)안에서 유일한 이름을 가져야 한다. 동일한 메소드나 생성자 내에서 다른 매개변수와 이름이 같을 수 없다. 또한 지역변수와도 이름이 같을 수 없다.
+            </p>
+
+            <p>
+                매개변수는 클래스의 필드와 같은 이름을 가질 수 있다. 이 경우 매개변수는 필드를
+                <em>shadow</em>한다(가린다). 가려진 필드는 코드를 읽기 어렵게 한다. 그리고 관습적으로 생성자나 특정 필드를 set하는 메소드에서만 사용한다. 예를 들어 아래 코드는
+                <code>Circle</code> 클래스와 그 안의
+                <code>setOrigin</code>메소드 이다.
+
+            </p>
+            <pre>
+public class Circle {
+    private int x, y, radius;
+    public void setOrigin(int x, int y) {
+        ...
+    }
+}</pre>
+            <p>
+                <code>Circle</code>클래스는
+                <code>x</code>,
+                <code>y</code>,
+                <code>radius</code>라는 3개의 필드를 가지고 있다.
+                <code>setOrigin</code> 메소드는 두 개의 매개변수를 가지고 있다. 매개변수의 이름은 필드의 이름과 같다. 그래서 메소드 몸체에서 사용하는
+                <code>x</code>와
+                <code>y</code>는 필드가 아니라 매개변수를 가리킨다. 필드에 접근하기 위해서는 예약된 키워드를 사용해야 한다. 이 키워드는 다른 강의 "
+                <code>this</code> 키워드 사용하기"에서 배우게 될 것이다.
+            </p>
+
+
+            <h2>원시 자료형 인자 전달하기</h2>
+
+            <p>
+                <code>int</code>나
+                <code>double</code>같은 원시 자료형 인자는 메소드 매개변수에
+                <em>값</em>이 전달된다. 즉 매개변수의 값의 변경은 메소드 영역(scope)안에서만 존재 한다는 것이다. 메소드가 반환(return)하면, 매개변수는 사라지고 매개변수에 대한 변경은 모두
+                없어진다. 아래 예제를 보자;
+
+            </p>
+
+            <pre>
+public class PassPrimitiveByValue {
+
+    public static void main(String[] args) {
+            
+        int x = 3;
+            
+        // invoke passMethod() with 
+        // x as argument
+        passMethod(x);
+            
+        // print x to see if its 
+        // value has changed
+        System.out.println("After invoking passMethod, x = " + x);
+            
+    }
+        
+    // change parameter in passMethod()
+    public static void passMethod(int p) {
+        p = 10;
+    }
+}</pre>
+
+            <p>실행 시킨 결과는 : </p>
+            <pre>After invoking passMethod, x = 3</pre>
+
+            <h2>참조 자료형 인자 전달하기</h2>
+            <p>
+                객체같은 참조형 타입의 인자가 매개변수에 전달될 때에도 역시
+                <em>값</em>이 전달된다. 즉, 메소드가 반환(return)될 때, 전달된 참조는 이 전과 같은 객체를 참조 한다는 것이다. 그러나 적절한 접근 권한이 있다면 객체의 필드 값은 메소드 내에서
+                변경될 수 있다.
+
+            </p>
+
+            <p>
+                예를 들어,
+                <code>Circle</code>객체를 움직이는 어떤 클래스의 메소드가 있다고 생각해보자.
+            </p>
+
+            <pre>
+public void moveCircle(Circle circle, int deltaX, int deltaY) {
+    // code to move origin of circle to x+deltaX, y+deltaY
+    circle.setX(circle.getX() + deltaX);
+    circle.setY(circle.getY() + deltaY);
+        
+    // code to assign a new reference to circle
+    circle = new Circle(0, 0);
+}</pre>
+
+            <p>
+                메소드를 값을 넣어서 아래 코드로 호출하자 :
+            </p>
+            <pre>moveCircle(myCircle, 23, 56)</pre>
+            <p>
+                메소드 내에서
+                <code>circle</code>은
+                <code>myCircle</code>를 참조한다. 메소드는
+                <code>circle</code>이 참조하는 객체(즉, myCircle)의 x, y 좌표를 각각 23과 56만큼 변경한다. 이 변경은 메소드가 종료된 이 후에도 유지된다. 그리고 나서
+                <code>circle</code>에 x와 y가 0인 새로운
+                <code>Circle</code> 객체를 할당 했다. 그러나 값이 전달 되었고 변경되지 않기 때문에 메소드가 종료되면
+                <code>circle</code>의 값은 사라진다. 하지만
+                <code>myCircle</code>은 여전히 메소드를 호출하기 전과 같은 객체의 참조를 가지고 있다.
+            </p>
 
 
             <!-- 2열 끝 -->

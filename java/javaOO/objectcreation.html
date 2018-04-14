@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">클래스와 객체</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="classes.html">클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="classdec1.html">클래스 선언</a>
+                            </li>
+                            <li>
+                                <a href="variables.html">멤버 변수 선언</a>
+                            </li>
+                            <li>
+                                <a href="methods.html">메소드 정의</a>
+                            </li>
+                            <li>
+                                <a href="constructors.html">생성자</a>
+                            </li>
+                            <li>
+                                <a href="arguments.html">메소드나 생성자에 정보 전달</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="objects.html">객체</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="objectcreation.html">객체 생성</a>
+                            </li>
+                            <li>
+                                <a href="usingobject.html">객체 사용</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="more.html">More on Classes</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="returnvalue.html">메소드에서 값 반환하기</a>
+                            </li>
+                            <li>
+                                <a href="thiskey.html">this 키워드 사용</a>
+                            </li>
+                            <li>
+                                <a href="accesscontrol.html">클래스의 멤버 접근 제어</a>
+                            </li>
+                            <li>
+                                <a href="classvars.html">클래스 멤버 이해하기</a>
+                            </li>
+                            <li>
+                                <a href="initial.html">필드 초기화</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="nested.html">중첩 클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="innerclasses.html">내부 클래스 예제</a>
+                            </li>
+                            <li>
+                                <a href="localclasses.html">지역 클래스</a>
+                            </li>
+                            <li>
+                                <a href="anonymousclasses.html">무명 클래스</a>
+                            </li>
+                            <li>
+                                <a href="lambdaexpressions.html">람다 표현식</a>
+                            </li>
+                            <ul>
+
+                                <li>
+                                    <a href="methodreferences.html">메소드 참조</a>
+                                </li>
+                            </ul>
+                            <li>
+                                <a href="whentouse.html">중첩 클래스, 지역 클래스, 무명 클래스, 람다 표현식을 사용할 때</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="enum.html">Enum Types</a>
+                        </li>
+
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <!-- 2열 시작 -->
+<h1>
+    객체 생성하기
+</h1>
+
+<p>
+클래스는 객체를 위한 설계도를 제공한다. 객체는 클래스로부터 만들어 진다. 아래
+명령문은 <code><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/examples/CreateObjectDemo.java">CreateObjectDemo</a></code> 프로그램에서
+객체를 생성하고 변수에 할당하는 코드를 가져온 것이다.
+</p>
+
+<pre>
+<b>Point originOne</b> = new Point(23, 94);
+<b>Rectangle rectOne</b> = new Rectangle(originOne, 100, 200);
+<b>Rectangle rectTwo</b> = new Rectangle(50, 100);</pre>
+<p>
+    첫 번째 줄은 <code><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/examples/Point.java">Point</a></code> 클래스의
+    객체를 생성한 것이다. 두번째와 세번째 줄은
+    <code><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/examples/Rectangle.java">Rectangle</a></code>
+    클래스의 객체를 생성한 것이다.
+</p>
+
+<p>
+    이 명령문들은 세 가지 요소로 이루어져 있다.
+</p>
+
+<ol>
+    <li><b>선언(Declaration) : </b>
+        객체의 타입과 변수 이름을 작성한 굵은 글씨체로 된 부분이 변수를 선언한 부분이다.
+    </li>
+    <li><b>객체화(Instantiation) : </b>
+        <code>new</code> 키워드는 객체를 생성하는 자바 연산자이다.
+    </li>
+    <li><b>초기화(Initialization) : </b>
+        <code>new</code> 연산자 다음에 생성자를 호출하는 부분이 새 객체를 초기화 하는 부분이다.
+    </li>
+</ol>
+
+<h2>
+    객체를 참조하는 변수 선언
+</h2>
+
+<p>
+    이 전에 변수를 선언하는 방법에 대해서 배웠다.
+</p>
+
+<pre><em>type name</em>;</pre>
+<p>
+    이 코드는 자료형이 <em>type</em>인 데이터를 가리키는 <em>name</em> 변수를
+    사용하겠다고 컴파일러에게 알려주는 것이다. 원시 자료형에서 이 선언은
+    변수에게 필요한 메모리를 예약한다. 
+</p>
+
+<p>
+    이런 코드를 참조 변수 선언에 사용한다. 예를 들어:
+</p>
+
+<pre>Point originOne;</pre>
+<p>
+    만약 <code>originOne</code>을 이렇게 선언하면, 이 변수의 값은 객체가 실제로 만들어지고
+    할당될 때까지 값이 결정되지 않는다. 참조 변수를 선언한 것으로는 객체가 생성되지 않는다.
+    객체 생성을 위해서는 다음 섹션에서 다룰 <code>new</code> 연산자가 필요하다. 
+    코드에서 그 객체를 사용하기 전에 <code>originOne</code> 변수에 객체를 할당해야 한다. 
+    그렇지 않으면 컴파일러 에러가 발생한다.
+</p>
+
+<p>
+    이 상태에서 변수는 현재 아무 객체도 참조하지 않는다. 아래 그림 처럼
+    변수의 이름은 <code>originOne</code>이고 아무 것도 가리키고 있지 않다.
+</p>
+<div class="thumbnail">
+    <img src="../img/objects-null.gif" alt="">
+</div>
+<h2>
+    객체화 (Instantiating a Class)
+</h2>
+<p>
+    <code>new</code>연산자는 새 객체를 위한 메모리를 할당하고 그 메모리의 참조를 리턴하여
+    클래스를 객체화 한다. 또 <code>new</code>연산자는 객체의 생성자를 호출한다.
+</p>
+
+<p><b>Note : </b>
+"instantiating a class"는 "creating an object"와 같은 뜻이다. 객체(object)를 생성할 때 
+클래스의 객체(instance)를 만든다. 그래서 클래스를 객체화("instantiating")한다.
+</p>
+
+<p>
+    <code>new</code>연산자 다음에는 생성자 호출이 하나 필요하다. 생성자의 이름은
+    객체를 만들 클래스의 이름이다. 
+</p>
+
+<p>
+    <code>new</code>연산자는 새로 만든 객체의 참조를 반환한다. 이 참조는 보통 적절한 타입의 변수에 할당 된다.
+</p>
+
+<pre>Point originOne = new Point(23, 94);</pre>
+
+<p>
+    <code>new</code>연산자에 의해 반환된 참조는 꼭 변수에 할당하지 않아도 된다. 
+    표현식 안에서 바로 사용할 수도 있다. 아래 예제:
+</p>
+<pre>int height = new Rectangle().height;</pre>
+<p>
+    이 명령문은 나중에 다룰 예정이다.
+</p>
+
+<h2>
+    객체 초기화(Initializing an Object)
+</h2>
+
+<p>
+    아래 <code>Point</code>클래스의 코드가 있다.
+</p>
+<pre>
+public class Point {
+    public int x = 0;
+    public int y = 0;
+    <b>//constructor
+    public Point(int a, int b) {
+        x = a;
+        y = b;
+    }</b>
+}</pre>
+
+<p>
+    이 클래스는 생성자가 하나이다. 생성자는 클래스이름과 같고 리턴타입이 없다. 
+    이 생성자는 두 개의 <code>int</code>타입의 매개변수를 갖고 있다. 
+    아래 명령문은 이 매개변수에 23과 94라는 값을 전달한다.
+</p>
+
+<pre>Point originOne = new Point(23, 94);</pre>
+
+<p>
+    이 명령문이 실행된 결과를 아래 그림으로 설명할 수 있다.
+</p>
+<div class="thumbnail">
+        <img src="../img/objects-oneRef.gif" alt="">
+</div>
+
+<p>
+    아래에 4개의 생성자가 있는 <code>Rectangle</code>클래스가 있다.
+</p>
+<pre>
+public class Rectangle {
+    public int width = 0;
+    public int height = 0;
+    public Point origin;
+
+    // four constructors
+    public Rectangle() {
+        origin = new Point(0, 0);
+    }
+    public Rectangle(Point p) {
+        origin = p;
+    }
+    public Rectangle(int w, int h) {
+        origin = new Point(0, 0);
+        width = w;
+        height = h;
+    }
+    public Rectangle(Point p, int w, int h) {
+        origin = p;
+        width = w;
+        height = h;
+    }
+
+    // a method for moving the rectangle
+    public void move(int x, int y) {
+        origin.x = x;
+        origin.y = y;
+    }
+
+    // a method for computing the area of the rectangle
+    public int getArea() {
+        return width * height;
+    }
+}</pre>
+<p>
+    각 생성자는 직사각형의 시작점, 너비, 높이를 위한 초기값을 원시 자료형이나 참조형을 사용해서
+    제공할 수 있게 한다.
+    만약 클래스에 여러 생성자가 있으면, 각 생성자는 다른 시그니쳐를 가져야 한다.
+    자바 컴파일러는 매개변수의 갯수와 타입에 근거해서 생성자를 구분한다.
+    자바 컴파일러가 아래 코드를 만나면 <code>Point</code>인자와 두 개의 정수 인자를 요구하는
+    <code>Rectangle</code>의 생성자를 호출한다는 것을 알게된다.
+</p>
+
+<pre>Rectangle rectOne = new Rectangle(originOne, 100, 200);</pre>
+<p>
+    이 코드는 <code>Rectangle</code>의 생성자를 호출하고 <code>origin</code>을
+    <code>originOne</code>으로 초기화한다. 그리고 
+    <code>width</code>를 100으로 <code>height</code>를 200이로 셋팅한다.
+    그러면 같은 <code>Point</code>객체를 참조하는 두 개의 참조변수가 존재하게 된다. 
+    아래 그림처럼 하나의 객체를 참조하는 여러 참조변수가 존재할 수 있다.
+</p>
+
+<div class="thumbnail">
+        <img src="../img/objects-multipleRefs.gif" alt="">
+</div>
+<p>
+    코드의 다음 줄은 두 개의 정수 인자(너비와 높이)를 요구하는 <code>Rectangle</code> 생성자를 호출한다.
+    만약 그 생성자의 코드를 분석해보면, x와 y의 좌표가 0인 새로운 <code>Point</code> 객체를 생성한다는 것을 볼 수 있다.
+
+</p>
+<pre>Rectangle rectTwo = new Rectangle(50, 100);</pre>
+<p>
+아래 사용된 <code>Rectangle</code>생성자는 아무 인자도 받지 않는다. 그래서
+이 생성자를 <em>no-argument constructor(매개변수 없는 생성자)</em>라고 한다.
+</p>
+<pre>Rectangle rect = new Rectangle();</pre>
+<p>
+모든 클래스는 적어도 하나의 생성자를 가져야 한다. 만약 명시적으로 작성된 생성자가 없다면
+자바 컴파일러는 매개변수 없는 생성자(기본 생성자)를 자동으로 제공한다. 이
+기본 생성자는 부모 클래스의 매개변수 없는 생성자를 호출한다. 부모 클래스가 없다면
+<code>Object</code>클래스의 생성자를 호출한다. 만약 부모 클래스에 생성자가 없다면(<code>Object</code>는
+하나의 생성자가 있다)
+컴파일러는 에러를 출력할 것이다.
+</p>
+
+
+
+            <!-- 2열 끝 -->
+        </div>
+
+        <!-- container 끝 -->
+    </div>
+
+</body>
+
+</html>
