@@ -116,10 +116,154 @@
         </div>
         <div class="col-sm-8">
             <!-- 2열 시작 -->
+<h1>
+    객체 사용하기
+</h1>
+<p>
+    객체를 생성한 후 그 객체를 사용하게 될 것이다. 객체의 필드 값을 사용하거나
+    객체의 필드 값을 변경하거나, 객체의 메소드를 호출하게 될 것이다.
+</p>
+
+<h2>
+    객체의 필드 참조하기
+</h2>
+
+<p>
+
+객체의 필드는 그 것의 이름으로 접근한다. 
+</p>
+<p>
+그 클래스 안에서 필드를 사용하기 위해서는 간단히 이름만 사용하면된다.
+아래는 <code>width</code>와 <code>height</code>를 
+출력하기 위해 <code>Rectangle</code>클래스 <em>안에서</em> 명령문을 작성한 예제이다.
+</p>
+
+<pre>System.out.println("Width and height are: " + width + ", " + height);</pre>
+
+<p>
+    이 경우 <code>width</code>와 <code>height</code>는 간단히 이름만 사용했다.
+</p>
+<p>
+    객체의 클래스 외부 코드에서는 객체의 참조나 표현식을 사용해야 한다. dot(.) 연산자와 
+    필드명을 작성해줘야 한다. 아래 예제 코드 처럼,
+</p>
+<pre>objectReference.fieldName</pre>
+<p>
+<code>Rectangle</code>클래스 외부의 <code>CreateObjectDemo</code>클래스 예제에서, 
+<code>CreateObjectDemo</code>클래스가 <code>Rectangle</code>객체 <code>rectOne</code>의 <code>origin</code>, <code>width</code>,
+<code>height</code>필드를 참조하기 위해서는 <code>rectOne.origin</code>,
+<code>rectOne.width</code>, <code>rectOne.height</code>를 사용해야 한다.
+이 프로그램에서는 <code>rectOne</code>의 <code>width</code>와 <code>height</code>를
+출력하였다.
+</p>
+<pre>System.out.println("Width of rectOne: "  + rectOne.width);
+System.out.println("Height of rectOne: " + rectOne.height);</pre>
+<p>
+<code>CreateObjectDemo</code> 안의 코드에서는 <code>width</code>와 <code>height</code>를
+사용할 수 없다. 이 필드는 객체 안에만 존재하기 때문이다. 
+</p>
+<p>
+다음에, <code>rectTwo</code>의 정보를 출력하는 비슷한 코드를 사용하였다. 같은 타입의 객체들은
+서로 자기만의 같은 인스턴스 필드를 갖는다. 그래서 모든 <code>Rectangle</code> 객체의
+필드 이름은 <code>origin</code>, <code>width</code>, <code>height</code>이다. 
+객체의 참조를 통해 인스턴스 필드에 접근하면 특정 객체의 필드를 참조하게 된다. 
+<code>CreateObjectDemo</code>프로그램에서 <code>rectOne</code>과 <code>rectTwo</code> 두 객체는
+서로 다른 <code>origin</code>, <code>width</code>, <code>height</code>를 갖는 것이다.
+</p>
+<p>
+필드에 접근하기 위해서 객체를 참조하는 변수를 사용하거나 그 객체를 리턴하는 표현식을 사용할 수 있다.
+<code>new</code>연산자가 객체의 참조를 반환한다는 것을 기억해보면, 새로운 객체의 필드에 접근하기 위해
+<code>new</code>에서 반환된 값을 바로 사용할 수 있다.
+</p>
+<pre>int height = new Rectangle().height;</pre>
+<p>
+이 명령문은 새로운 <code>Rectangle</code> 객체를 만들고 바로 <code>height</code>를 가져온 것이다.
+<code>Rectangle</code>의 기본 <code>height</code>를 산출했다.
+새로 만들어진 <code>Rectangle</code> 객체의 참조는 저장되지 않았기 때문에
+이 후 명령문에서 더 이상 참조할 수 없다. 객체는 참조되지 않게 되었고, 그 자원은
+자바 가상 머신이 재사용할 수 있도록 남겨진다.
+</p>
+
+<h2>객체의 메소드 호출하기</h2>
+<p>
+    객체의 메소드를 호출할 때 객체 참조를 이용한다. 객체의 참조와 메소드의
+    이름을 점(.)연산자와 연결하고 ()안에 인자를 작성하면 된다. 
+    인자가 필요없으면 빈 ()괄호를 사용한다.
+</p>
+
+<pre>objectReference.methodName(argumentList);</pre>
+<p>또는 :</p>
+<pre>objectReference.methodName();</pre>
+
+<p>
+    <code>Rectangle</code>클래스는 두 개의 메소드를 가지고 있다.
+    <code>getArea()</code>는 면적을 계산하고 <code>move()</code>는 
+    좌표를 바꾼다. 아래 이 메소드를 호출하는 코드가 있다.
+</p>
+
+<pre>
+System.out.println("Area of rectOne: " + rectOne.getArea());
+...
+rectTwo.move(40, 72);</pre>
+
+
+<p>첫 번째 명령문에서 <code>rectOne</code>의 <code>getArea()</code>메소드를 호출하고
+결과를 출력한다. 두 번째 줄은 <code>rectTwo</code>의 <code>move()</code>메소드에
+새로운 값을 넣어 호출하여 좌표를 바꾼다.</p>
+<p>
+    인스턴스 필드처럼 <em>객체참조</em>는 어떤 객체에 대한 참조이다.
+    변수명을 사용할 수도 있지만 객체의 참조를 반환하는 표현식을 사용할 수도 있다.
+    <code>new</code>연산자는 객체의 참조를 반환하기 때문에, 새로 만든 객체의 반환된 참조를 사용하여
+    객체의 메소드를 호출할 수 있다.
+
+</p>
+<pre>new Rectangle(100, 50).getArea()</pre>
+<p>
+    <code>new Rectangle(100, 50)</code> 표현식은 <code>Rectangle</code> 의 객체를
+    참조하는 객체참조를 반환하다. dot 연산자를 사용해서 새 객체의 면적을 
+    구하는 <code>getArea()</code> 메소드를
+    호출할 수 있다.
+</p>
+<p>
+    <code>getArea()</code> 같은 메소드는 값을 반환한다. 값을 반환하는 메소드를 호출할 때
+    표현식 안에서 사용할 수 있다. 반환된 값을 변수에 할당하거나, 조건문에서 활용하거나,
+    반복문에서 사용할 수 있다. 아래 코드는 <code>getArea()</code>에서 반환한 값을
+    변수 <code>areaOfRectangle</code>에 할당하는 코드이다.
+</p>
+<pre>int areaOfRectangle = new Rectangle(100, 50).getArea();</pre>
+<p>
+    어떤 객체의 메소드를 호출하는 것은 그 객체에 메세지를 보내는 것과 같다는 것을
+    기억해야한다. 이 경우 <code>getArea()</code>메소드가 호출된 객체는
+    생성자에 의해 반환된 Rectangle 이다.
+</p>
+<h2>가비지 콜렉터 (The Garbage Collector)</h2>
+<p>
+    어떤 객체지향 언어는 프로그래머가 생성한 객체가 필요 없어질 때 소거하는
+    책임을 프로그래머에게 지운다. 메모리 관리는 에러를 발생할 여지를 남기며
+    지루한 작업이다. 자바는 원하는 만큼 객체를 생성할 수 있도록 하지만
+    그 객체를 소거하는 일에 대해 신경쓰지 않게 한다. 
+    자바 실행 환경은 객체가 더 이상 사용되지 않는다는 것을 알게 되면
+    객체를 삭제한다. 이 프로세스를 <em>가비지 콜렉션(garbage collectoin)</em>라고 한다.
+</p>
+<p>
+    객체에 대한 참조가 더이상 존재하지 않을 때 객체는 가비지 콜렉션의 대상이 된다.
+    변수가 저장된 참조는 보통 변수의 scope을 벗어날 때 사라지게 된다.
+    또는 변수에 <code>null</code>값을 할당하여 객체 참조를 명시적으로 삭제할 수도 있다.
+    하나의 객체를 참조하는 여러 변수가 있을 수 있다는 것을 기억해야 한다. 가비지 콜렉션의
+    대상이 되기 전에 모든 참조가 삭제되어야 한다.
+</p>
+<p>
+    자바 실행 환경은 더 이상 참조되지 않는 객체의 메모리를 주기적으로 유휴시킨다.
+    가비지 콜렉터는 실행할 시간이 되었다고 판단되면 자동으로 작업을 시작한다.
+</p>
 
 
 
-            <!-- 2열 끝 -->
+
+
+
+
+        <!-- 2열 끝 -->
         </div>
 
         <!-- container 끝 -->

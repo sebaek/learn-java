@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">클래스와 객체</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="classes.html">클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="classdec1.html">클래스 선언</a>
+                            </li>
+                            <li>
+                                <a href="variables.html">멤버 변수 선언</a>
+                            </li>
+                            <li>
+                                <a href="methods.html">메소드 정의</a>
+                            </li>
+                            <li>
+                                <a href="constructors.html">생성자</a>
+                            </li>
+                            <li>
+                                <a href="arguments.html">메소드나 생성자에 정보 전달</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="objects.html">객체</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="objectcreation.html">객체 생성</a>
+                            </li>
+                            <li>
+                                <a href="usingobject.html">객체 사용</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="more.html">More on Classes</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="returnvalue.html">메소드에서 값 반환하기</a>
+                            </li>
+                            <li>
+                                <a href="thiskey.html">this 키워드 사용</a>
+                            </li>
+                            <li>
+                                <a href="accesscontrol.html">클래스의 멤버 접근 제어</a>
+                            </li>
+                            <li>
+                                <a href="classvars.html">클래스 멤버 이해하기</a>
+                            </li>
+                            <li>
+                                <a href="initial.html">필드 초기화</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="nested.html">중첩 클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="innerclasses.html">내부 클래스 예제</a>
+                            </li>
+                            <li>
+                                <a href="localclasses.html">지역 클래스</a>
+                            </li>
+                            <li>
+                                <a href="anonymousclasses.html">무명 클래스</a>
+                            </li>
+                            <li>
+                                <a href="lambdaexpressions.html">람다 표현식</a>
+                            </li>
+                            <ul>
+
+                                <li>
+                                    <a href="methodreferences.html">메소드 참조</a>
+                                </li>
+                            </ul>
+                            <li>
+                                <a href="whentouse.html">중첩 클래스, 지역 클래스, 무명 클래스, 람다 표현식을 사용할 때</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="enum.html">Enum Types</a>
+                        </li>
+
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <!-- 2열 시작 -->
+<h1>
+    <code>this</code> 키워드 사용하기
+</h1>
+
+<p>
+    인스턴스 메소드나 생성자에서, <code>this</code>는 <em>현재 객체</em>를 가리킨다 -
+    호출된 메소드나 생성자가 속한 객체. <code>this</code> 키워드를 사용해서 
+    인스턴스 메소드나 생성자에서 현재 객체의 모든 멤버를 접근할 수 있다.
+</p>
+
+<h2>
+    필드에서 <code>this</code> 사용하기
+</h2>
+<p>
+    <code>this</code>키워드를 사용하는 가장 큰 이유는 
+    메소드나 생성자의 매개변수가 필드를 가리기(shadow) 때문이다.
+</p>
+
+<p>
+    예를 들어 아래 처럼 작성된 <code>Point</code> 클래스를
+</p>
+
+<pre>
+public class Point {
+    public int x = 0;
+    public int y = 0;
+        
+    //constructor
+    public Point(int a, int b) {
+        x = a;
+        y = b;
+    }
+}</pre>
+
+<p>
+    이렇게 다시 작성할 수 있다.
+</p>
+
+<pre>
+public class Point {
+    public int x = 0;
+    public int y = 0;
+        
+    //constructor
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}</pre>
+            
+<p>
+    생성자의 각 매개변수는 객체의 필드를 가린다(shadow) - 생성자 안의 
+    <code>x</code>는 생성자의 첫 번째 매개변수이다. 
+    <code>Point</code>필드의 <code>x</code>를 가리키기 위해서
+    <code>this.x</code>를 사용해야 한다.
+</p>
+<h2>
+    생성자에서 <code>this</code> 사용하기
+</h2>
+<p>
+    생성자 안에서 <code>this</code>키워드를 같은 클래스 내의 다른 생성자를 호출하는데 
+    사용할 수 있다. 
+    이렇게 사용하는 것을 <em>explicit constructor invocation</em>이라고 한다.
+    여기 또 다른 <code>Rectangle</code>클래스가 있다. 
+</p>
+<pre>
+public class Rectangle {
+    private int x, y;
+    private int width, height;
+        
+    public Rectangle() {
+        this(0, 0, 1, 1);
+    }
+    public Rectangle(int width, int height) {
+        this(0, 0, width, height);
+    }
+    public Rectangle(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+    ...
+}</pre>
+
+<p>
+    이 클래스는 여러개의 생성자를 가지고 있다. 각 생성자는 Rectangle의 멤버변수를
+    초기화 한다. 생성자는 인자로 전달되지 않은 멤버 변수의 값을 기본 값으로 할당한다.
+    예를 들어 매개변수가 없는 생성자는 크기가 1&times;1이고 좌표가 0, 0인 <code>Rectangle</code>을
+    만든다. 매개변수가 2개인 생성자는 전달 받은 높이와 너비와 함께 좌표 0, 0을
+    4개인 생성자에 매개변수로 전달하고 호출한다. 컴파일러는 
+    매개변수의 타입과 갯수에 기반하여 호출해야 하는 생성자를 결정한다.
+</p>
+<p>
+    다른 생성자 호출은 생성자의 첫번째 줄에 위치해야 한다.
+</p>
+
+        <!-- 2열 끝 -->
+        </div>
+
+        <!-- container 끝 -->
+    </div>
+
+</body>
+
+</html>
