@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">클래스와 객체</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="classes.html">클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="classdec1.html">클래스 선언</a>
+                            </li>
+                            <li>
+                                <a href="variables.html">멤버 변수 선언</a>
+                            </li>
+                            <li>
+                                <a href="methods.html">메소드 정의</a>
+                            </li>
+                            <li>
+                                <a href="constructors.html">생성자</a>
+                            </li>
+                            <li>
+                                <a href="arguments.html">메소드나 생성자에 정보 전달</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="objects.html">객체</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="objectcreation.html">객체 생성</a>
+                            </li>
+                            <li>
+                                <a href="usingobject.html">객체 사용</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="more.html">More on Classes</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="returnvalue.html">메소드에서 값 반환하기</a>
+                            </li>
+                            <li>
+                                <a href="thiskey.html">this 키워드 사용</a>
+                            </li>
+                            <li>
+                                <a href="accesscontrol.html">클래스의 멤버 접근 제어</a>
+                            </li>
+                            <li>
+                                <a href="classvars.html">클래스 멤버 이해하기</a>
+                            </li>
+                            <li>
+                                <a href="initial.html">필드 초기화</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="nested.html">중첩 클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="innerclasses.html">내부 클래스 예제</a>
+                            </li>
+                            <li>
+                                <a href="localclasses.html">지역 클래스</a>
+                            </li>
+                            <li>
+                                <a href="anonymousclasses.html">무명 클래스</a>
+                            </li>
+                            <li>
+                                <a href="lambdaexpressions.html">람다 표현식</a>
+                            </li>
+                            <ul>
+
+                                <li>
+                                    <a href="methodreferences.html">메소드 참조</a>
+                                </li>
+                            </ul>
+                            <li>
+                                <a href="whentouse.html">중첩 클래스, 지역 클래스, 무명 클래스, 람다 표현식을 사용할 때</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="enum.html">Enum Types</a>
+                        </li>
+
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <!-- 2열 시작 -->
+<h1>
+중첩클래스    
+</h1>
+<p>
+자바에선
+어떤 클래스를 다른 클래스 안에서 정의 할 수 있다.
+이 클래스를 <em>nested class</em>라고 하며
+아래 처럼 작성한다.
+</p>
+
+<pre>
+class OuterClass {
+    ...
+    class NestedClass {
+        ...
+    }
+}</pre>
+
+<p>
+    <b>Terminology : </b>
+nested class는 static과 non-static으로 나뉜다.
+<code>static</code>으로 선언된
+nested class는 <em>static nested class</em>라고
+불리고, non-static class를 <em>inner class</em>라고
+부른다.
+</p>
+<pre>
+class OuterClass {
+    ...
+    static class StaticNestedClass {
+        ...
+    }
+    class InnerClass {
+        ...
+    }
+}</pre>
+
+<p>
+nested class는 감싸고 있는 클래스의
+멤버이다. inner class 감싸고 있는 
+클래스의 멤버(private으로 선언되어 있어도)에 접근할 수 있다.
+static nested class는 감싸고 있는
+클래스의 멤버에 접근할 수 없다.
+<code>OuterClass</code>의 멤버처럼,
+nested class는 <code>private</code>,
+<code>public</code>, <code>protected</code>,
+<em>package private</em>으로 선언될 수 있다.
+(바깥 클래스는 <code>public</code>이나 
+<em>package private</em>으로 선언할 수 있었다.)
+
+</p>
+
+
+<h2>
+    왜 nested class를 사용하는가?
+</h2>
+<p>
+nested class를 사용하는 주된 이유는
+아래와 같다.    
+</p>
+<ul>
+    <li><strong>한 곳에서만 사용하는 클래스를
+        논리적 그룹으로 묶을 수 있는 방법이다.
+     : </strong>
+    만약 어떤 클래스가 다른 클래스 하나에서만
+사용하게 된다면, 다른 클래스 안에 넣고 함께
+사용하는 것이 논리적이다. "helper class"를
+안에 넣는 것은 그 묶음을 간결하게 만든다.</li>
+    <li><strong>캡슐화를 강화한다 : </strong>
+클래스 B가 클래스 A의 
+멤버(<code>private</code>으로 선언된)에 
+접근할 필요가 있다고 가정하자.
+클래스 B를 클래스 A안에 숨기면,
+A의 멤버가 <code>private</code>으로
+선언되어도 B가 접근할 수 있다.
+그리고 B 자체도 외부로부터 숨길 수 있다.
+ </li>
+    <li><strong>코드의 가독성과 유지보수성을 높인다 : </strong>
+어떤 클래스에 담긴 작은 클래스는
+그 것을 사용하는 코드와 가까운 곳에
+위치하게 된다.
+</li>
+</ul>
+
+<h2>
+    static nested class
+</h2>
+<p>
+클래스 메소드와 변수처럼 static nested class는 바깥
+클래스와 관련이 있다.
+static 클래스 메소드처럼, static nested 클래스는
+감싸고 있는 클래스의 인스턴스 변수나 메소드를 직접 참조할 수 없다.
+즉 객체 참조를 통해서면 접근할 수 있다.
+</p>
+
+<p>
+    <b>Note : </b>
+static nested class는 바깥 클래스의 인스턴스 멤버와
+상호작용하는 것이 다른 top-level 클래스와 같다.
+그 결과 static nested class는 편의상
+패키지로 묶은 다른 top-level 클래스 안에 있는
+top-level 클래스처럼 기능한다.
+
+</p>
+
+
+        <!-- 2열 끝 -->
+        </div>
+
+        <!-- container 끝 -->
+    </div>
+
+</body>
+
+</html>
