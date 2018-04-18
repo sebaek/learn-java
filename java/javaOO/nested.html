@@ -252,6 +252,91 @@ inner class는 객체와 관련 있기 때문에
 선언할 수 없다.
 </p>
 
+<p>
+inner class의 객체는 outer class의 객체
+안에 존재한다. 아래 코드가 있다고 가정하자.
+</p>
+
+<pre>
+class OuterClass {
+    ...
+    class InnerClass {
+        ...
+    }
+}</pre>
+<p>
+<code>InnerClass</code>의 객체는 
+<code>OuterClass</code>의 객체
+안에서만 존재하고 감싸고 있는
+객체의 메소드와 필드에 직접 접근 가능하다.
+</p>
+
+<p>
+inner class의 객체를 만드려면, 
+outer class의 객체를 먼저 만들어야 한다.
+다음 outer 객체안에 inner 객체를 만들어야
+한다. 아래 문법 처럼 :
+</p>
+
+<pre>OuterClass.InnerClass innerObject = outerObject.new InnerClass();</pre>
+
+<p>
+inner 클래스는 두 개의 특별한 클래스가 있다.    
+: 로컬 클래스와 무명클래스이다.
+</p>
+
+<h2>
+    Shadowing
+</h2>
+
+<p>
+어떤 특정 scope의 변수의 선언(
+    멤버 변수나 파라미터)이
+그 scope을 감싸는 scope의 선언과 이름이
+같다면, 그 선언은 바깥 scope의 선언을
+shadow한다.
+가려진 선언을 이름만으로 참조할 수 없다.
+아래 <code>ShadowTest</code> 프로그램에서
+예제를 보여준다.
+</p>
+
+<pre>
+public class ShadowTest {
+
+    public int x = 0;
+
+    class FirstLevel {
+
+        public int x = 1;
+
+        void methodInFirstLevel(int x) {
+            System.out.println("x = " + x);
+            System.out.println("this.x = " + this.x);
+            System.out.println("ShadowTest.this.x = " + ShadowTest.this.x);
+        }
+    }
+
+    public static void main(String... args) {
+        ShadowTest st = new ShadowTest();
+        ShadowTest.FirstLevel fl = st.new FirstLevel();
+        fl.methodInFirstLevel(23);
+    }
+}</pre>
+<p>
+    이 프로그램의 결과는 다음과 같다.
+</p>
+<pre>
+x = 23
+this.x = 1
+ShadowTest.this.x = 0</pre>
+
+<p>
+이 예제에서는 <code>x</code>라는 이름의
+변수를 3개 정의한다.
+</p>
+
+
+
         <!-- 2열 끝 -->
         </div>
 
