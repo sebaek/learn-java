@@ -78,6 +78,9 @@
                             <li>
                                 <a href="initial.html">필드 초기화</a>
                             </li>
+                            <li>
+                                <a href="summaryclasses.html">클래스와 객체의 생성과 사용에 대한 요약</a>
+                            </li>
                         </ul>
                         <li>
                             <a href="nested.html">중첩 클래스</a>
@@ -367,10 +370,19 @@ inner class <code>FirstLevel</code>의
 inner class, local class, anonymouse class의
 Serialization은 강력하게 권장하지 않는다.
 자바 컴파일러가 
-inner class 같은 어떤 생성자를 컴파일할 때, 
-<em>synthetic 생성자</em>를 만든다. 이 것은
+inner class 같은 어떤 구성요소들를 컴파일할 때, 
+<em>synthetic constructs</em>를 만든다. 이 것은
 소스코드에 있는 구성과는 다른
-클래스, 메소드, 필드 이다.
+클래스, 메소드, 필드 등의 구성요소 이다.
+Synthetic constructs는 컴파일러가 JVM의 변경없이 자바의 새로운 기능을 구현 가능하게 한다.
+그러나 Syntehtic constructs는 자바 컴파일러 구현에 따라 다양해 질 수 있다.
+즉, <code>.class</code>파일 역시 구현에 따라 다양해진다.
+결과적으로 innser class를 serialize와 deserialize하는 것은 다른 JRE 구현에 따라
+호환성 문제가 생길 수 있다. inner class가 컴파일될 때 생성되는
+synthetic constructs에 대해 더 많은 정보를 얻기 위해선
+<a href="https://docs.oracle.com/javase/tutorial/reflect/member/methodparameterreflection.html">Obtaining Names of Method Parameters</a>의
+<a href="https://docs.oracle.com/javase/tutorial/reflect/member/methodparameterreflection.html#implcit_and_synthetic">Implicit and Synthetic Parameters</a>
+섹션을 보라
 </p>
 
 
