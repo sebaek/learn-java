@@ -216,11 +216,41 @@ static 클래스 메소드처럼, static nested 클래스는
 static nested class는 바깥 클래스의 인스턴스 멤버와
 상호작용하는 것이 다른 top-level 클래스와 같다.
 그 결과 static nested class는 편의상
-패키지로 묶은 다른 top-level 클래스 안에 있는
+묶여있는 다른 top-level 클래스 안에 있는
 top-level 클래스처럼 기능한다.
 
 </p>
 
+<p>
+    static nested class는 감싸고 있는 클래스명을
+    사용하여 접근한다.
+</p>
+
+<pre>OuterClass.StaticNestedClass</pre>
+<p>
+    예를 들어 static nested 클래스의 객체를
+    생성하기 위해선 아래 문법을 사용한다.
+</p>
+
+<pre>
+OuterClass.StaticNestedClass nestedObject =
+     new OuterClass.StaticNestedClass();    
+</pre>
+
+<h2>
+
+    Inner Class
+</h2>
+
+<p>
+인스턴스 메소드와 변수처럼    
+inner class는 감싸고 있는 클래스의 
+객체와 관련 있고 그 객체의 메소드와
+필드에 직접 접근할 수 있다.
+inner class는 객체와 관련 있기 때문에
+그 자신은 static 멤버를
+선언할 수 없다.
+</p>
 
         <!-- 2열 끝 -->
         </div>
