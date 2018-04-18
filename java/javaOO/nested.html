@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">클래스와 객체</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="classes.html">클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="classdec1.html">클래스 선언</a>
+                            </li>
+                            <li>
+                                <a href="variables.html">멤버 변수 선언</a>
+                            </li>
+                            <li>
+                                <a href="methods.html">메소드 정의</a>
+                            </li>
+                            <li>
+                                <a href="constructors.html">생성자</a>
+                            </li>
+                            <li>
+                                <a href="arguments.html">메소드나 생성자에 정보 전달</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="objects.html">객체</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="objectcreation.html">객체 생성</a>
+                            </li>
+                            <li>
+                                <a href="usingobject.html">객체 사용</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="more.html">More on Classes</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="returnvalue.html">메소드에서 값 반환하기</a>
+                            </li>
+                            <li>
+                                <a href="thiskey.html">this 키워드 사용</a>
+                            </li>
+                            <li>
+                                <a href="accesscontrol.html">클래스의 멤버 접근 제어</a>
+                            </li>
+                            <li>
+                                <a href="classvars.html">클래스 멤버 이해하기</a>
+                            </li>
+                            <li>
+                                <a href="initial.html">필드 초기화</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="nested.html">중첩 클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="innerclasses.html">내부 클래스 예제</a>
+                            </li>
+                            <li>
+                                <a href="localclasses.html">지역 클래스</a>
+                            </li>
+                            <li>
+                                <a href="anonymousclasses.html">무명 클래스</a>
+                            </li>
+                            <li>
+                                <a href="lambdaexpressions.html">람다 표현식</a>
+                            </li>
+                            <ul>
+
+                                <li>
+                                    <a href="methodreferences.html">메소드 참조</a>
+                                </li>
+                            </ul>
+                            <li>
+                                <a href="whentouse.html">중첩 클래스, 지역 클래스, 무명 클래스, 람다 표현식을 사용할 때</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="enum.html">Enum Types</a>
+                        </li>
+
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <!-- 2열 시작 -->
+<h1>
+    필드 초기화
+</h1>
+
+<p>
+    앞에 봤듯이, 필드를 선언할 때 초기 값을 할당할 수 있다.
+</p>
+
+<pre>
+public class BedAndBreakfast {
+
+    // initialize to 10
+    public static int capacity = 10;
+
+    // initialize to false
+    private boolean full = false;
+}</pre>
+
+<p>
+    이 작업은 초기 값을 한 줄에 작성하고 초기 값을 넣을 수 있을 때 잘된다.
+    그러나 이 초기화 형식은 간편함 때문에 한계가 있다.
+    만약 초기화가 어떤 로직을 요구할 때 (예를 들어, 에러 처리나 <code>for</code> 반복문으로
+    복잡한 배열을 채워야 할 때), 간단한 형식은 적당하지 않다.
+    인스턴스 변수는 에러 처리나 어떤 로직이 필요할 때 생성자안에서 초기화 할 수 있다.
+    클래스 변수에 같은 요구를 처리하기 위해 자바는 <em>statkc 초기화 블럭</em>을 제공한다.
+</p>
+
+<p>
+    <b>Note : </b> 이렇게 작성하는 것이 대부분이겠지만, 클래스를 정의 할때
+    필드를 꼭 시작부분에 선언하지 않아도 된다. 필드가 사용되기 전에 선언되고
+    초기화 되면 된다.
+</p>
+
+<h2>
+    static 초기화 블럭
+</h2>
+
+<p>
+    <em>static 초기화 블럭은</em> <code>static</code> 키워드가 앞에 붙고
+    {} 괄호로 묶은 평범한 코드 블럭이다.
+</p>
+
+<pre>
+static {
+    // whatever code is needed for initialization goes here
+}</pre>
+
+<p>
+    클래스는 static 초기화 블럭을 여러개 가질 수 있고 클래스 몸체 어느 곳에 있어도 된다. 
+    런타임 때 static 초기화 블럭은 코드에 있는 순서대로 실행된다. 
+</p>
+
+<p>
+
+    static 블럭을 대체할 수 있는 기능이 있다 - private static method를 사용하는 방법이다.
+</p>
+
+<pre>
+class Whatever {
+    public static varType myVar = initializeClassVariable();
+        
+    private static varType initializeClassVariable() {
+
+        // initialization code goes here
+    }
+}</pre>
+
+<p>
+    private static 메소드의 장점은 클래스 변수가 다시 초기화 할 필요가 있을 때
+    재사용 가능하다는 것이다.
+</p>
+
+<h2>
+    인스턴스 멤버 초기화
+</h2>
+
+<p>
+    보통 생성자에 인스턴스 변수를 초기화하기 위한 코드를 작성할 것이다. 
+    그 외에 두 가지 다른 방법이 있다. 초기화 블러과 final 메소드이다.
+</p>
+<p>
+    인스턴스 변수를 위한 초기화 블럭은 <code>static</code> 키워드를 
+    제외하면 static 초기화 블럭과 유사하다.
+</p>
+<pre>
+{
+    // whatever code is needed for initialization goes here
+}</pre>
+<p>
+    자바 컴파일러는 초기화 블럭을 모든 생성자에 복사해 넣는다. 그래서 여러 생성자가
+    코드블럭을 공유 하게 한다.
+</p>
+
+<p>
+    <em>final 메소드</em>는 서브 클래스에서 재정의(overriding)할 수 없다. 
+    이 것은 인터페이스와 상속 강의에서 더 알아보도록 하겠다.
+    아래 인스턴스 변수를 초기화하기 위한 final 메소드 사용 예제 코드가 있다. 
+</p>
+<pre>
+class Whatever {
+    private varType myVar = initializeInstanceVariable();
+        
+    protected final varType initializeInstanceVariable() {
+
+        // initialization code goes here
+    }
+}</pre>
+
+<p>
+    이 것은 특히 서브클래스가 초기화 메소드를 재사용하길 원할 때 유용하다. 
+    인스턴스를 초기화하는 중에 non-final 메소드를 호출하면 
+    문제가 생길 수 있기 때문에 그 메소드는 final이다
+</p>
+
+
+
+        <!-- 2열 끝 -->
+        </div>
+
+        <!-- container 끝 -->
+    </div>
+
+</body>
+
+</html>
