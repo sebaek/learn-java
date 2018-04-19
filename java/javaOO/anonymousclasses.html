@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">클래스와 객체</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="classes.html">클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="classdec1.html">클래스 선언</a>
+                            </li>
+                            <li>
+                                <a href="variables.html">멤버 변수 선언</a>
+                            </li>
+                            <li>
+                                <a href="methods.html">메소드 정의</a>
+                            </li>
+                            <li>
+                                <a href="constructors.html">생성자</a>
+                            </li>
+                            <li>
+                                <a href="arguments.html">메소드나 생성자에 정보 전달</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="objects.html">객체</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="objectcreation.html">객체 생성</a>
+                            </li>
+                            <li>
+                                <a href="usingobject.html">객체 사용</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="more.html">More on Classes</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="returnvalue.html">메소드에서 값 반환하기</a>
+                            </li>
+                            <li>
+                                <a href="thiskey.html">this 키워드 사용</a>
+                            </li>
+                            <li>
+                                <a href="accesscontrol.html">클래스의 멤버 접근 제어</a>
+                            </li>
+                            <li>
+                                <a href="classvars.html">클래스 멤버 이해하기</a>
+                            </li>
+                            <li>
+                                <a href="initial.html">필드 초기화</a>
+                            </li>
+                            <li>
+                                <a href="summaryclasses.html">클래스와 객체의 생성과 사용에 대한 요약</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="nested.html">중첩 클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="innerclasses.html">내부 클래스 예제</a>
+                            </li>
+                            <li>
+                                <a href="localclasses.html">지역 클래스</a>
+                            </li>
+                            <li>
+                                <a href="anonymousclasses.html">무명 클래스</a>
+                            </li>
+                            <li>
+                                <a href="lambdaexpressions.html">람다 표현식</a>
+                            </li>
+                            <ul>
+
+                                <li>
+                                    <a href="methodreferences.html">메소드 참조</a>
+                                </li>
+                            </ul>
+                            <li>
+                                <a href="whentouse.html">중첩 클래스, 지역 클래스, 무명 클래스, 람다 표현식을 사용할 때</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="enum.html">Enum Types</a>
+                        </li>
+
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+        <!-- 2열 시작 -->
+<h1>무명 클래스</h1>
+<p>
+    무명 클래스는 코드를 간결하게 만들 수 있게 해준다.
+    무명 클래스는 클래스의 선언과 객체화를 한 번에 할 수 있게 해준다.
+    무명 클래스는 이름이 없다는 것을 제외하면 지역 클래스와 같다.
+    만약 지역 클래스가 한번만 필요하다면 사용해라.
+</p>
+
+<p>이 섹션은 아래 토픽을 다룬다.</p>
+
+<ul>
+    <li>무명 클래스 선언하기</li>
+    <li>무명 클래스 문법</li>
+    <li>감싸는 scope의 지역변수 접근하기, 무명 클래스의 멤버 선언과 접근</li>
+    <li>무명 클래스의 예제</li>
+</ul>
+
+<h2>무명 클래스 선언하기</h2>
+<p>
+    지역 클래스는 클래스 선언이지만 무명 클래스는 표현식이다.
+    즉 다른 표현식 안에서 클래스를 정의 한다.
+    예를 들어 <code>HelloWorldAnonymousClasses</code> 프로그램은 지역변수
+    <code>frenchGreeting</code>와 <code>spanishGreeting</code>를 초기화 할 때
+    무명 클래스를 사용한다. 하지만 <code>englishGreeting</code> 변수를 
+    초기화할 땐 지역 클래스를 사용한다.
+</p>
+
+<pre>
+public class HelloWorldAnonymousClasses {
+
+    interface HelloWorld {
+        public void greet();
+        public void greetSomeone(String someone);
+    }
+    
+    public void sayHello() {
+        
+        class EnglishGreeting implements HelloWorld {
+            String name = "world";
+            public void greet() {
+                greetSomeone("world");
+            }
+            public void greetSomeone(String someone) {
+                name = someone;
+                System.out.println("Hello " + name);
+            }
+        }
+        
+        HelloWorld englishGreeting = new EnglishGreeting();
+        
+        HelloWorld frenchGreeting = new HelloWorld() {
+            String name = "tout le monde";
+            public void greet() {
+                greetSomeone("tout le monde");
+            }
+            public void greetSomeone(String someone) {
+                name = someone;
+                System.out.println("Salut " + name);
+            }
+        };
+        
+        HelloWorld spanishGreeting = new HelloWorld() {
+            String name = "mundo";
+            public void greet() {
+                greetSomeone("mundo");
+            }
+            public void greetSomeone(String someone) {
+                name = someone;
+                System.out.println("Hola, " + name);
+            }
+        };
+        englishGreeting.greet();
+        frenchGreeting.greetSomeone("Fred");
+        spanishGreeting.greet();
+    }
+
+    public static void main(String... args) {
+        HelloWorldAnonymousClasses myApp =
+            new HelloWorldAnonymousClasses();
+        myApp.sayHello();
+    }            
+}</pre>
+
+<p>무명 클래스 문법</p>
+
+<p>
+무명 클래스는 표현식이다. 무명 클래스 표현식의 문법은
+코드 블럭 안에 클래스 정의가 있다는 것을 제외하면 생성자의 호출과 같다
+</p>
+
+<p>
+    <code>frenchGreeting</code>객체의 생성을 살펴보자
+</p>
+
+<pre>
+HelloWorld frenchGreeting = new HelloWorld() {
+    String name = "tout le monde";
+    public void greet() {
+        greetSomeone("tout le monde");
+    }
+    public void greetSomeone(String someone) {
+        name = someone;
+        System.out.println("Salut " + name);
+    }
+};</pre>
+<p>
+    무명 클래스 표현식은 아래 요소들로 구성되어 있다.
+</p>
+
+<ul>
+
+    <li>
+        <code>new</code> 연산자.
+    </li>
+    <li>
+구현할 인터페이스의 이름이나 상속할 클래스의 이름. 이 예제에서, 무명 클래스는
+인터페이스 <code>HelloWorld</code>를 구현하였다.
+    </li>
+    <li>
+생성자에 넘겨주는 인자가 있는 ()괄호(객체를 생성하는 표현식과 같은).
+<b>Note : </b> 인터페이스는 생성자가 없다. 생성자를 구현할 경우 이 예제 처럼
+빈 괄호를 사용하면 된다.
+    </li>
+
+    <li>
+클래스 선언 몸체. 몸체 안에서 메소드 선언은 가능하다. 명령문은 가능하지 않는다.
+    </li>
+</ul>
+
+<p>
+    무명 클래스 정의가 표현식이기 때문에, 명령문의 한 요소이어야 한다.
+    이 예제에서 무명 클래스 표현식은 <code>frenchGreeting</code>객체를
+    만드는 명령문의 한 부분이다. (이 설명은 왜 닫는 중괄호 다음에 세미콜린이 있는지 설명해준다.)
+</p>
+
+<h2>
+감싸는 scope의 지역변수 접근하기, 무명 클래스의 멤버 선언과 접근
+</h2>
+
+<p>
+    
+</p>
+
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<p>
+
+</p>
+
+<ul>
+    <li>
+
+    </li>
+    <li>
+
+    </li>
+</ul>
+<p>
+
+</p>
+<ul>
+    <li>
+
+
+    </li>
+    <li>
+
+    </li>
+    <li>
+
+    </li>
+    <li>
+
+    </li>
+</ul>
+<p>
+
+</p>
+<h2>
+무명 클래스 예제
+</h2>
+
+
+
+
+        <!-- 2열 끝 -->
+        </div>
+
+        <!-- container 끝 -->
+    </div>
+
+</body>
+
+</html>
