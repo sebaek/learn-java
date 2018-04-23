@@ -259,55 +259,191 @@ HelloWorld frenchGreeting = new HelloWorld() {
 </h2>
 
 <p>
-    지역 클래스 처럼, 무명 클래스는 capture variables를 할 수 있다.
-    감싸고 있는 
+지역 클래스 처럼 무명 클래스는 변수를 capture할 수 있다. 감싸고 있는 지역 변수에 대해 
+둘 다 같은 접근을 가지고 있다.    
 </p>
 
 <ul>
-    <li></li>
-    <li></li>
-    <li></li>
+    <li>무명 클래스는 감싸고 있는 클래스의 멤버에 접근할 수 있다.</li>
+    <li>무명 클래스는 감싸고 있는 scope의 지역 변수가 <code>final</code>이나 effectively final이
+    아니면 접근 할 수 없다.</li>
+    <li>nested 클래스처럼, 무명클래스내의 타입의 선언(변수와 같은)은 감싸고 있는 scope의
+         같은 이름의 다른 선언을 shadow한다. 
+    </li>
 </ul>
 <p>
-
+무명 클래스는 멤버에 대해 지역 클래스와 같은 제한이 있다.
 </p>
 
 <ul>
     <li>
-
+static 초기화 블럭이나 멤버, 인터페이스를 무명 클래스내에 선언할 수 없다.
     </li>
     <li>
-
+무명 클래스는 상수값인 static 멤버를 가질 수 있다.
     </li>
 </ul>
 <p>
-
+무명 클래스 내에 아래 요소는 선언할 수 있다.
 </p>
 <ul>
     <li>
-
-
+필드
     </li>
     <li>
-
+메소드 (supertype의 메소드를 구현하지 않아도...)
     </li>
     <li>
-
+인스터스 초기화 블럭
     </li>
     <li>
-
+지역 클래스
     </li>
 </ul>
 <p>
-
+하지만 무명 클래스의 생성자를 선언할 수 없다.
 </p>
 <h2>
 무명 클래스 예제
 </h2>
+<p>무명 클래스는 주로 GUI 프로그램에서 사용된다.</p>
+<p>
+    JavaFX 예제 <code>HelloWorld.java</code>를 보면,
+    <b>Say 'Hello World'</b>라는 버튼을 프레임 안에 만든다.
+    무명 클래스가 강조되어 있다.
+</p>
+<pre>
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+    
+public class HelloWorld extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Hello World!");
+        Button btn = new Button();
+        btn.setText("Say 'Hello World'");
+        btn.setOnAction(<b>new EventHandler<ActionEvent>() {
+    
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+            }
+        }</b>);
+        
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.show();
+    }
+}</pre>
+<p>
+이 예제에서 <code>btn.setOnAction</code>메소드 호출부분은 
+<strong>Say 'Hello World'</strong>버튼을 눌렀을 때
+일어나는 일을 작성한 것이다. 이 메소드는 <code>EventHandler&lt;ActionEvent&gt;</code> 타입의
+객체를 요구한다. <code>EventHandler&lt;ActionEvent&gt;</code> 인터페이스는
+하나의 메소드 <code>handle</code>를 가지고 있다. 이 메소드를 구현하는 새로운 클래스를
+작성하는 대신 무명 클래스 표현식을 사용하였다. 이 표현식은 <code>btn.setOnAction</code>의
+인자로 전달되었다.
+</p>
+<p>
+<code>EventHandler&lt;ActionEvent&gt;</code> 인터페이스는 하나의 메소드만 가지고 있기 때문에
+무명 클래스 대신 람다 표현식으로 작성할 수 있다. <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html"><code>Lambda Expressions</code></a>를 보라.
+</p>
+<p>
+무명 클래스는 하나 이상의 메소드를 가진 인터페이스를 구현한 것과 같다.
+아래 <a href="https://docs.oracle.com/javase/8/javafx/user-interface-tutorial/custom.htm"><code>Customization ofUI Controls</code></a>에서 가져온 JavaFX 예제가 있다.
+강조된 코드는 numeric 값만 받는 text field를 만든다. <code>TextInputControl</code>
+클래스에서 상속받은 <code>TextField</code> 클래스의
+<code>replaceText</code>와 <code>replaceSelection</code> 메소드를 overriding하는
+무명 클래스를 사용해서 다시 정의하고 있다.
 
+</p>
+<pre>
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
-
-
+public class CustomTextFieldSample extends Application {
+    
+    final static Label label = new Label();
+    
+    @Override
+    public void start(Stage stage) {
+        Group root = new Group();
+        Scene scene = new Scene(root, 300, 150);
+        stage.setScene(scene);
+        stage.setTitle("Text Field Sample");
+    
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(5);
+        grid.setHgap(5);
+    
+        scene.setRoot(grid);
+        final Label dollar = new Label("$");
+        GridPane.setConstraints(dollar, 0, 0);
+        grid.getChildren().add(dollar);
+        
+        final TextField sum = <b>new TextField() {
+            @Override
+            public void replaceText(int start, int end, String text) {
+                if (!text.matches("[a-z, A-Z]")) {
+                    super.replaceText(start, end, text);                     
+                }
+                label.setText("Enter a numeric value");
+            }
+    
+            @Override
+            public void replaceSelection(String text) {
+                if (!text.matches("[a-z, A-Z]")) {
+                    super.replaceSelection(text);
+                }
+            }
+        }</b>;
+    
+        sum.setPromptText("Enter the total");
+        sum.setPrefColumnCount(10);
+        GridPane.setConstraints(sum, 1, 0);
+        grid.getChildren().add(sum);
+        
+        Button submit = new Button("Submit");
+        GridPane.setConstraints(submit, 2, 0);
+        grid.getChildren().add(submit);
+        
+        submit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                label.setText(null);
+            }
+        });
+        
+        GridPane.setConstraints(label, 0, 1);
+        GridPane.setColumnSpan(label, 3);
+        grid.getChildren().add(label);
+        
+        scene.setRoot(grid);
+        stage.show();
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+}</pre>
         <!-- 2열 끝 -->
         </div>
 
