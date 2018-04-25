@@ -264,7 +264,7 @@ public class Person {
 </p>
 
 <pre>
-public static void printPersonsOlderThan(List<Person> roster, int age) {
+public static void printPersonsOlderThan(List&lt;Person&gt; roster, int age) {
     for (Person p : roster) {
         if (p.getAge() >= age) {
             p.printPerson();
@@ -304,7 +304,7 @@ public static void printPersonsOlderThan(List<Person> roster, int age) {
 
 <pre>
 public static void printPersonsWithinAgeRange(
-    List<Person> roster, int low, int high) {
+    List&lt;Person&gt; roster, int low, int high) {
     for (Person p : roster) {
         if (low <= p.getAge() && p.getAge() < high) {
             p.printPerson();
@@ -330,8 +330,66 @@ public static void printPersonsWithinAgeRange(
 </h3>
 
 <p>
+    아래 메소드는 명시한 검색 조건에 맞는 멤버를 출력한다.
+</p>
+
+<pre>
+public static void printPersons(
+    List&lt;Person&gt; roster, CheckPerson tester) {
+    for (Person p : roster) {
+        if (tester.test(p)) {
+            p.printPerson();
+        }
+    }
+}</pre>
+
+<p>
+이 메소드는 <code>CheckPerson</code> 매개변수
+<code>tester</code>의 <code>tester.test</code> 메소드를 호출해서
+<code>List</code>매개변수 <code>roster</code>에 
+있는 각 <code>Person</code> 객체를 검색 조건에 맞는지 체크한다.
+</p>
+<p>
+    검색 조건을 명시하기 위해서 <code>CheckPerson</code>인터페이스를 구현해야 한다.
+</p>
+<pre>
+interface CheckPerson {
+    boolean test(Person p);
+}</pre>
+
+<p>
+아래 클래스는 <code>test</code>메소드를 정의하면서 <code>Checkperson</code> 인터페이스를 구현하였다.
+이 메소드는 미국의 의무병역에 적합한 멤버를 찾는다. 만약 <code>Person</code> 매개변수가
+남자이고 18~25세이면 <code>true</code>를 리턴한다.
+</p>
+
+<pre>
+class CheckPersonEligibleForSelectiveService implements CheckPerson {
+    public boolean test(Person p) {
+        return p.gender == Person.Sex.MALE &&
+            p.getAge() >= 18 &&
+            p.getAge() <= 25;
+    }
+}</pre>
+
+<p>
+    이 클래스를 사용하기 위해 새 객체를 만들어서 <code>printPersons</code>를
+    호출한다.
+</p>
+
+<pre>
+printPersons(
+    roster, new CheckPersonEligibleForSelectiveService());</pre>
+
+<p>
     
 </p>
+
+
+
+
+
+
         <!-- 2열 끝 -->
         </div>
 
