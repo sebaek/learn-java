@@ -358,7 +358,7 @@ interface CheckPerson {
 }</pre>
 
 <p>
-아래 클래스는 <code>test</code>메소드를 정의하면서 <code>Checkperson</code> 인터페이스를 구현하였다.
+아래 클래스는 <code>test</code>메소드를 정의하면서 <code>CheckPerson</code> 인터페이스를 구현하였다.
 이 메소드는 미국의 의무병역에 적합한 멤버를 찾는다. 만약 <code>Person</code> 매개변수가
 남자이고 18~25세이면 <code>true</code>를 리턴한다.
 </p>
@@ -378,16 +378,249 @@ class CheckPersonEligibleForSelectiveService implements CheckPerson {
 </p>
 
 <pre>
-printPersons(
-    roster, new CheckPersonEligibleForSelectiveService());</pre>
+printPersons(roster, new CheckPersonEligibleForSelectiveService());</pre>
 
 <p>
-    
+이 접근은 이 전 접근보다 낫지만(<code>Person</code>의 구조를 바꾸어도
+메소드를 다시 작성하지 않아도 된다.) 여전히 부가적인 코드를 작성해야한다.
+즉 새 인터페이스와 각 검색을 위한 지역 클래스가 있어야 한다.
+<code>CheckPersonEligibleForSelectiveService</code>가 인터페이스를 구현하기 때문에,
+지역 클래스 대신 각 검색 마다 새 클래스를 선언해서 넘기는 무명 클래스를 사용할 수 있다.
+</p>
+
+<h3>Approach 4: Specify Search Criteria Code in an Anonymous Class</h3>
+<p>
+아래 <code>printPersons</code> 메소드 호출에서
+인자 중에 하나는 미국 의무 병역에 적합한(남자이고 18~25세) 멤버를 필터하는 무명 클래스이다.
+</p>
+<pre>
+printPersons(
+    roster,
+    new CheckPerson() {
+        public boolean test(Person p) {
+            return p.getGender() == Person.Sex.MALE
+                && p.getAge() >= 18
+                && p.getAge() <= 25;
+        }
+    }
+);</pre>
+
+<p>
+    이 접근은 각 검색 조건마다 새로운 클래스를 만들지 않아도 되기 때문에 코드 양을 줄일 수 있다.
+    그러나 무명 클래스 문법은 하나의 메소드만 있는 <code>CheckPerson</code>에 비해 비대하다.
+    이런 경우 무명 클래스 대신 람다 표현식을 사용할 수 있다. 다음 섹션에서 살펴보자.
+</p>
+
+<h3>Approach 5: Specify Search Criteria Code with a Lambda Expression</h3>
+<p>
+<code>CheckPerson</code> 인터페이스는 <em>functional interface</em>이다. 
+functional interface는 단 하나의 추상 메소드만 있는 인터페이스이다. 
+(functional interface는 하나 이상의 default methods와 static methods를 가질 수 있다.)
+functional interface는 단하나의 추상 메소드만 가지고 있기 때문에, 구현할 때
+그 메소드의 이름을 생략할 수 있다. 그래서 무명 클래스 표현식 대신에 <em>람다 표현식</em>을 사용할 수 있는 것이다.
+아래 메소드 호출에서 굵게 표시된 부분이다.
+</p>
+<pre>
+printPersons(
+    roster,
+    <strong>(Person p) -&gt; p.getGender() == Person.Sex.MALE
+        && p.getAge() &gt;= 18
+        && p.getAge() &lt;= 25</strong>
+);</pre>
+<p>
+<a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html#syntax">Syntax of Lambda Expressions</a>에
+람다 표현식 작성법에 대한 정보가 있다.
+</p>
+<p>
+<code>CheckPerson</code>인터페이스 대신에 필요한 코드 양을 더 줄이는
+standard functional interface를 사용할 수 있다.
+</p>
+
+<h3>Approach 6: Use Standard Functional Interfaces with Lambda Expressions</h3>
+<p>
+    <code>CheckPerson</code>인터페이스를 다시 보자.
+</p>
+
+<pre>
+interface CheckPerson {
+    boolean test(Person p);
+}</pre>
+
+<p>
+    아주 간단한 인터페이스이다. 단 하나의 추상 메소드만 가지고 있으므로 functional interface이다.
+    이 메소드는 하나의 파라미터를 가지고 있으며 <code>boolean</code>값을 리턴한다. 
+    이 메소드는 너무 간단해서 프로그램에 정의하지 않아도 될 정도이다. 
+    결과적으로 JDK는 <code>java.util.function</code>에 몇 가지 standard functional interface를 정의 한다.
+</p>
+
+<p>
+    예를 들어, <code>CheckPerson</code> 인터페이스 대신에
+     <code>Predicate&lt;T&gt;</code> 인터페이스를 사용할 수 있다.
+     이 인터페이스는 <code>test(T t)</code>메소드를 가지고 있다.
+</p>
+
+<pre>
+interface Predicate&lt;T&gt; {
+    boolean test(T t);
+}</pre>
+
+<p>
+<code>Predicate&lt;T&gt;</code>인터페이스는 generic interface의 예제이다. 
+(generic interface에 관한 자세한 정보는 <a href="https://docs.oracle.com/javase/tutorial/java/generics/index.html">Generics (Updated)</a>를
+보라.) 제네릭 타입(generic interface 같은)은 angle brackets(&lt;&gt;)안에 한 개이상의
+파라미터를 명시한다. 이 인터페이스는 단 하나의 타입 파라미터 <code>T</code>를 가지고 있다. 
+실제 타입 인자를 넣어 제네릭 타입을 선언하거나 인스턴스화 하면, 당신은
+parameterized type를 갖게 된다. 예를 들어 parameterized type <code>Predicate&lt;Person&gt;</code>는
+아래와 같다.
+</p>
+
+<pre>
+interface Predicate&lt;Person&gt; {
+    boolean test(Person t);
+}</pre>
+
+<p>
+    이 parameterized type은 <code>CheckPerson.boolean test(Person p)</code>와 같은
+    리턴 타입과 파라미터가 있는 메소드가 있다. 결과적으로 아래 작성한 것 처럼 <code>CheckPerson</code>을
+    <code>Predicate&lt;T&gt;</code>로 바꿀 수 있다.
 </p>
 
 
+<pre>
+public static void printPersonsWithPredicate(
+    List&lt;Person&gt; roster, Predicate&lt;Person&gt; tester) {
+    for (Person p : roster) {
+        if (tester.test(p)) {
+            p.printPerson();
+        }
+    }
+}</pre>
 
+<p>
+결국 아래 메소드 호출은 Approach 3에서 호출한 <code>printPersons</code>과 같게 된 것이다.
+남자이고 18~25세인 조건으로 멤버를 찾는 동일한 결과이다.
+</p>
 
+<pre>
+printPersonsWithPredicate(
+    roster,
+    p -> p.getGender() == Person.Sex.MALE
+        && p.getAge() >= 18
+        && p.getAge() <= 25
+);</pre>
+
+<p>
+    람다 표현식을 사용하는 것이 이 방법으로만 가능한 것은 아니다. 다음 접근에서
+    람다 표현식을 사용하는 다른 방법을 보여주고 있다.
+</p>
+
+<h3>Approach 7: Use Lambda Expressions Throughout Your Application</h3>
+<p>
+람다 표현식을 사용할 수 있는 <code>printPersonsWithPredicate</code>메소드를 다시 살펴보자.
+
+</p>
+
+<pre>
+public static void printPersonsWithPredicate(
+    List&lt;Person&gt; roster, Predicate&lt;Person&gt; tester) {
+    for (Person p : roster) {
+        if (tester.test(p)) {
+            p.printPerson();
+        }
+    }
+}</pre>
+
+<p>
+    이 메소드는 <code>List</code>타입의 <code>roster</code> 파라미터에 담긴 각 <code>Person</code>
+    객체를 <code>Predicate</code>타입의 <code>tester</code> 파라미터로 조건을 만족하는지 체크 한다.
+    만약 <code>Person</code>객체가 <code>tester</code>조건을 만족하면 <code>Person</code>
+    객체의 <code>printPerson</code>메소드를
+    호출한다.
+
+</p>
+
+<p>
+<code>printPerson</code>메소드를 호출하는 대신, <code>tester</code>의 조건을 만족하는
+<code>Person</code>객체에 다른 액션을 작성할 수 있다. 
+이 액션을 람다 표현식으로 작성할 수 있다. 하나의 인자 (<code>Person</code> 객체)를 받고
+void를 리턴하는 <code>printPerson</code>메소드 같은 람다 표현식을 원한다고 가정하자.
+람다 표현식을 사용하기 위해서 functional interface가 필요하다는 것을 기억하자. 
+이 경우 <code>Person</code>타입의 인자 하나를 받고 void를 리턴하는 추상 메소드가 있는
+functional interface가 필요하다. <code>Consumer&lt;T&gt;</code> 인터페이스는 
+이런 특징을 가진 <code>void accept(T t)</code> 메소드를 가지고 있다.
+아래 메소드는 <code>p.printPerson()</code> 호출을 <code>Consumer&lt;Person&gt;</code> 객체의
+<code>accept</code>메소드로
+바꾼 예제를 보여주고 있다.
+</p>
+
+<pre>
+public static void processPersons(
+    List&lt;Person&gt; roster,
+    Predicate&lt;Person&gt; tester,
+    <strong>Consumer&lt;Person&gt; block</strong>) {
+        for (Person p : roster) {
+            if (tester.test(p)) {
+                <strong>block.accept(p);</strong>
+            }
+        }
+}</pre>
+
+<p>
+그 결과 아래 메소드 호출은 남자이고 18~25세의 멤버를
+필터하는 Approach 3에서 호출한 <code>printPersons</code>와
+같은 것이 되었다. 멤버를 출력하는 람다 표현식은 굵게 표시되었다.
+</p>
+
+<pre>
+processPersons(
+    roster,
+    p -> p.getGender() == Person.Sex.MALE
+        && p.getAge() >= 18
+        && p.getAge() <= 25,
+    p -> p.printPerson()
+);</pre>
+
+<p>
+만약 멤버의 프로필을 출력하는 대신 다른 것을 더 원할 수도 있다.
+멤버의 프로필이 유효한지 확인하거나 연락처를 받길 원한다고 가정해보자.
+이 경우 리턴 값을 갖는 추상 메소드가 있는 functional interface가 필요하다.
+<code>Function&lt;T,R&gt;</code> 인터페이스는 <code>R apply(T t)</code>메소드를
+가지고 있다. 아래 메소드는 <code>mapper</code> 파라미터로 명시된 데이터를 받고
+<code>block</code> 파라미터에 명시된 액션을 실행한다.
+</p>
+
+<pre>
+public static void processPersonsWithFunction(
+    List&lt;Person&gt; roster,
+    Predicate&lt;Person&gt; tester,
+    Function&lt;Person, String&gt; mapper,
+    Consumer&lt;String&gt; block) {
+    for (Person p : roster) {
+        if (tester.test(p)) {
+            String data = mapper.apply(p);
+            block.accept(data);
+        }
+    }
+}</pre>
+
+<p>
+    아래 메소드 호출은 <code>roster</code>중 남자이고 18~25세인 멤버를 필터하고 
+    이메일을 꺼내서 출력하는 메소드 호출이다.
+</p>
+<pre>
+processPersonsWithFunction(
+    roster,
+    p -> p.getGender() == Person.Sex.MALE
+        && p.getAge() >= 18
+        && p.getAge() <= 25,
+    p -> p.getEmailAddress(),
+    email -> System.out.println(email)
+);</pre>
+<h3>Approach 8: Use Generics More Extensively</h3>
+<p>
+<code>processPersonsWithFunction</code> 메소드를 다시 살펴보자.
+
+</p>
 
 
         <!-- 2열 끝 -->
