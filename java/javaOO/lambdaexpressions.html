@@ -619,8 +619,55 @@ processPersonsWithFunction(
 <h3>Approach 8: Use Generics More Extensively</h3>
 <p>
 <code>processPersonsWithFunction</code> 메소드를 다시 살펴보자.
-
+아래 코드는 모든 데이터 타입을 요소로 같는 콜렉션을 처리하는 (파라미터로 받는) 제네릭 버전이다.
 </p>
+<pre>
+public static &lt;X, Y&gt; void processElements(
+    Iterable&lt;X&gt; source,
+    Predicate&lt;X&gt; tester,
+    Function &lt;X, Y&gt; mapper,
+    Consumer&lt;Y&gt; block) {
+    for (X p : source) {
+        if (tester.test(p)) {
+            Y data = mapper.apply(p);
+            block.accept(data);
+        }
+    }
+}</pre>
+
+<p>
+조건에 적합한 멤버의    e-mail 주소를 출력하기 위해
+<code>processElements</code>메소드를 아래와 같이 호출하였다.
+</p>
+
+<pre>
+processElements(
+    roster,
+    p -&#x3E; p.getGender() == Person.Sex.MALE
+        &#x26;&#x26; p.getAge() &#x3E;= 18
+        &#x26;&#x26; p.getAge() &#x3C;= 25,
+    p -&#x3E; p.getEmailAddress(),
+    email -&#x3E; System.out.println(email)
+);</pre>
+
+<p>
+이 메소드 호출은 아래 기능을 수행한다. 
+</p>
+
+<ol>
+    <li>
+
+    </li>
+    <li>
+
+    </li>
+    <li>
+
+    </li>
+    <li>
+
+    </li>
+</ol>
 
 
         <!-- 2열 끝 -->
