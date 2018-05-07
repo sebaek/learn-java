@@ -656,18 +656,459 @@ processElements(
 
 <ol>
     <li>
-
+콜렉션 <code>source</code>에서 원본 객체들을 얻는다.
+이 예제에서는 콜렉션 <code>roster</code>에서 <code>Person</code>
+객체 원본을 얻는다. <code>roster</code>는 <code>List</code>
+타입이며, 곧 <code>Iterable</code>타입이다.
+</li>
+    <li>
+<code>Predicate</code> <code>tester</code> 객체에
+매치되는 객체를 필터한다. 이 예제에서
+<code>Predicate</code> 객체는 Selective Service에 적합한
+멤버를 명시한 람다 표현식이다.
     </li>
     <li>
-
+필터된 각 객체를 <code>Function</code> <code>mapper</code>
+객체에 명시된 값으로 매핑한다. 이 예제에서 
+<code>Function</code> 객체는 멤버의 이메일 주소를 반환하는
+람다 표현식이다.
     </li>
     <li>
-
-    </li>
-    <li>
-
+매핑된 각 객체에 <code>Consumer</code> <code>block</code>
+객체에 명시된 기능을 수행한다. 이 예제에서 <code>Consumer</code>
+객체는 <code>Function</code> 객체에서
+반환받은 이메일 주소 문자열을 출력하는 람다 표현식이다. 
     </li>
 </ol>
+<p>
+이런 기능을 집합 연산자로 교체할 수 있다.
+</p>
+
+
+<h3>Approach 9: Use Aggregate Operations That Accept Lambda Expressions as Parameters</h3>
+<p>
+아래 예제는
+<code>roster</code> 콜렉션에 담겨있는 멤버중 
+Selective Service 적합한 멤버의 이메일 주소를
+출력하기위해 집합 연산을 사용하고 있다.
+</p>
+<pre>
+roster
+.stream()
+.filter(
+    p -> p.getGender() == Person.Sex.MALE
+        && p.getAge() >= 18
+        && p.getAge() <= 25)
+.map(p -> p.getEmailAddress())
+.forEach(email -> System.out.println(email));</pre>
+<p>
+아래 테이블은 <code>processElements</code> 메소드의 기능에
+해당하는 집합 연산을 매핑해서 보여주고 있다.
+</p>
+
+<table class="table">
+    <tr>
+      <th><code>processElements</code> Action</th>
+      <th>Aggregate Operation</th>
+    </tr>
+    
+    <tr>
+      <td>Obtain a source of objects</td>
+      
+      <td><code>Stream&lt;E&gt; <strong>stream</strong>()</code></td>
+    </tr>
+    
+    <tr>
+      <td>Filter objects that match a <code>Predicate</code> object</td>
+      <td><code>Stream&lt;T&gt; <strong>filter</strong>(Predicate&lt;? super T&gt; predicate)</code></td>
+    </tr>
+    
+    <tr>
+    
+      <td>Map objects to another value as specified by a <code>Function</code> object</td>
+      
+      <td><code>&lt;R&gt; Stream&lt;R&gt; <strong>map</strong>(Function&lt;? super T,? extends R&gt; mapper)</code></td>
+      
+    </tr>
+    
+    <tr>
+      <td>Perform an action as specified by a <code>Consumer</code> object</td>
+      <td><code>void <strong>forEach</strong>(Consumer&lt;? super T&gt; action)</code></td>
+    </tr>
+    
+</table>
+<p>
+<code>filter</code>, <code>map</code>,
+<code>forEach</code> 연산은 <em>집합 연산</em>이다.
+집합 연산은 콜렉션에서 직접처리하지 않고 스트림에서 요소들을 처리한다.
+그래서 이 예제에서 가장 먼저 호출한 메소드가 <code>stream</code>이다.
+<em>스트림 stream</em>은 요소의 순차적 배열이다.
+콜렉션과 다르게 요소들을 저장하는 자료구조가 아니다.
+대신 스트림은 콜렉션 같은 원본에서 값들을 파이프라인을
+통해서 옮겨간다. <em>파이프라인 pipeline</em>은
+스트림의 순차적 연산이다. 이 예제에서는 <code>filter-map-forEach</code>이다.
+그리고 집합 연산은 어떻게 기능해야 하는 지 직접
+작성할 수 있게 보통 람다 표현식을 파라미터로 받는다.
+</p>
+<p>
+집합 연산의 더 많은 정보는 
+<a href="https://docs.oracle.com/javase/tutorial/collections/streams/index.html">Aggregate Operations</a>를
+보기 바란다.
+</p>
+
+<h2>GUI 프로그램의 람다 표현식</h2>
+<p>
+GUI 프로그램에서 키보드 입력이나 마우스 입력같은 이벤트를 처리하기 위해
+보통 특정 인터페이스를 구현한 이벤트 핸들러를 만들게 된다.
+종종 이벤트 핸들러 인터페이스는 하나의 메소드만 있는 functional interface이다.
+</p>
+
+<p>
+JavaFX 예제 <a href="https://docs.oracle.com/javase/8/javafx/get-started-tutorial/hello_world.htm">HelloWorld.java</a>
+에서 무명 클래스를 람다 표현식으로 교체할 수 있다.
+</p>
+
+<pre>
+btn.setOnAction(<b>new EventHandler&lt;ActionEvent&gt;() {</b>
+
+    <b>@Override</b>
+    <b>public void handle(ActionEvent event) {</b>
+        <b>System.out.println("Hello World!");</b>
+    <b>}</b>
+<b>}</b>);</pre>
+
+<p>
+<code>btn.setOnAction</code> 메소드 호출은
+<code>btn</code>객체로 표현된 버튼을 선택했을 때
+일어나야 하는 일을 명시한 것이다.
+이 메소드는 <code>EventHandler&lt;ActionEvent&gt;</code>타입의
+객체를 요구한다.
+<code>EventHandler&lt;ActionEvent&gt;</code>인터페이스는
+<code>void handle(T event)</code>메소드 하나만 가지고 있다.
+이 인터페이스는 functional interface이기 때문에,
+아래 처럼 람다 표현식으로 바꿀 수 있다.
+</p>
+
+<pre>        
+btn.setOnAction(
+    <b>event -&gt; System.out.println("Hello World!")</b>
+);</pre>
+
+<h2>람다 표현식의 문법</h2>
+<p>람다 표현식은 아래 구성요소로 이루어져있다.</p>
+<ul>
+    <li>
+        <p>
+()괄호안에 파라미터 형식의 콤마로 구분된 리스트.
+<code>CheckPerson.test</code> 메소드는 
+<code>Person</code>객체의 <code>p</code>
+파라미터 하나만 가지고 있다.
+</p>
+<p>
+    <strong>Note : </strong> 람다 표현식의 파라미터의
+    타입을 생략할 수 있다. 그리고 파라미터가 하나만 있다면
+    ()괄호를 생략할 수 있다. 예를 들어 아래 람다 표현식은
+    문법에 맞는 형식이다:
+</p>
+<pre>
+p -&gt; p.getGender() == Person.Sex.MALE
+    && p.getAge() &gt;= 18
+    && p.getAge() &lt;= 25
+</pre>
+    </li>
+<li>
+<p><code>-&gt;</code> 화살표 기호</p>
+</li>
+    <li>
+<p>몸체 : 단순한 식이나 코드 블럭. 이 예제는 아래 식을
+    사용하고 있다.
+</p>
+<pre>
+p -&gt; p.getGender() == Person.Sex.MALE
+    && p.getAge() &gt;= 18
+    && p.getAge() &lt;= 25
+</pre>
+<p>
+만약 단순한 하나의 식이면 Java는 식을 계산한 결과값을
+반환한다. 대신 <code>return</code>문을 사용할 수 있다.
+</p>
+<pre>
+p -&gt; {
+    return p.getGender() == Person.Sex.MALE
+        && p.getAge() &gt;= 18
+        && p.getAge() &lt;= 25    
+}</pre>
+<p>
+<code>return</code>문은 람다 표현식에서 어떤 계산식이 아니다.
+꼭 {}를 사용해야 한다. 그러나 void 메소드 호출은 {}로 감쌀 필요는
+없다. 예를 들어 아래 코드는 문법에 맞는 람다 표현식이다.
+</p>
+<pre>email -&gt; System.out.println(email)</pre>
+
+
+    </li>
+</ul>
+<p>
+람다 표현식은 메소드 선언과 비슷하다는 것을 주목해라;
+람다 표현식을 무명 메소드 처럼 생각할 수 있다.
+</p>
+<p>
+아래 예제 <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/examples/Calculator.java"><code>Calculator</code></a>는
+하나 이상의 파라미터 형식에 사용한 람다 표현식이다.
+</p>
+
+<pre>
+
+public class Calculator {
+    
+    interface IntegerMath {
+        int operation(int a, int b);   
+    }
+    
+    public int operateBinary(int a, int b, IntegerMath op) {
+        return op.operation(a, b);
+    }
+    
+    public static void main(String... args) {
+    
+        Calculator myApp = new Calculator();
+        IntegerMath addition = (a, b) -&gt; a + b;
+        IntegerMath subtraction = (a, b) -&gt; a - b;
+        System.out.println(&quot;40 + 2 = &quot; +
+            myApp.operateBinary(40, 2, addition));
+        System.out.println(&quot;20 - 10 = &quot; +
+            myApp.operateBinary(20, 10, subtraction));    
+    }
+}
+
+</pre>
+
+<p>
+<code>operateBinary</code> 메소드는 
+두 정수의 수학 연산을 한다. 이 연산은 <code>IntegerMath</code>의
+객체로 명시한다. 위 예제는 두 연산을 람다 표현식 
+<code>addition</code>과 <code>subtraction</code>으로 정의했다.
+아래 처럼 결과가 나온다.
+</p>
+<pre class="codeblock">40 + 2 = 42
+20 - 10 = 10</pre>
+
+<h2>감싸고 있는 scope의 지역 변수 접근</h2>
+<p>
+지역 클래스와 무명 클래스 처럼, 람다 표현식도 capture variable할 수 있다.
+즉 감싸고 있는 scope의 지역변수에 접근할 수 있다.
+그러나 지역 클래스, 무명 클래스와 다르게
+람다 표현식은 shadowing 이슈가 없다. 람다 표현식은 lexically scope이다.
+다시 말하면 슈퍼타입으로 부터 어떤 이름도 상속 받지 않고
+새로운 단계의 scope을 만들지 않는다는 뜻이다. 
+람다 표현식 내의 선언은 감싼 scope의 구성 요소 자체로 해석된다.
+아래 예제 <code>LambdaScopeTest</code>에서
+시연해보고 있다.
+
+</p>
+<pre>
+
+import java.util.function.Consumer;
+
+public class LambdaScopeTest {
+
+    public int x = 0;
+
+    class FirstLevel {
+
+        public int x = 1;
+
+        void methodInFirstLevel(int x) {
+            
+            // The following statement causes the compiler to generate
+            // the error &quot;local variables referenced from a lambda expression
+            // must be final or effectively final&quot; in statement A:
+            //
+            // x = 99;
+            
+            Consumer&lt;Integer&gt; myConsumer = (y) -&gt; 
+            {
+                System.out.println(&quot;x = &quot; + x); // Statement A
+                System.out.println(&quot;y = &quot; + y);
+                System.out.println(&quot;this.x = &quot; + this.x);
+                System.out.println(&quot;LambdaScopeTest.this.x = &quot; +
+                    LambdaScopeTest.this.x);
+            };
+
+            myConsumer.accept(x);
+
+        }
+    }
+
+    public static void main(String... args) {
+        LambdaScopeTest st = new LambdaScopeTest();
+        LambdaScopeTest.FirstLevel fl = st.new FirstLevel();
+        fl.methodInFirstLevel(23);
+    }
+}
+</pre>
+<p>이 예제는 아래 결과를 출력한다.</p>
+
+<pre>
+x = 23
+y = 23
+this.x = 1
+LambdaScopeTest.this.x = 0
+</pre>
+<p>
+만약 <code>myConsumer</code> 람다 표현식의 선언에서 파라미터 x를 y로 바꾸면
+컴파일러는 에러를 출력한다.
+</p>
+<pre>Consumer&lt;Integer&gt; myConsumer = (x) -> {
+    // ...
+}</pre>
+<p>
+컴파일러는 "variable x is already defined in method methodInFirstLevel(int)"
+라는 에러를 출력한다. 람다 표현식은 새로운 단계의 scope을 만들지 않기 때문이다.
+그 결과 감싸고 있는 scope의 필드와 메소드 지역 변수를 직접 접근 할 수 있다.
+예를 들어, 람다 표현식은 <code>methodInFirstLevel</code>메소드의 파라미터
+<code>x</code>에 직접 접근한다.
+감싼 클래스의 변수에 접근하기 위해 <code>this</code>키워드를 사용한다.
+이 예제에서, <code>this.x</code>는 <code>FirstLevel.x</code> 멤버 변수를 가리킨다.
+
+</p>
+<p>
+그러나 지역 클래스나 무명 클래스처럼, 람다 표현식은
+감싸고 있는 블럭의 final이나 effectively final의 파라미터나
+지역 변수만 접근 할 수 있다. 예를 들어 아래 할당 명령문을
+<code>methodInFirstLevel</code> 선언 바로 다음에
+추가한다고 가정해보자.
+</p>
+<pre class="codeblock">void methodInFirstLevel(int x) {
+    <strong>x = 99;</strong>
+    // ...
+}</pre>
+
+<p>
+이 명령문 때문에 <code>FirstLevel.x</code>의 변수는
+더이상 effectively final이 아니다.
+그 결과 Java 컴파일러는 람다 표현식에서
+<code>FirstLevel.x</code>를 접근하려는 코드에서
+ 에러 메세지 "local variables referenced from a lambda expression must be final or effectively final"를 출력한다.
+
+</p>
+<pre>System.out.println("x = " + x);</pre>
+
+<h2>Target Typing</h2>
+<p>
+    람다 표현식의 자료형을 어떻게 결정할 수 있을까?
+남자이고 나이가 18~25세인 멤버를 선택하는 람다 표현식을
+기억해보자:
+</p>
+<pre class="codeblock">p -&gt; p.getGender() == Person.Sex.MALE
+    &amp;&amp; p.getAge() &gt;= 18
+    &amp;&amp; p.getAge() &lt;= 25</pre>
+
+<p>
+이 람다 표현식은 아래 두 메소드에서 사용된다.
+</p>
+
+<ul>
+    <li>Approach 3: Specify Search Criteria Code in a Local Class 에서
+            <code>public static void printPersons(List&lt;Person&gt; roster, CheckPerson tester)</code>
+    </li>
+    <li>
+            Approach 6: Use Standard Functional Interfaces with Lambda Expressions 에서    <code>public void printPersonsWithPredicate(List&lt;Person&gt; roster, Predicate&lt;Person&gt; tester)</code>
+    </li>
+</ul>
+<p>
+Java 런타임이 <code>printPersons</code> 메소드를 호출할 때,
+<code>CheckPerson</code> 타입을 기대하게 되므로
+람다 표현식은 그 타입이다.
+그러나 Java 런타임이 <code>printPersonsWithPredicate</code> 메소드를
+호출할 때 <code>Predicate&lt;Person&gt;</code> 타입을 기대하게
+되므로 람다 표현식은 이 타입이된다.
+이 메소드들이 기대하는 자료형이 <em>목적 target type</em>이라고 한다.
+람다 표현식의 타입을 결정하기 위해 Java 컴파일러는 람다 표현식이
+발견된 context나 상황의 target type을 사용한다. 
+Java 컴파일러가 target type을 결정할 수 있는
+상황에서만 람다 표현식을 사용할 수 있다. 그 상황이 아래 나열되어 있다.
+</p>
+
+<ul>
+    <li>
+        <p>변수 선언 Variable declarations</p>
+    </li>
+    <li>
+        <p>할당 Assignments</p>
+    </li>
+    <li>
+        <p>Return statements</p>
+    </li>
+    <li>
+        <p>배열 초기화 Array initializers</p>
+    </li>
+    <li>
+        <p>메소드나 생성자 인자 Method or constructor arguments</p>
+    </li>
+    <li>
+        <p>람다 표현식 몸체 Lambda expression bodies</p>
+    </li>
+    <li>
+        <p>Conditional expressions, ? :</p>
+    </li>
+    <li>
+        <p>형변환 Cast expressions</p>
+    </li>
+</ul>
+<h3>Target Types and Method Arguments</h3>
+<p>
+    메소드 인자에서 Java 컴파일러는 target type을 두 기능 (오버로드와 
+    타입 추론)으로 결정한다. 
+</p>
+<p>아래 두 functional interface를 살펴보자 (
+        <a class="APILink" target="_blank" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html"><code>java.lang.Runnable</code></a> 과
+        <a class="APILink" target="_blank" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Callable.html"><code>java.util.concurrent.Callable&lt;V&gt;</code></a>):</p>
+
+<pre class="codeblock">public interface Runnable {
+    void run();
+}
+
+public interface Callable&lt;V&gt; {
+    V call();
+}</pre>
+
+<p>
+<code>Runnable.run</code> 은 값을 반환하지 않고, 
+<code>Callable&lt;V&gt;</code>는 반환한다.
+</p>
+
+<p>
+아래 <code>invoke</code> 메소드를 오버로드 했다고 
+가정하자.
+</p>
+
+<pre class="codeblock">void invoke(Runnable r) {
+    r.run();
+}
+
+&lt;T&gt; T invoke(Callable&lt;T&gt; c) {
+    return c.call();
+}</pre>
+
+<p>아래 코드는 어떤 메소드를 호출하는가?</p>
+
+
+<pre class="codeblock">String s = invoke(() -&gt; "done");</pre>
+<p>
+값을 리턴하는 <code>invoke(Callable&lt;T&gt;</code> 메소드가 호출될 것이다.
+이 경우 <code>() -&gt; "done"</code> 람다 표현식의 타입은 <code>Callable&lt;T&gt;</code> 이다.
+</p>
+<h2>Serialization</h2>
+<p>
+만약 target type과 captured arguments 가 
+serializable 하다면 람다 표현식을 <a href="https://docs.oracle.com/javase/tutorial/jndi/objects/serial.html">serialize</a>할 수 있다.
+그러나 <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html#serialization">inner classes</a> 처럼
+람다 표현식의 serialization 은 매우 권장되지 않는다.
+
+
+</p>
+
 
 
         <!-- 2열 끝 -->
