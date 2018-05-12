@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">클래스와 객체</a>
+                    </li>
+                    <ul>
+                        <li>
+                            <a href="classes.html">클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="classdec1.html">클래스 선언</a>
+                            </li>
+                            <li>
+                                <a href="variables.html">멤버 변수 선언</a>
+                            </li>
+                            <li>
+                                <a href="methods.html">메소드 정의</a>
+                            </li>
+                            <li>
+                                <a href="constructors.html">생성자</a>
+                            </li>
+                            <li>
+                                <a href="arguments.html">메소드나 생성자에 정보 전달</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="objects.html">객체</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="objectcreation.html">객체 생성</a>
+                            </li>
+                            <li>
+                                <a href="usingobject.html">객체 사용</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="more.html">More on Classes</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="returnvalue.html">메소드에서 값 반환하기</a>
+                            </li>
+                            <li>
+                                <a href="thiskey.html">this 키워드 사용</a>
+                            </li>
+                            <li>
+                                <a href="accesscontrol.html">클래스의 멤버 접근 제어</a>
+                            </li>
+                            <li>
+                                <a href="classvars.html">클래스 멤버 이해하기</a>
+                            </li>
+                            <li>
+                                <a href="initial.html">필드 초기화</a>
+                            </li>
+                            <li>
+                                <a href="summaryclasses.html">클래스와 객체의 생성과 사용에 대한 요약</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="nested.html">중첩 클래스</a>
+                        </li>
+                        <ul>
+                            <li>
+                                <a href="innerclasses.html">내부 클래스 예제</a>
+                            </li>
+                            <li>
+                                <a href="localclasses.html">지역 클래스</a>
+                            </li>
+                            <li>
+                                <a href="anonymousclasses.html">무명 클래스</a>
+                            </li>
+                            <li>
+                                <a href="lambdaexpressions.html">람다 표현식</a>
+                            </li>
+                            <ul>
+
+                                <li>
+                                    <a href="methodreferences.html">메소드 참조</a>
+                                </li>
+                            </ul>
+                            <li>
+                                <a href="whentouse.html">중첩 클래스, 지역 클래스, 무명 클래스, 람다 표현식을 사용할 때</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="enum.html">Enum Types</a>
+                        </li>
+
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <!-- 2열 시작 -->
+            <h1>메소드 참조</h1>
+            <p>
+                무명 메소드를 만들기 위해 람다 표현식을 사용한다. 그러나 가끔 람다 표현식은 이미 있는 메소드를 호출하는 일만 하는 경우가 있다. 이 경우 이미 존재 하는 메소드의 이름만 참조하는 것이 더 명료하다. 메소드 참조는
+                이 것을 가능하게 한다. 이미 이름이 있는 메소드를 표현하기 위한 간단하고 읽기 쉬운 메소드 참조이다.
+            </p>
+
+            <p>
+
+                아래
+                <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/examples/Person.java">
+                    <code>Person</code>
+                </a>
+                클래스를 다시 살펴보자.
+            </p>
+
+            <pre>
+public class Person {
+
+    public enum Sex {
+        MALE, FEMALE
+    }
+
+    String name;
+    LocalDate birthday;
+    Sex gender;
+    String emailAddress;
+
+    public int getAge() {
+        // ...
+    }
+    
+    public Calendar getBirthday() {
+        return birthday;
+    }    
+
+    public static int compareByAge(Person a, Person b) {
+        return a.birthday.compareTo(b.birthday);
+    }
+}</pre>
+            <p>
+                소셜 네트워크 프로그램의 멤버들이 하나의 배열에 담겨 있고 나이 순으로 정렬하길 원한다고 가정해보자. 그럼 아래 코드를 사용할 수 있을 것이다.(이 섹션의 코드는
+                <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/examples/MethodReferencesTest.java">
+                    <code>MethodReferencesTest</code>
+                </a>에서 발췌했다.)
+            </p>
+            <pre>
+Person[] rosterAsArray = roster.toArray(new Person[roster.size()]);
+
+class PersonAgeComparator implements Comparator&lt;Person&gt; {
+    public int compare(Person a, Person b) {
+        return a.getBirthday().compareTo(b.getBirthday());
+    }
+}
+        
+Arrays.sort(rosterAsArray, new PersonAgeComparator());</pre>
+
+
+            <p>
+                <code>sort</code>메소드의 시그니처는 아래와 같다.
+            </p>
+
+            <pre>static &lt;T&gt; void sort(T[] a, Comparator&lt;? super T&gt; c)</pre>
+
+            <p>
+                <code>Comparator</code>인터페이스는 functional interface이다.
+                <code>Comparator</code>인터페이스를 구현하고 새 객체를 만드는 대신 람다 표현식을 사용할 수 있다.
+            </p>
+
+            <pre>
+Arrays.sort(rosterAsArray,
+(Person a, Person b) -&gtl; {
+    return a.getBirthday().compareTo(b.getBirthday());
+}
+);</pre>
+
+            <p>
+                하지만 두
+                <code>Person</code> 객체의 나이를 비교하는 메소드는
+                <code>Person.compareByAge</code>에 이미 있다. 람다 표현식를 이 메소드 호출로 변경할 수 있다.
+            </p>
+
+            <pre>
+Arrays.sort(rosterAsArray,
+    (a, b) -&gt; Person.compareByAge(a, b)
+);</pre>
+            <p>
+                이 람다 표현식은 이미 있는 메소드를 호출하기 때문에, 람다 표현식 대신 메소드 참조를 사용할 수 있다.
+            </p>
+
+            <pre>Arrays.sort(rosterAsArray, Person::compareByAge);</pre>
+
+            <p>
+                이 메소드 참조
+                <code>Person::compareByAge</code>는
+                <code>(a, b) -&gt; Person.compareByAge(a, b)</code>와 의미가 같다. 둘 다 다음과 같은 특징이 있다.
+            </p>
+
+            <ul>
+                <li>
+                    <p>파라미터 형태는
+                        <code>Comparator&lt;Person&gt;.compare</code>에서 복사해온
+                        <code>(Person, Person)</code>이다.</p>
+                </li>
+                <li>
+                    <p>그 몸체는
+                        <code>Person.compareByAge</code>를 호출한다. </p>
+                </li>
+            </ul>
+
+            <h2>메소드 참조의 종류</h2>
+            <p>
+                네 종류의 메소드 참조가 있다.
+            </p>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        종류
+                    </th>
+                    <th>
+                        예제
+                    </th>
+                </tr>
+                <tr>
+                    <td>스태틱 메소드 참조</td>
+                    <td>ContainingClass::staticMethodName</td>
+                </tr>
+                <tr>
+                    <td>특정 객체의 인스턴스 메소드 참조</td>
+                    <td>containingObject::instanceMethodName</td>
+                </tr>
+                <tr>
+                    <td>특정 타입의 임의의 객체의 인스턴스 메소드 참조</td>
+                    <td>ContainingType::methodName</td>
+                </tr>
+                <tr>
+                    <td>생성자 참조</td>
+                    <td>ClassName::new</td>
+                </tr>
+            </table>
+            <h3>스태틱 메소드 참조</h3>
+            <p>
+                <code>Person::compareByAge</code> 메소드 참조가 스태틱 메소드 참조이다.
+            </p>
+
+
+            <h3>특정 객체의 인스턴스 메소드 참조</h3>
+            <p>
+                아래 코드가 특정 객체의 인스턴스 메소드 참조의 예이다.
+            </p>
+            <pre class="codeblock">class ComparisonProvider {
+    public int compareByName(Person a, Person b) {
+        return a.getName().compareTo(b.getName());
+    }
+        
+    public int compareByAge(Person a, Person b) {
+        return a.getBirthday().compareTo(b.getBirthday());
+    }
+}
+ComparisonProvider myComparisonProvider = new ComparisonProvider();
+Arrays.sort(rosterAsArray, <strong>myComparisonProvider::compareByName</strong>);</pre>
+
+            <p>
+                <code>myComparisonProvider::compareByName</code> 메소드 참조는
+                <code>myComparisonProvider</code> 객체의
+                <code>compareByName</code> 메소드를 호출한다. JRE는 메소드 파라미터의 타입을 추론하며, 이 경우
+                <code>(Person, Person)</code>으로 추론한다.
+            </p>
+
+            <h3>특정 타입의 임의의 객체의 인스턴스 메소드 참조</h3>
+            <p>
+                아래 코드는 특정 타입의 임의의 객체의 인스턴스 메소드를 참조하는 예제이다.
+            </p>
+
+            <pre class="codeblock">String[] stringArray = { "Barbara", "James", "Mary", "John",
+    "Patricia", "Robert", "Michael", "Linda" };
+Arrays.sort(stringArray, String::compareToIgnoreCase);</pre>
+            <p>
+                <code>String::compareToIgnoreCase</code> 메소드 참조와 동일한 람다 표현식은
+                <code>(String a, String b)</code>를 파라미터로 갖는다.
+                <code>a</code>와
+                <code>b</code>는 이 예제를 잘 설명하기 위한 이름일 뿐이다. 메소드 참조는
+                <code>a.compareToIgnoreCase(b)</code>를 호출한다.
+            </p>
+
+
+
+
+
+            <h3>생성자 참조</h3>
+<p>
+스태틱 메소드 참조를 사용한 방법 처럼 생성자 참조를 <code>new</code>로 사용할 수 있다.
+아래 메소드는 어떤 콜렉션의 요소들을 다른 콜렉션으로 복사하는 코드이다.
+</p>
+<pre class="codeblock">public static &lt;T, SOURCE extends Collection&lt;T&gt;, DEST extends Collection&lt;T&gt;&gt;
+    DEST transferElements(
+        SOURCE sourceCollection,
+        Supplier&lt;DEST&gt; collectionFactory) {
+        
+        DEST result = collectionFactory.get();
+        for (T t : sourceCollection) {
+            result.add(t);
+        }
+        return result;
+}</pre>
+
+<p>
+functional interface <code>Supplier</code>는 메소드 <code>get</code>을 가지고 있으며 이 메소드는
+파라미터가 없고 객체를 리턴한다. 그 결과 아래 처럼 <code>transferElements</code> 메소드를 람다 표현식으로
+호출 할 수 있다.
+</p>
+<pre class="codeblock">Set&lt;Person&gt; rosterSetLambda =
+        transferElements(roster, () -> { return new HashSet&lt;&gt;(); });</pre>
+<p>
+아래 코드 처럼 람다 표현식 대신 생성자 참조를 사용할 수 있다.
+</p>
+<pre class="codeblock">Set&lt;Person&gt; rosterSet = transferElements(roster, HashSet::new);</pre>
+<p>
+자바 컴파일러는 <code>HashSet</code> 콜렉션을 만들 때 요소들이 <code>Person</code> 타입인 것을 추론한다.
+대신 타입을 명시해 줄 수도 있다.
+</p>
+
+<pre class="codeblock">Set&lt;Person&gt; rosterSet = transferElements(roster, HashSet&lt;Person&gt;::new);</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- 2열 끝 -->
+        </div>
+
+        <!-- container 끝 -->
+    </div>
+
+</body>
+
+</html>
