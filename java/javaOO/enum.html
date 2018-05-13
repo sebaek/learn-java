@@ -121,6 +121,200 @@
             <!-- 2열 시작 -->
 <h1>Enum Types</h1>
 
+<p>
+    <em>enum type</em>은 상수들을 정의해 모아 놓은 특별한 데이터 타입이다.
+    변수는 정의해 놓은 값과 같다. 
+    예를 들면 방위(NORTH, SOUTH, EAST, WEST)를 정의 해놓거나 한 주의
+    요일을 정의할 때 사용할 수 있다.
+</p>
+
+<p>
+    상수이기 때문에 enum type의 필드는 대문자로 작명한다.
+</p>
+<p>
+    자바에서 enum type은 <code>enum</code> 키워드로 정의한다.
+    예를 들어, 한 주의 요일의 enum type은 아래 코드 처럼 작성할 수 있다.
+</p>
+
+<div class="codeblock"><pre>
+public enum Day {
+    SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
+    THURSDAY, FRIDAY, SATURDAY 
+}
+</pre></div>
+
+<p>
+상수 값들을 표현하고 싶을 때 enum type을 사용하면 된다.
+태양계의 행성같은 컴파일 타임에서 값을 알 수 있는 곳에 enum type을 사용한다 - 예를 들어, 메뉴 목록이나, 명령 flags 등.
+</p>
+<p>
+    위의 <code>Day</code> enum을 사용하는 예제가 아래 작성되어 있다.
+</p>
+
+<div class="codeblock"><pre>
+public class EnumTest {
+    Day day;
+    
+    public EnumTest(Day day) {
+        this.day = day;
+    }
+    
+    public void tellItLikeItIs() {
+        switch (day) {
+            case MONDAY:
+                System.out.println(&quot;Mondays are bad.&quot;);
+                break;
+                    
+            case FRIDAY:
+                System.out.println(&quot;Fridays are better.&quot;);
+                break;
+                            
+            case SATURDAY: case SUNDAY:
+                System.out.println(&quot;Weekends are best.&quot;);
+                break;
+                        
+            default:
+                System.out.println(&quot;Midweek days are so-so.&quot;);
+                break;
+        }
+    }
+    
+    public static void main(String[] args) {
+        EnumTest firstDay = new EnumTest(Day.MONDAY);
+        firstDay.tellItLikeItIs();
+        EnumTest thirdDay = new EnumTest(Day.WEDNESDAY);
+        thirdDay.tellItLikeItIs();
+        EnumTest fifthDay = new EnumTest(Day.FRIDAY);
+        fifthDay.tellItLikeItIs();
+        EnumTest sixthDay = new EnumTest(Day.SATURDAY);
+        sixthDay.tellItLikeItIs();
+        EnumTest seventhDay = new EnumTest(Day.SUNDAY);
+        seventhDay.tellItLikeItIs();
+    }
+}
+</pre></div>
+
+<p>
+
+    출력 결과는:
+</p>
+
+<div class="codeblock"><pre>
+Mondays are bad.
+Midweek days are so-so.
+Fridays are better.
+Weekends are best.
+Weekends are best.
+</pre></div>
+
+<p>
+자바 enum type은 다른 언어의 것 보다 강력하다.
+<code>enum</code> 키워드는 <em>class</em>(<em>enum type</em>)을 정의 한다.
+enum 클래스 몸체는 메소드와 필드를 정의할 수 있다. 컴파일러는
+enum이 만들어질 때 특별한 메소드들을 추가한다. 예를 들어
+정의된 순서대로 enum의 값을 갖는 배열을 리턴하는 static <code>values</code> 메소드가 있다.
+이 메소드는 enum type의 값들을 탐색하는 for-each 와 함께 주로 사용된다.
+예를 들어, 아래 코드는 태양계의 모든 행성을 탐색하는 <code>Planet</code>클래스에서 발췌한 예제이다.
+</p>
+
+<div class="codeblock"><pre>
+for (Planet p : Planet.values()) {
+    System.out.printf("Your weight on %s is %f%n",
+                        p, p.surfaceWeight(mass));
+}
+</pre></div>
+
+<p>
+    <strong>Note : </strong> <em>모든</em> enum은 묵시적으로
+     <code>java.lang.Enum</code>타입을 상속 받는다. 자바에서 클래스는 하나의 부모 클래스만 
+     상속 받을 수 있기 때문에 enum은 다른 클래스를 상속 받을 수 없다.
+</p>
+
+<p>
+아래 <code>Planet</code> enum type은 태양계의 행성들을 코드로 표현한 것이다.
+질량과 반지름을 속성으로 갖는다.
+</p>
+
+<p>
+    각 enum 상수는 질량과 반지름 파라미터와 함께 선언되어 있다. 이 값들은 상수가
+    만들어질 때 생성자를 통해서 값을 받는다. 상수를 먼저 선언한 후 다른 필드와
+    메소드를 정의해야 한다. 필드와 메소드가 있다면 enum 상수를 정의한 마지막 코드에
+    세미콜론을 작성해야 한다.
+</p>
+
+<p>
+    <strong>Note : </strong> enum type의 생성자는 package-private 이나 private 접근
+    지정자로 정의해야 한다. 이 생성자는 enum 몸체 시작 부분에 정의된
+    상수들을 만든다. 직접 enum 생성자를 호출할 수 없다. 
+</p>
+
+<p>
+<code>Planet</code>은 속성과 생성자 외에 각 행성 표면에서의 중력과 무게를 얻을 수 있는 메소드가 있다.
+아래 지구에서의 몸무게를 받아 다른 모든 행성에서의 무게를 계산해서 출력해주는 프로그램 예제가 있다.
+</p>
+
+<div class="codeblock"><pre>
+public enum Planet {
+    MERCURY (3.303e+23, 2.4397e6),
+    VENUS   (4.869e+24, 6.0518e6),
+    EARTH   (5.976e+24, 6.37814e6),
+    MARS    (6.421e+23, 3.3972e6),
+    JUPITER (1.9e+27,   7.1492e7),
+    SATURN  (5.688e+26, 6.0268e7),
+    URANUS  (8.686e+25, 2.5559e7),
+    NEPTUNE (1.024e+26, 2.4746e7);
+
+    private final double mass;   // in kilograms
+    private final double radius; // in meters
+    Planet(double mass, double radius) {
+        this.mass = mass;
+        this.radius = radius;
+    }
+    private double mass() { return mass; }
+    private double radius() { return radius; }
+
+    // universal gravitational constant  (m3 kg-1 s-2)
+    public static final double G = 6.67300E-11;
+
+    double surfaceGravity() {
+        return G * mass / (radius * radius);
+    }
+    double surfaceWeight(double otherMass) {
+        return otherMass * surfaceGravity();
+    }
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            System.err.println(&quot;Usage: java Planet &lt;earth_weight&gt;&quot;);
+            System.exit(-1);
+        }
+        double earthWeight = Double.parseDouble(args[0]);
+        double mass = earthWeight/EARTH.surfaceGravity();
+        for (Planet p : Planet.values())
+            System.out.printf(&quot;Your weight on %s is %f%n&quot;,
+                                p, p.surfaceWeight(mass));
+    }
+}
+</pre></div>
+<p>
+<code>Planet.class</code>를 175 인자 값과 실행하면 다음과 같이 출력된다.
+</p>
+<div class="codeblock"><pre>
+$ java Planet 175
+Your weight on MERCURY is 66.107583
+Your weight on VENUS is 158.374842
+Your weight on EARTH is 175.000000
+Your weight on MARS is 66.279007
+Your weight on JUPITER is 442.847567
+Your weight on SATURN is 186.552719
+Your weight on URANUS is 158.397260
+Your weight on NEPTUNE is 199.207413
+</pre></div>
+
+
+
+
+
+
 
 
 
