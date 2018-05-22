@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../myscript.js"></script>
+
+    <title>Java Tutorials</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="side-menu-container">
+
+                <ul>
+                    <li>
+                        <a href="index.html">어노테이션</a>
+                    </li>
+                    <ul>
+                        <li><a href="basics.html">어노테이션 기본</a></li>
+                        <li><a href="declaring.html">어노테이션 타입 선언하기</a></li>
+                        <li><a href="predefined.html">Predefined 어노테이션 타입</a></li>
+                        <li><a href="type_annotations.html">Type Annotations and Pluggable Type Systems</a></li>
+                        <li><a href="repeating.html">중복 어노테이션</a></li>
+
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <!-- 2열 시작 -->
+<h1>어노테이션 타입 선언하기</h1>
+<p>
+많은 어노테이션이 주석을 대신할 수 있다.
+</p>
+
+<p>
+어떤 회사에서 모든 클래스 몸체에 중요한 정보를 주석으로 작성한다고 가정해보자.
+</p>
+
+<div class="codeblock"><pre>
+public class Generation3List extends Generation2List {
+
+    // Author: John Doe
+    // Date: 3/17/2002
+    // Current revision: 6
+    // Last modified: 4/12/2004
+    // By: Jane Doe
+    // Reviewers: Alice, Bill, Cindy
+
+    // class code goes here
+
+}
+</pre></div>
+
+<p>
+    같은 메타데이터를 어노테이션으로 추가 하기 위해서 <em>어노테이션 타입</em>을 먼저 작성해야 한다. 
+    작성하는 문법은 아래와 같다.
+</p>
+
+<div class="codeblock"><pre>
+@interface ClassPreamble {
+    String author();
+    String date();
+    int currentRevision() default 1;
+    String lastModified() default "N/A";
+    String lastModifiedBy() default "N/A";
+    // Note use of array
+    String[] reviewers();
+}
+</pre></div>
+<p>
+    어노테이션 타입을 정의하는 것은 인터페이스를 정의하는 것과 유사하다.
+    <code>interface</code> 키워드 앞에 @를 붙인다.
+    어노테이션 타입은 다음 레슨에서 다루겠지만 <em>interface</em> 형식이다. 
+    지금 인터페이스에 대해 이해할 필요는 없다.
+</p>
+
+<p>
+위의 어노테이션 정의는 몸체에 메소드 처럼 보이는 <em>어노테이션 타입 요소(annotation type element)</em> 선언을
+작성했다. 또한 기본값을 설정할 수도 있다.
+</p>
+
+<p>
+어노테이션 타입을 정의한 후, 아래 처럼 값을 채워서 어노테이션 타입을 사용할 수 있다. 
+</p>
+<div class="codeblock"><pre>
+@ClassPreamble (
+    author = "John Doe",
+    date = "3/17/2002",
+    currentRevision = 6,
+    lastModified = "4/12/2004",
+    lastModifiedBy = "Jane Doe",
+    // Note array notation
+    reviewers = {"Alice", "Bob", "Cindy"}
+)
+public class Generation3List extends Generation2List {
+
+// class code goes here
+
+}
+</pre></div>
+
+<p>
+    <strong>Note : </strong> Javadoc으로 생성하는 문서에 <code>@ClassPreamble</code>의 정보가
+    나타나게 하기 위해서, <code>@Documented</code> 어노테이션을 <code>@ClassPreamble</code>정의할 때
+    작성해야 한다.
+</p>
+
+<div class="codeblock"><pre>
+// import this to use <code>@Documented</code>
+import java.lang.annotation.*;
+
+@Documented
+@interface ClassPreamble {
+
+    // Annotation element definitions
+    
+}
+</pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- 2열 끝 -->
+        </div>
+
+        <!-- container 끝 -->
+    </div>
+
+</body>
+
+</html>
